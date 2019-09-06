@@ -32,7 +32,7 @@ const Login = ({ history }) => {
     <div className="List-header">
       <div className="Div-Login">
         <ListGroup>
-          <h1>Entrar na conta</h1>
+          <center><h1 ><font size="6" face="maiandra gd">Grupo Pisiquê</font></h1></center>
           <Form onSubmit={handleLogin}>
 
             <FormGroup>
