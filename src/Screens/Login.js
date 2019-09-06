@@ -1,8 +1,8 @@
 import React, { useCallback, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, ListGroup } from 'reactstrap';
 import { withRouter, Redirect } from "react-router";
-import app from "./base.js";
-import { AuthContext } from "./Auth.js";
+import app from "../base.js";
+import { AuthContext } from "../Auth.js";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
