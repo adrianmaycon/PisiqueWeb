@@ -5,18 +5,19 @@ import Login from "./Screens/Login";
 import SignUp from "./Screens/SignUp";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
+import './Styles/index.css'
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <div>
-          <PrivateRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
-        </div>
-      </Router>
-    </AuthProvider>
+      <AuthProvider>
+        <Router>
+          <div>
+            <PrivateRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+          </div>
+        </Router>
+      </AuthProvider>
   );
 };
 
