@@ -11,7 +11,10 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from 'reactstrap';
+
+import Dashboard from '../Components/Dashboard';
 import './Styles/index.css';
 
 export default class Home extends React.Component {
@@ -62,18 +65,9 @@ export default class Home extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+
+        <Dashboard />
       </div>
     );
   }
 }
-
-// const Home = () => {
-//   return (
-//     <div className="List-Body">
-//       <h1>Seja Bem Vindo!</h1>
-//       <button onClick={() => app.auth().signOut()}>Sair da conta</button>
-//     </div>
-//   );
-// };
-
-// export default Home;
