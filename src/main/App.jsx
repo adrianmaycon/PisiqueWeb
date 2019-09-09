@@ -15,7 +15,7 @@ const App = () => {
             <PrivateRoute exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
-            <Redirect from='*' to='/' />
+            <Redirect from='*' to='/login' />
           </div>
         </Router>
       </AuthProvider>
