@@ -5,7 +5,6 @@ import Login from "../Screens/Login";
 import SignUp from "../Screens/SignUp";
 import { AuthProvider } from "../Auth";
 import PrivateRoute from "../PrivateRoute";
-import './index.css'
 
 const App = () => {
   return (
