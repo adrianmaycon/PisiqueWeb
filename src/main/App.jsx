@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import Home from "../Screens/Home";
-import Login from "../Screens/Login";
-import SignUp from "../Screens/SignUp";
+import Home from "../Views/Home";
+import Login from "../Views/Login";
+import SignUp from "../Views/SignUp";
 import { AuthProvider } from "../Auth";
 import PrivateRoute from "../PrivateRoute";
 
