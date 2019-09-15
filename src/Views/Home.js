@@ -1,4 +1,10 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,6 +42,16 @@ import Dashboard from '../Components/Dashboard/index.jsx';
 const drawerWidth = 240;
 
 export default function ClippedDrawer() {
+  const [open, setOpen] = React.useState(false);
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -72,7 +88,7 @@ export default function ClippedDrawer() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Meu Perfil</MenuItem>
-      <MenuItem onClick={() => app.auth().signOut()}>Sair da conta</MenuItem>
+      <MenuItem onClick={handleClickOpen}>Sair da conta</MenuItem>
     </Menu>
   );
 
@@ -118,7 +134,6 @@ export default function ClippedDrawer() {
   );
 
   return (
-
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
@@ -230,28 +245,49 @@ export default function ClippedDrawer() {
         </List>
         <Divider />
         <List>
-            <ListItem button>
-              <ListItemIcon className={classes.icon}><AccountBalanceIcon /></ListItemIcon>
-              <ListItemText primary={'Intituições'} />
-            </ListItem>
+          <ListItem button>
+            <ListItemIcon className={classes.icon}><AccountBalanceIcon /></ListItemIcon>
+            <ListItemText primary={'Intituições'} />
+          </ListItem>
         </List>
         <List>
-            <ListItem button>
-              <ListItemIcon className={classes.icon}><CollectionsBookmarkIcon /></ListItemIcon>
-              <ListItemText primary={'Biblioteca'} />
-            </ListItem>
+          <ListItem button>
+            <ListItemIcon className={classes.icon}><CollectionsBookmarkIcon /></ListItemIcon>
+            <ListItemText primary={'Biblioteca'} />
+          </ListItem>
         </List>
         <List>
-            <ListItem button style={{backgroundColor: '#171E42', height: 60}} onClick={() => app.auth().signOut()}>
-              <ListItemIcon className={classes.icon}><PowerSettingsNewIcon /></ListItemIcon>
-              <ListItemText primary={'Sair da conta'} />
-            </ListItem>
+          <ListItem button style={{ backgroundColor: '#252F69', height: 60 }} onClick={handleClickOpen}>
+            <ListItemIcon className={classes.icon}><PowerSettingsNewIcon /></ListItemIcon>
+            <ListItemText primary={'Sair da conta'} />
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Dashboard />
       </main>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Atenção!"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Você realmente deseja se sair da conta?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={() => app.auth().signOut()} color="primary" autoFocus>
+            Sim
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
@@ -342,7 +378,7 @@ const useStyles = makeStyles(theme => ({
   infoUser: {
     width: '100%',
     height: 120,
-    backgroundColor: '#252F69',
+    backgroundColor: '#171E42',
   },
   toolbar: theme.mixins.toolbar,
 }));
