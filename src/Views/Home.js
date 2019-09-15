@@ -10,6 +10,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import MailIcon from '@material-ui/icons/Mail';
 import { fade, makeStyles } from '@material-ui/core/styles';
@@ -22,12 +24,16 @@ import Logo from '../assets/img/logo.png';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import GroupIcon from '@material-ui/icons/Group';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+import ArchiveIcon from '@material-ui/icons/Archive';
+import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import app from "../base";
 import Dashboard from '../Components/Dashboard/index.jsx';
 
-const drawerWidth = 220;
+const drawerWidth = 240;
 
 export default function ClippedDrawer() {
   const classes = useStyles();
@@ -184,6 +190,7 @@ export default function ClippedDrawer() {
         }}
       >
         <div className={classes.toolbar} />
+        <div className={classes.infoUser} />
         <List>
           <ListItem button >
             <ListItemIcon className={classes.icon}> <DashboardIcon /> </ListItemIcon>
@@ -198,9 +205,46 @@ export default function ClippedDrawer() {
         </List>
         <Divider />
         <List>
+          <ListItem button >
+            <ListItemIcon className={classes.icon}> <GroupIcon /> </ListItemIcon>
+            <ListItemText primary={'Acompanhante'} />
+          </ListItem>
+        </List>
+        <List>
+          <ListItem button >
+            <ListItemIcon className={classes.icon}> <ChatIcon /> </ListItemIcon>
+            <ListItemText primary={'BatePapo'} />
+          </ListItem>
+        </List>
+        <List>
+          <ListItem button >
+            <ListItemIcon className={classes.icon}> <ArchiveIcon /> </ListItemIcon>
+            <ListItemText primary={'Conquistas'} />
+          </ListItem>
+        </List>
+        <List>
+          <ListItem button >
+            <ListItemIcon className={classes.icon}> <EmojiEventsIcon /> </ListItemIcon>
+            <ListItemText primary={'Arquivos'} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
             <ListItem button>
               <ListItemIcon className={classes.icon}><AccountBalanceIcon /></ListItemIcon>
               <ListItemText primary={'Intituições'} />
+            </ListItem>
+        </List>
+        <List>
+            <ListItem button>
+              <ListItemIcon className={classes.icon}><CollectionsBookmarkIcon /></ListItemIcon>
+              <ListItemText primary={'Biblioteca'} />
+            </ListItem>
+        </List>
+        <List>
+            <ListItem button style={{backgroundColor: '#171E42', height: 60}} onClick={() => app.auth().signOut()}>
+              <ListItemIcon className={classes.icon}><PowerSettingsNewIcon /></ListItemIcon>
+              <ListItemText primary={'Sair da conta'} />
             </ListItem>
         </List>
       </Drawer>
@@ -228,7 +272,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#131836',
+    backgroundColor: '#2E3A82',
     color: '#fff',
   },
   content: {
@@ -294,6 +338,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  infoUser: {
+    width: '100%',
+    height: 120,
+    backgroundColor: '#252F69',
   },
   toolbar: theme.mixins.toolbar,
 }));
