@@ -78,6 +78,7 @@ export default function ClippedDrawer() {
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
+
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -87,8 +88,9 @@ export default function ClippedDrawer() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Meu Perfil</MenuItem>
-      <MenuItem onClick={handleClickOpen}>Sair da conta</MenuItem>
+      <MenuItem onClick={handleMenuClose}><AccountBoxIcon style={{marginRight: 5}}/>Meu Perfil</MenuItem>
+      <Divider />
+      <MenuItem onClick={handleClickOpen}><PowerSettingsNewIcon style={{marginRight: 5}}/>Sair da conta</MenuItem>
     </Menu>
   );
 
@@ -167,7 +169,7 @@ export default function ClippedDrawer() {
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={15} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
