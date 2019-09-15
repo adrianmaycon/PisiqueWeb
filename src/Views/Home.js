@@ -88,9 +88,9 @@ export default function ClippedDrawer() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><AccountBoxIcon style={{marginRight: 5}}/>Meu Perfil</MenuItem>
+      <MenuItem onClick={handleMenuClose}><AccountBoxIcon style={{ marginRight: 5 }} />Meu Perfil</MenuItem>
       <Divider />
-      <MenuItem onClick={handleClickOpen}><PowerSettingsNewIcon style={{marginRight: 5}}/>Sair da conta</MenuItem>
+      <MenuItem onClick={handleClickOpen}><PowerSettingsNewIcon style={{ marginRight: 5 }} />Sair da conta</MenuItem>
     </Menu>
   );
 
@@ -139,7 +139,7 @@ export default function ClippedDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar style={{ maxWidth: 1600 }}>
           <img
             src={Logo}
             alt="icon"
@@ -303,6 +303,11 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
   },
   drawer: {
     width: drawerWidth,
