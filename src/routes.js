@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import Home from "../Views/Home";
-import Login from "../Views/Login";
-import SignUp from "../Views/SignUp";
-import { AuthProvider } from "../Auth";
-import PrivateRoute from "../PrivateRoute";
+import Home from "./Views/Home";
+import Login from "./Views/Login";
+import SignUp from "./Views/SignUp";
+import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 
-const App = () => {
+const Routes = () => {
   return (
       <AuthProvider>
         <Router>
@@ -21,4 +21,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Routes;

@@ -37,7 +37,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import app from "../base";
-import Dashboard from '../Components/Dashboard/index.jsx';
+import Dashboard from '../Components/Dashboard.jsx';
 
 const drawerWidth = 240;
 
@@ -320,7 +320,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    paddingRight: 15,
   },
   grow: {
     flexGrow: 1,
