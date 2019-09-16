@@ -40,14 +40,14 @@ const Login = ({ history }) => {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} style={{ backgroundColor: '#5767c2' }} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Typography component="h1" variant="h5" style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
-            <img
+            {/* <img
               src={Logo}
               alt="icon"
               className={classes.avatar}
-            />
+            /> */}
             <font size="6" face="maiandra gd">Grupo Pisiquê</font>
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleLogin}>
@@ -87,12 +87,12 @@ const Login = ({ history }) => {
             </Button>
             <Grid container >
               <Grid item xs>
-                <Link style={{ color: '#fff' }} href="#" variant="body2">
+                <Link href="#" variant="body2">
                   Esqueceu a senha?
                 </Link>
               </Grid>
               <Grid item>
-                <Link style={{ color: '#fff' }} href="#" variant="body2">
+                <Link href="#" variant="body2">
                   {"Não possui uma conta? Inscrever-se"}
                 </Link>
               </Grid>
@@ -119,7 +119,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: '#fff',
   },
   avatar: {
     width: 40,
@@ -132,8 +131,6 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#fff',
-    color: '#000',
   },
 }));
 
