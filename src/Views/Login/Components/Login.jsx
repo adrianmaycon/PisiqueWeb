@@ -23,7 +23,7 @@ const Login = ({ history }) => {
           .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
-        alert(error);
+        alert('Login ou Senha inválidos!');
       }
     },
     [history]
