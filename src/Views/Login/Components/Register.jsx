@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,18 +10,13 @@ import './Css/styles.css';
 export default function Register() {
   const classes = useStyles();
 
-  const handleClickRegister = () => {
-    const register = document.getElementById('register');
-    register.classList.toggle('is-nav-open-register')
-  }
-
   return (
     <div className={classes.paper}>
-      <Typography component="h1" variant="h5" style={{ marginTop: 300 }}>
+      <Typography component="h1" variant="h5" >
         Fazer Cadastro
           </Typography>
       <form className={classes.form} noValidate>
-        <Grid style={{display: 'flex', justifyContent: 'space-between'}}>
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
           <TextField
             id="outlined-name"
             label="Nome"
@@ -94,7 +89,7 @@ export default function Register() {
           <Grid item xs>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2" onClick={() => handleClickRegister()}>
+            <Link to="/login">
               Fechar
             </Link>
           </Grid>

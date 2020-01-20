@@ -1,10 +1,9 @@
 import React, { useCallback, useContext } from 'react';
-import { withRouter, Redirect } from "react-router";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import app from "../../../base.js";
 import { AuthContext } from "../../../Auth.js";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,16 +32,6 @@ const Login = ({ history }) => {
 
   if (currentUser) {
     return <Redirect to="/" />;
-  }
-
-  const handleClick = () => {
-    const wrapper = document.getElementById('wrapper');
-    wrapper.classList.toggle('is-nav-open')
-  }
-
-  const handleClickRegister = () => {
-    const register = document.getElementById('register');
-    register.classList.toggle('is-nav-open-register')
   }
 
   return (
@@ -84,11 +73,8 @@ const Login = ({ history }) => {
           Entrar
         </Button>
         <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Link href="#" variant="body2" onClick={() => handleClick()}>
-            Esqueceu a senha?
-            </Link>
-          <Link href="#" variant="body2" onClick={() => handleClickRegister()}>
-            {"Não possui uma conta? Inscrever-se"}
+          <Link to="/register">
+            {" Não possui uma conta? Inscrever-se"}
           </Link>
         </Grid>
       </form>
@@ -97,16 +83,6 @@ const Login = ({ history }) => {
 }
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    zIndex: 100,
-  },
   paper: {
     position: 'relative',
     margin: theme.spacing(8, 4),
@@ -115,20 +91,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     zIndex: 1,
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: '#5767c2',
-  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
-  imgLogo: {
-    width: 180,
-    marginBottom: 80,
   },
 }));
 

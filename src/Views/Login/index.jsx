@@ -1,16 +1,29 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { CssBaseline, Paper, Grid } from '@material-ui/core'
+import { Route } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import Logar from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
-import Recover from './Components/Recover.jsx';
 import Logo from '../../assets/img/logo.png';
 import './Components/Css/styles.css';
 
 export default function SignInSide() {
   const classes = useStyles();
+
+  const routes = [
+    {
+      path: "/login",
+      exact: true,
+      sidebar: () => <div>Login</div>,
+      main: () => <Logar />
+    },
+    {
+      path: `/register`,
+      exact: true,
+      sidebar: () => <div>Resgitrar</div>,
+      main: () => <Register />
+    }
+  ];
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -23,17 +36,14 @@ export default function SignInSide() {
             alt="icon"
             className={classes.imgLogo}
           />
-          <Logar />
-          <Grid id="wrapper" className="wrapper">
-            <Grid className="nav">
-              <Recover />
-            </Grid>
-          </Grid>
-          <Grid id="register" className="register">
-            <Grid className="nav">
-              <Register />
-            </Grid>
-          </Grid>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={route.main}
+            />
+          ))}
         </div>
       </Grid>
     </Grid>
@@ -45,6 +55,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
+    // backgroundImage: 'url(http://2.bp.blogspot.com/-eFkxgztEHBM/VrJHNCJyFGI/AAAAAAABK2M/oVMwBBYfNr0/s1600/3000x2000%2B%25282%2529.jpg)',
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -58,17 +69,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     zIndex: 1,
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: '#5767c2',
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
   imgLogo: {
     width: 180,

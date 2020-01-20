@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import Home from "./Views/Home";
+import SidBar from "./Views/SidBar.jsx";
 import Login from "./Views/Login/index.jsx";
 import SignUp from "./Views/SignUp";
 import { AuthProvider } from "./Auth";
@@ -11,7 +11,7 @@ const Routes = () => {
       <AuthProvider>
         <Router>
           <div>
-            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/" component={SidBar} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Redirect from='*' to='/login' />
