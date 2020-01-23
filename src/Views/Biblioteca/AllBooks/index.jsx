@@ -16,6 +16,14 @@ export default function List() {
             })
     });
 
+    const BannerDiv = () => {
+        return (
+            <Grid style={{ width: '96.5%', backgroundColor: '#333', borderRadius: 10 }}>
+                <img style={{ width: '100%', borderRadius: 10 }} src="http://www.fpc.ba.gov.br/arquivos/Image/LPA/BANNER_03.png" alt="Banner" />
+            </Grid>
+        )
+    }
+
     const SearchDiv = () => {
         return (
             <Paper component="form" className={classes.rootSearch}>
@@ -68,7 +76,8 @@ export default function List() {
                         </Grid>
                         <Grid item>
                             <IconButton color="primary" onClick={() => setClickSave(!clickSave)} component="span">
-                                {clickSave ? <Bookmark /> : <BookmarkBorder />}
+                                <BookmarkBorder />
+                                {/* {clickSave ? <Bookmark /> : <BookmarkBorder />} */}
                             </IconButton>
                         </Grid>
                     </Grid>
@@ -84,10 +93,8 @@ export default function List() {
                 <Grid style={{ width: '96%', height: '100%', maxWidth: 1700, minWidth: 600, minHeight: 1000 }}>
                     <Paper className={classes.paper}>
                         <Grid item xs={12}>
-                            <Grid className={classes.batTop}>
-                                <Typography variant="h4" style={{ color: '#333' }}>
-                                    Leia seu livro favorito!
-                                </Typography>
+                            <Grid className={classes.divBanner}>
+                                <BannerDiv />
                             </Grid>
                             <Grid className={classes.divSearch}>
                                 <SearchDiv />
@@ -137,6 +144,13 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         flexDirection: 'row',
         justifyContent: 'center',
+    },
+    divBanner: {
+        width: "100%",
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: 20,
+        marginTop: 20,
     },
     divSearch: {
         width: "100%",
