@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 // import Logo from '../assets/img/logo.png';
 import DashboardPage from './Dashboard/index.jsx';
 import CreateBooksPage from './Biblioteca/CreateBooks/index.jsx';
+import AllBooks from './Biblioteca/AllBooks/index.jsx';
 import app from "../base";
 
 const routes = [
@@ -25,8 +26,14 @@ const routes = [
   {
     path: "/Livros/Cadastro",
     exact: true,
-    sidebar: () => <div>Biblioteca</div>,
+    sidebar: () => <div>Cadastro de Livros</div>,
     main: () => <CreateBooksPage />
+  },
+  {
+    path: "/Livros/Todos",
+    exact: true,
+    sidebar: () => <div>Meus Livros</div>,
+    main: () => <AllBooks />
   },
 ];
 
@@ -154,7 +161,7 @@ export default function SidBar() {
                       </ListItem>
                     </List>
                   </Link>
-                  <Link to="/Livros" style={{ color: '#fff' }}>
+                  <Link to="/Livros/Todos" style={{ color: '#fff' }}>
                     <List component="div" disablePadding>
                       <ListItem button className={classes.nested}>
                         <ListItemIcon style={{ color: '#fff' }}>
