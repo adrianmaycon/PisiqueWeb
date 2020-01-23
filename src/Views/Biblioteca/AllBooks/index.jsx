@@ -1,43 +1,14 @@
-// import React from 'react';
-
-// export default class Books extends React.Component {
-// state = {
-//     Livros: [],
-//     modalVisible: false,
-// };
-// setModalVisible(visible) {
-//     this.setState({ modalVisible: visible });
-// }
-// componentDidMount() {
-//     BookService.getBooks(livro => {
-//         let oldLivros = this.state.Livros
-//         oldLivros.push(livro)
-//         this.setState({ Livros: oldLivros })
-//     })
-
-// }
-// render() {
-//     console.log('Resultado', this.state.Livros)
-//     return (
-//         <div>
-//             <h1>Meus Livros</h1>
-//         </div>
-//     )
-// }
-// }
-
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Paper, ButtonBase, Button, IconButton } from '@material-ui/core';
-import { Bookmark, BookmarkBorder } from '@material-ui/icons';
+import { Grid, Typography, Paper, ButtonBase, Button, IconButton, Divider, InputBase } from '@material-ui/core';
+import { Bookmark, BookmarkBorder, History, Search, MenuBook } from '@material-ui/icons';
 import BookService from '../../../Services/BookService';
-
 
 export default function List() {
     const classes = useStyles();
     const [livros, setLivros] = useState([]);
     const [clickSave, setClickSave] = useState(false);
-    
+
     useEffect(() => {
         BookService.getBooks()
             .then(books => {
@@ -45,7 +16,29 @@ export default function List() {
             })
     });
 
-    const FormRow = () => {
+    const SearchDiv = () => {
+        return (
+            <Paper component="form" className={classes.rootSearch}>
+                <IconButton className={classes.iconButton} aria-label="menu">
+                    <Search />
+                </IconButton>
+                <InputBase
+                    className={classes.inputSearch}
+                    placeholder="Pesquise por 'Titulo' ou  por 'Autor' ..."
+                    value=''
+                />
+                <IconButton className={classes.iconButtonSearch} >
+                    <History />
+                </IconButton>
+                <Divider className={classes.dividerSearch} orientation="vertical" />
+                <Grid className={classes.iconButtonSearch} >
+                    <MenuBook color="primary" />
+                </Grid>
+            </Paper>
+        )
+    }
+
+    const BookDiv = () => {
         return (livros.map((item) =>
             <Paper key={item.id} className={classes.paperDiv}>
                 <Grid container spacing={2}>
@@ -88,7 +81,7 @@ export default function List() {
             <Grid style={{ width: '100%', height: 250, backgroundColor: '#1D2975', position: 'fixed', zIndex: 1 }} />
             <Grid style={{ width: '100%', height: '100%', backgroundColor: '#f0ebf8', position: 'fixed', zIndex: 1, marginTop: 250 }} />
             <Grid container spacing={3} style={{ width: '100%', position: 'relative', display: 'flex', justifyContent: 'center', zIndex: 10, top: 50 }}>
-                <Grid style={{ width: '96%', maxWidth: 1700, minWidth: 600 }}>
+                <Grid style={{ width: '96%', height: '100%', maxWidth: 1700, minWidth: 600, minHeight: 1000 }}>
                     <Paper className={classes.paper}>
                         <Grid item xs={12}>
                             <Grid className={classes.batTop}>
@@ -96,8 +89,11 @@ export default function List() {
                                     Leia seu livro favorito!
                                 </Typography>
                             </Grid>
+                            <Grid className={classes.divSearch}>
+                                <SearchDiv />
+                            </Grid>
                             <Grid className={classes.divBooks}>
-                                <FormRow />
+                                <BookDiv />
                             </Grid>
                         </Grid>
                     </Paper>
@@ -142,6 +138,12 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         justifyContent: 'center',
     },
+    divSearch: {
+        width: "100%",
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: 20,
+    },
     extendedIcon: {
         marginRight: theme.spacing(1),
     },
@@ -164,5 +166,22 @@ const useStyles = makeStyles(theme => ({
         display: 'block',
         maxWidth: '100%',
         maxHeight: '100%',
+    },
+    rootSearch: {
+        padding: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: '96.5%',
+    },
+    inputSearch: {
+        marginLeft: theme.spacing(1),
+        flex: 1,
+    },
+    iconButtonSearch: {
+        padding: 10,
+    },
+    dividerSearch: {
+        height: 28,
+        margin: 4,
     },
 }));
