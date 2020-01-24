@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Paper, ButtonBase, Button, IconButton, Divider, InputBase } from '@material-ui/core';
-import { Bookmark, BookmarkBorder, History, Search, MenuBook } from '@material-ui/icons';
+import { BookmarkBorder, Close, Search, MenuBook } from '@material-ui/icons';
 import BookService from '../../../Services/BookService';
 
 export default function List() {
     const classes = useStyles();
     const [livros, setLivros] = useState([]);
     const [clickSave, setClickSave] = useState(false);
+    const [value, setValue] = React.useState('');
 
     useEffect(() => {
         BookService.getBooks()
@@ -16,33 +17,15 @@ export default function List() {
             })
     });
 
+    const handleChange = event => {
+        setValue(event.target.value);
+    };
+
     const BannerDiv = () => {
         return (
             <Grid style={{ width: '96.5%', backgroundColor: '#333', borderRadius: 10 }}>
                 <img style={{ width: '100%', borderRadius: 10 }} src="http://www.fpc.ba.gov.br/arquivos/Image/LPA/BANNER_03.png" alt="Banner" />
             </Grid>
-        )
-    }
-
-    const SearchDiv = () => {
-        return (
-            <Paper component="form" className={classes.rootSearch}>
-                <IconButton className={classes.iconButton} aria-label="menu">
-                    <Search />
-                </IconButton>
-                <InputBase
-                    className={classes.inputSearch}
-                    placeholder="Pesquise por 'Titulo' ou  por 'Autor' ..."
-                    value=''
-                />
-                <IconButton className={classes.iconButtonSearch} >
-                    <History />
-                </IconButton>
-                <Divider className={classes.dividerSearch} orientation="vertical" />
-                <Grid className={classes.iconButtonSearch} >
-                    <MenuBook color="primary" />
-                </Grid>
-            </Paper>
         )
     }
 
@@ -97,7 +80,24 @@ export default function List() {
                                 <BannerDiv />
                             </Grid>
                             <Grid className={classes.divSearch}>
-                                <SearchDiv />
+                                <Paper className={classes.rootSearch}>
+                                    <IconButton className={classes.iconButton} aria-label="menu">
+                                        <Search />
+                                    </IconButton>
+                                    <InputBase
+                                        className={classes.inputSearch}
+                                        placeholder="Pesquise por 'Titulo' ou  por 'Autor' ..."
+                                        value={value}
+                                        onChange={handleChange}
+                                    />
+                                    <IconButton className={classes.iconButtonSearch} onClick={() => setValue("")}>
+                                        <Close />
+                                    </IconButton>
+                                    <Divider className={classes.dividerSearch} orientation="vertical" />
+                                    <Grid className={classes.iconButtonSearch} >
+                                        <MenuBook color="primary" />
+                                    </Grid>
+                                </Paper>
                             </Grid>
                             <Grid className={classes.divBooks}>
                                 <BookDiv />
