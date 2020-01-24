@@ -48,7 +48,7 @@ export default function List() {
                                     {item.description}
                                 </Typography>
                                 <Typography variant="body2" style={{ marginTop: 3 }} color="textSecondary">
-                                    Genero: {item.genero}
+                                    Genero: {item.genero === 10 ? 'Fantasia' : item.genero === 20 ? 'Aventura' : item.genero === 30 ? 'Romance' : item.genero === 40 ? 'Ficção' : item.genero === 50 ? 'Terror' : item.genero}
                                 </Typography>
                             </Grid>
                             <Grid style={{ display: 'flex', width: '100%', flexDirection: 'row-reverse' }} item>

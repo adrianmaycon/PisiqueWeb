@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, ButtonBase, Button, IconButton } from '@material-ui/core';
 import { BookmarkBorder } from '@material-ui/icons';
+import BookService from '../../../Services/BookService';
 
 export default function List() {
   const classes = useStyles();
@@ -11,6 +12,7 @@ export default function List() {
   const [valueResenha, setValueResenha] = React.useState('');
   const [urlImage, setUrlImage] = React.useState('');
   const [urlPDF, setUrlPDF] = React.useState('');
+  const [writer, setWriter] = React.useState('');
   const [age, setAge] = React.useState('');
 
   const inputLabel = React.useRef(null);
@@ -23,6 +25,22 @@ export default function List() {
   const handleChange = event => {
     setAge(event.target.value);
   };
+  const registerBook = () => {
+    if (valueTitle && valueMiniDescription && valueResenha && urlImage && urlPDF && writer && age) {
+      BookService.Register(valueTitle, valueMiniDescription, valueResenha, age, urlImage, urlPDF, writer)
+        .then(result => {
+          setValueTitle('')
+          setValueMiniDescription('')
+          setValueResenha('')
+          setUrlImage('')
+          setUrlPDF('')
+          setWriter('')
+          setAge('')
+        })
+    } else {
+      console.log('Algo esta faltando')
+    }
+  };
 
   const BookDiv = () => {
     return (
@@ -34,30 +52,33 @@ export default function List() {
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={1}>
+            <Grid item xs container style={{ display: 'flex', flexDirection: 'column' }} spacing={1}>
               <Grid item style={{ width: 302 }} xs>
                 {valueTitle ?
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography variant="subtitle1">
                     {valueTitle}
                   </Typography>
                   :
-                  <Typography gutterBottom variant="subtitle1">
-                    Livro sem nome
+                  <Typography variant="subtitle1">
+                    A cinco passos de você
                 </Typography>
                 }
+                <Typography variant="body2" style={{ marginBottom: 14 }} color="textSecondary">
+                  Escritor(a): {writer ? writer : 'João Maria'}
+                </Typography>
                 {valueMiniDescription ?
                   <Typography variant="caption" gutterBottom>
                     {valueMiniDescription}
                   </Typography>
                   :
                   <Typography variant="caption" gutterBottom>
-                    Livro sem descrição, adicione uma para ficar estiloso
+                    Stella Grant gosta de estar no controle. Ela parece ser uma adolescente típica...
                 </Typography>}
-                <Typography variant="body2" style={{ marginTop: 3 }} color="textSecondary">
-                  Genero: {age === 10 ? 'Fantasia' : age === 20 ? 'Aventura' : age === 30 ? 'Romance' : age === 40 ? 'História' : age === 50 ? 'Terror' : 'Sem gênero'}
-                </Typography>
               </Grid>
-              <Grid style={{ display: 'flex', width: '100%', flexDirection: 'row-reverse' }} item>
+              <Grid style={{ display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-between' }} item>
+                <Typography variant="body2" color="textSecondary">
+                  Gênero: {age === 10 ? 'Fantasia' : age === 20 ? 'Aventura' : age === 30 ? 'Romance' : age === 40 ? 'Ficção' : age === 50 ? 'Terror' : 'Nenhum'}
+                </Typography>
                 <Button variant="outlined" href={urlPDF ? urlPDF : ''} target='blank' color="primary">
                   Visualizar Livro
                   </Button>
@@ -78,12 +99,12 @@ export default function List() {
       <Grid style={{ width: '100%', height: 250, backgroundColor: '#1D2975', position: 'fixed', zIndex: 1 }} />
       <Grid style={{ width: '100%', height: '100%', backgroundColor: '#f0ebf8', position: 'fixed', zIndex: 1, marginTop: 250 }} />
       <Grid container spacing={3} style={{ width: '100%', position: 'relative', display: 'flex', justifyContent: 'center', zIndex: 10, top: 100 }}>
-        <Grid style={{ width: '90%', maxWidth: 1250, minWidth: 750 }}>
+        <Grid style={{ width: '90%', maxWidth: 1250, minWidth: 600 }}>
           <Paper className={classes.paper}>
             <Grid item xs={12}>
               <Grid className={classes.batTop}>
                 <Typography variant="h4" style={{ color: '#333' }}>
-                  Cadastrar Livros
+                  Cadastrar Livro
                 </Typography>
               </Grid>
               <Grid style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center' }} >
@@ -98,6 +119,18 @@ export default function List() {
                     value={valueTitle}
                     onChange={event => setValueTitle(event.target.value)}
                     variant="outlined"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                  <TextField
+                    style={{ width: '90%', marginBottom: 15 }}
+                    label="Escritor"
+                    placeholder="Nome do escritor"
+                    value={writer}
+                    onChange={event => setWriter(event.target.value)}
+                    variant="outlined"
+                    inputProps={{ maxLength: 25 }}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -142,7 +175,7 @@ export default function List() {
                       <MenuItem value={10}>Fantasia</MenuItem>
                       <MenuItem value={20}>Aventura</MenuItem>
                       <MenuItem value={30}>Romance</MenuItem>
-                      <MenuItem value={40}>História</MenuItem>
+                      <MenuItem value={40}>Ficção</MenuItem>
                       <MenuItem value={50}>Terror</MenuItem>
                     </Select>
                   </FormControl>
@@ -172,9 +205,9 @@ export default function List() {
                   />
                 </Grid>
                 <Grid style={{ width: '49%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 530 }}>
-                  <Typography variant="h5" style={{ color: '#333' }}>Preview: </Typography>
+                  <Typography variant="h5" style={{ color: '#333', width: '95%', maxWidth: 500, display: 'flex', alignItems: 'flex-start', paddingBottom: 10, paddingTop: 10, paddingLeft: 2 }}>Preview </Typography>
                   <BookDiv />
-                  <Button variant="outlined" style={{ width: '95%', height: 50, maxWidth: 500 }} color="primary">
+                  <Button variant="outlined" onClick={() => registerBook()} style={{ width: '95%', height: 50, maxWidth: 500 }} color="primary">
                     Cadastrar Livro
                   </Button>
                 </Grid>

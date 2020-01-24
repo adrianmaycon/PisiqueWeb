@@ -18,4 +18,18 @@ export async function getBooks() {
     return listBooks
 }
 
-export default { register, getBooks }
+export async function Register(title, miniDescription, description, genero, image_url, pdf_url, writer) {
+    try {
+        let livro = { title, miniDescription, description, genero, image_url, pdf_url, writer }
+
+        firebase.firestore()
+            .collection('Livros').add(livro)
+
+        return 'Success'
+    } catch (error) {
+        console.warn("Error Register: ", error);
+        throw error
+    }
+}
+
+export default { register, getBooks, Register }
