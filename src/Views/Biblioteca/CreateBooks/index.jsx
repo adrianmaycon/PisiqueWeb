@@ -24,15 +24,13 @@ export default function List() {
     setAge(event.target.value);
   };
 
-  console.log(age)
-
   const BookDiv = () => {
     return (
       <Paper className={classes.paperDiv}>
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={urlImage ? `${urlImage}` : 'https://cdn.awsli.com.br/600x700/942/942147/produto/36303080/216db724e8.jpg'} />
+              <img className={classes.img} alt="complex" src={urlImage ? `${urlImage}` : 'http://noset.com.br/wp-content/uploads/2019/01/CINCO-PASSOS-DE-VOC%C3%8A-CAPA-LIVRO.jpg'} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
@@ -89,7 +87,7 @@ export default function List() {
                 </Typography>
               </Grid>
               <Grid style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center' }} >
-                <Grid style={{ width: '49%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 500 }}>
+                <Grid className="block-example border border-blue" style={{ width: '49%', paddingTop: 30, paddingBottom: 30, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 500 }}>
                   <TextField
                     style={{ width: '90%', marginBottom: 15 }}
                     label="Título do Livro"
@@ -151,6 +149,7 @@ export default function List() {
                   <TextField
                     style={{ width: '90%', marginBottom: 15 }}
                     label="Url da imagem"
+                    placeholder="ex: https://imagemlivro.png"
                     value={urlImage}
                     onChange={event => setUrlImage(event.target.value)}
                     variant="outlined"
@@ -162,6 +161,7 @@ export default function List() {
                   <TextField
                     style={{ width: '90%', marginBottom: 15 }}
                     label="Url do PDF"
+                    placeholder="ex: https://PDF_livro.pdf"
                     value={urlPDF}
                     onChange={event => setUrlPDF(event.target.value)}
                     variant="outlined"
@@ -174,6 +174,9 @@ export default function List() {
                 <Grid style={{ width: '49%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 530 }}>
                   <Typography variant="h5" style={{ color: '#333' }}>Preview: </Typography>
                   <BookDiv />
+                  <Button variant="outlined" style={{ width: '95%', height: 50, maxWidth: 500 }} color="primary">
+                    Cadastrar Livro
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -224,7 +227,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     width: 110,
-    height: 140,
+    height: 150,
   },
   img: {
     margin: 'auto',
