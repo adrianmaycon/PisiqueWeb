@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, ButtonBase, Button, IconButton } from '@material-ui/core';
-import { BookmarkBorder } from '@material-ui/icons';
+import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, ButtonBase, Button, IconButton, Tooltip } from '@material-ui/core';
+import { BookmarkBorder, DeleteForever, Update, AspectRatio, FileCopy } from '@material-ui/icons';
 import BookService from '../../../Services/BookService';
 
 export default function List() {
@@ -41,6 +41,37 @@ export default function List() {
       console.log('Algo esta faltando')
     }
   };
+
+  const deleteFields = () => {
+    setValueTitle('')
+    setValueMiniDescription('')
+    setValueResenha('')
+    setUrlImage('')
+    setUrlPDF('')
+    setWriter('')
+    setAge('')
+  }
+
+  const toggleFullScreen = () => {
+    if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+      (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+      if (document.documentElement.requestFullScreen) {
+        document.documentElement.requestFullScreen();
+      } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullScreen) {
+        document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+      }
+    } else {
+      if (document.cancelFullScreen) {
+        document.cancelFullScreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      }
+    }
+  }
 
   const BookDiv = () => {
     return (
@@ -114,7 +145,7 @@ export default function List() {
                     label="Título do Livro"
                     placeholder="Descreva o Titulo do Livro"
                     multiline
-                    inputProps={{ maxLength: 38 }}
+                    inputProps={{ maxLength: 36 }}
                     rowsMax="4"
                     value={valueTitle}
                     onChange={event => setValueTitle(event.target.value)}
@@ -204,10 +235,28 @@ export default function List() {
                     }}
                   />
                 </Grid>
-                <Grid style={{ width: '49%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 530 }}>
+                <Grid style={{ width: '49%', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginBottom: 20, marginTop: 20, alignItems: 'center', minWidth: 530 }}>
+                  <Grid className="block-example border border-DarkBlue" style={{ display: 'flex', width: '95%', height: 55, marginBottom: 30, padding: 5, maxWidth: 500, borderRadius: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
+                    <Tooltip title="Apagar Campos">
+                      <IconButton onClick={() => deleteFields()} color="primary" component="span">
+                        <DeleteForever />
+                      </IconButton>
+                    </Tooltip>
+                    <IconButton color="primary" component="span">
+                      <Update />
+                    </IconButton>
+                    <Tooltip title="Modo Tela Cheia">
+                      <IconButton onClick={() => toggleFullScreen()} color="primary" component="span">
+                        <AspectRatio />
+                      </IconButton>
+                    </Tooltip>
+                    <IconButton color="primary" component="span">
+                      <FileCopy />
+                    </IconButton>
+                  </Grid>
                   <Typography variant="h5" style={{ color: '#333', width: '95%', maxWidth: 500, display: 'flex', alignItems: 'flex-start', paddingBottom: 10, paddingTop: 10, paddingLeft: 2 }}>Preview </Typography>
                   <BookDiv />
-                  <Button variant="outlined" onClick={() => registerBook()} style={{ width: '95%', height: 50, maxWidth: 500 }} color="primary">
+                  <Button variant="outlined" onClick={() => registerBook()} style={{ width: '95%', height: 50, maxWidth: 500, marginTop: 30 }} color="primary">
                     Cadastrar Livro
                   </Button>
                 </Grid>

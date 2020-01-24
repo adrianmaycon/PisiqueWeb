@@ -31,6 +31,7 @@ export default function List() {
 
     const BookDiv = () => {
         return (livros.map((item) =>
+
             <Paper key={item.id} className={classes.paperDiv}>
                 <Grid container spacing={2}>
                     <Grid item>
@@ -39,22 +40,25 @@ export default function List() {
                         </ButtonBase>
                     </Grid>
                     <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={1}>
-                            <Grid item xs>
-                                <Typography gutterBottom variant="subtitle1">
+                        <Grid item xs container style={{ display: 'flex', flexDirection: 'column' }} spacing={1}>
+                            <Grid item style={{ width: 302 }} xs>
+                                <Typography variant="subtitle1">
                                     {item.title}
                                 </Typography>
-                                <Typography variant="caption" gutterBottom>
-                                    {item.description}
+                                <Typography variant="body2" style={{ marginBottom: 14 }} color="textSecondary">
+                                    Escritor(a): {item.writer}
                                 </Typography>
-                                <Typography variant="body2" style={{ marginTop: 3 }} color="textSecondary">
-                                    Genero: {item.genero === 10 ? 'Fantasia' : item.genero === 20 ? 'Aventura' : item.genero === 30 ? 'Romance' : item.genero === 40 ? 'Ficção' : item.genero === 50 ? 'Terror' : item.genero}
+                                <Typography variant="caption" gutterBottom>
+                                    {item.miniDescription ? item.miniDescription : item.description}
                                 </Typography>
                             </Grid>
-                            <Grid style={{ display: 'flex', width: '100%', flexDirection: 'row-reverse' }} item>
+                            <Grid style={{ display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-between' }} item>
+                                <Typography variant="body2" color="textSecondary">
+                                    Gênero: {item.genero === 10 ? 'Fantasia' : item.genero === 20 ? 'Aventura' : item.genero === 30 ? 'Romance' : item.genero === 40 ? 'Ficção' : item.genero === 50 ? 'Terror' : item.genero}
+                                </Typography>
                                 <Button variant="outlined" href={item.pdf_url} target='blank' color="primary">
                                     Visualizar Livro
-                            </Button>
+                                </Button>
                             </Grid>
                         </Grid>
                         <Grid item>
@@ -65,7 +69,8 @@ export default function List() {
                         </Grid>
                     </Grid>
                 </Grid>
-            </Paper>))
+            </Paper>
+        ))
     }
 
     return (
