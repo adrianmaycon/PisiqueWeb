@@ -34,22 +34,14 @@ export async function Register(title, miniDescription, description, genero, imag
 
 export async function UpdateBook(idBook, title, miniDescription, description, genero, image_url, pdf_url, writer) {
     try {
-        
-        let result = firebase.database().ref('Livros/' + idBook).set({
-            title: title,
-            miniDescription: miniDescription,
-            description: description,
-            genero: genero,
-            image_url: image_url,
-            pdf_url: pdf_url,
-            writer: writer,
-        });
-
-        return result
+        await firebase.firestore().collection('Livros').doc(idBook).update({
+            title, miniDescription, description, genero, image_url, pdf_url, writer
+        })
+        return true
     } catch (error) {
-        console.warn("Error Register: ", error);
+        console.warn("Error UpdateBook: ", error);
         throw error
     }
 }
 
-export default { register, getBooks, Register }
+export default { register, getBooks, Register, UpdateBook }

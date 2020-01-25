@@ -24,7 +24,7 @@ export default function List() {
     const BannerDiv = () => {
         return (
             <Grid style={{ width: '96.5%', backgroundColor: '#333', borderRadius: 10 }}>
-                <img style={{ width: '100%', borderRadius: 10 }} src="http://www.fpc.ba.gov.br/arquivos/Image/LPA/BANNER_03.png" alt="Banner" />
+                <img style={{ width: '100%', borderRadius: 10 }} src="http://livrariaengetec.com.br/image/cache/data/banner1-970x331.jpg" alt="Banner" />
             </Grid>
         )
     }

@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, ButtonBase, Button, IconButton, Tooltip } from '@material-ui/core';
-import { BookmarkBorder, DeleteForever, Update, AspectRatio, FileCopy } from '@material-ui/icons';
+import {
+  Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, ButtonBase, Button, IconButton, Tooltip,
+  Dialog, DialogActions, DialogContent, DialogTitle
+} from '@material-ui/core';
+import { BookmarkBorder, DeleteForever, AspectRatio, CollectionsBookmark } from '@material-ui/icons';
 import BookService from '../../../Services/BookService';
 
 export default function List() {
   const classes = useStyles();
 
-  const [valueTitle, setValueTitle] = React.useState('');
   const [valueMiniDescription, setValueMiniDescription] = React.useState('');
+  const [alterActive, setAlterActive] = React.useState(false);
   const [valueResenha, setValueResenha] = React.useState('');
+  const [valueTitle, setValueTitle] = React.useState('');
   const [urlImage, setUrlImage] = React.useState('');
   const [urlPDF, setUrlPDF] = React.useState('');
   const [writer, setWriter] = React.useState('');
+  const [idBook, setIdBook] = React.useState('');
+  const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState('');
+  const [livros, setLivros] = useState([]);
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -22,9 +29,36 @@ export default function List() {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
+  const handleClickOpen = () => {
+    BookService.getBooks()
+      .then(books =>
+         setLivros(books))
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setLivros([])
+  };
+
   const handleChange = event => {
     setAge(event.target.value);
   };
+
+  const handleClickSelect = (item) => {
+    setValueTitle(item.title)
+    setValueMiniDescription(item.miniDescription)
+    setValueResenha(item.description)
+    setUrlImage(item.image_url)
+    setUrlPDF(item.pdf_url)
+    setWriter(item.writer)
+    setAge(item.genero)
+    setIdBook(item.id)
+    setAlterActive(true)
+    setOpen(false);
+    setLivros([])
+  }
+
   const registerBook = () => {
     if (valueTitle && valueMiniDescription && valueResenha && urlImage && urlPDF && writer && age) {
       BookService.Register(valueTitle, valueMiniDescription, valueResenha, age, urlImage, urlPDF, writer)
@@ -36,6 +70,25 @@ export default function List() {
           setUrlPDF('')
           setWriter('')
           setAge('')
+        })
+    } else {
+      console.log('Algo esta faltando')
+    }
+  };
+
+  const updateBook = () => {
+    if (valueTitle && valueMiniDescription && valueResenha && urlImage && urlPDF && writer && age) {
+      BookService.UpdateBook(idBook, valueTitle, valueMiniDescription, valueResenha, age, urlImage, urlPDF, writer)
+        .then(result => {
+          setValueTitle('')
+          setValueMiniDescription('')
+          setValueResenha('')
+          setUrlImage('')
+          setUrlPDF('')
+          setWriter('')
+          setAge('')
+          setIdBook('')
+          setAlterActive(false)
         })
     } else {
       console.log('Algo esta faltando')
@@ -71,6 +124,35 @@ export default function List() {
         document.webkitCancelFullScreen();
       }
     }
+  }
+
+  const DialogCopy = () => {
+    return (
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+        >
+          <DialogTitle>{"Escolha um livro"}</DialogTitle>
+          <DialogContent>
+            <Grid style={{ width: '100%', display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', minWidth: 530 }}>
+              {livros.map((item) =>
+                <Tooltip title={item.title} key={item.id}>
+                  <ButtonBase>
+                    <img className={classes.imgModal} alt="complex" src={item.image_url} onClick={() => handleClickSelect(item)} />
+                  </ButtonBase>
+                </Tooltip>)
+              }
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary" autoFocus>
+              Fechar
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    )
   }
 
   const BookDiv = () => {
@@ -116,7 +198,7 @@ export default function List() {
               </Grid>
             </Grid>
             <Grid item>
-              <IconButton color="primary" component="span">
+              <IconButton color="primary" disabled component="span">
                 <BookmarkBorder />
               </IconButton>
             </Grid>
@@ -156,7 +238,7 @@ export default function List() {
                   />
                   <TextField
                     style={{ width: '90%', marginBottom: 15 }}
-                    label="Escritor"
+                    label="Escritor(a)"
                     placeholder="Nome do escritor"
                     value={writer}
                     onChange={event => setWriter(event.target.value)}
@@ -217,7 +299,6 @@ export default function List() {
                     value={urlImage}
                     onChange={event => setUrlImage(event.target.value)}
                     variant="outlined"
-                    inputProps={{ maxLength: 95 }}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -229,7 +310,6 @@ export default function List() {
                     value={urlPDF}
                     onChange={event => setUrlPDF(event.target.value)}
                     variant="outlined"
-                    inputProps={{ maxLength: 95 }}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -242,30 +322,35 @@ export default function List() {
                         <DeleteForever />
                       </IconButton>
                     </Tooltip>
-                    <IconButton color="primary" component="span">
-                      <Update />
-                    </IconButton>
+                    <Tooltip title="Alterar Livro">
+                      <IconButton onClick={() => handleClickOpen()} color="primary" component="span">
+                        <CollectionsBookmark />
+                      </IconButton>
+                    </Tooltip>
                     <Tooltip title="Modo Tela Cheia">
                       <IconButton onClick={() => toggleFullScreen()} color="primary" component="span">
                         <AspectRatio />
                       </IconButton>
                     </Tooltip>
-                    <IconButton color="primary" component="span">
-                      <FileCopy />
-                    </IconButton>
                   </Grid>
                   <Typography variant="h5" style={{ color: '#333', width: '95%', maxWidth: 500, display: 'flex', alignItems: 'flex-start', paddingBottom: 10, paddingTop: 10, paddingLeft: 2 }}>Preview </Typography>
                   <BookDiv />
-                  <Button variant="outlined" onClick={() => registerBook()} style={{ width: '95%', height: 50, maxWidth: 500, marginTop: 30 }} color="primary">
-                    Cadastrar Livro
-                  </Button>
+                  {alterActive ?
+                    <Button variant="outlined" onClick={() => updateBook()} style={{ width: '95%', height: 50, maxWidth: 500, marginTop: 30 }} color="primary">
+                      Alterar Livro
+                      </Button>
+                    :
+                    <Button variant="outlined" onClick={() => registerBook()} style={{ width: '95%', height: 50, maxWidth: 500, marginTop: 30 }} color="primary">
+                      Cadastrar Livro
+                      </Button>}
                 </Grid>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
       </Grid>
-    </Grid >
+      {DialogCopy()}
+    </Grid>
   );
 }
 
@@ -316,6 +401,14 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     maxWidth: '100%',
     maxHeight: '100%',
+  },
+  imgModal: {
+    display: 'block',
+    maxWidth: 120,
+    maxHeight: 160,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5
   },
   formControl: {
     margin: theme.spacing(1),
