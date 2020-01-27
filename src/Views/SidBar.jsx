@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import { PowerSettingsNew, PostAdd, LocalLibrary, Book, MenuBook, Dashboard, ChevronLeft, ExpandLess, ExpandMore, Settings } from '@material-ui/icons'
+import { PowerSettingsNew, PostAdd, LocalLibrary, Book, MenuBook, Dashboard, ChevronLeft, ExpandLess, ExpandMore, Settings, AccountBox, Today, AccountBalance, People, InsertDriveFile } from '@material-ui/icons'
 import {
   ListItem, ListItemIcon, ListItemText, CssBaseline, Drawer, Button,
   AppBar, Toolbar, List, Typography, Divider, IconButton, Collapse,
@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import DashboardPage from './Dashboard/index.jsx';
 import CreateBooksPage from './Biblioteca/CreateBooks/index.jsx';
 import AllBooks from './Biblioteca/AllBooks/index.jsx';
+import AllPatients from './Pacientes/AllPatients/index.jsx';
 import app from "../base";
 
 const routes = [
@@ -34,6 +35,12 @@ const routes = [
     exact: true,
     sidebar: () => <div>Meus Livros</div>,
     main: () => <AllBooks />
+  },
+  {
+    path: "/Patients",
+    exact: true,
+    sidebar: () => <div>Parcientes</div>,
+    main: () => <AllPatients />
   },
 ];
 
@@ -112,9 +119,9 @@ export default function SidBar() {
           open={open}
         >
           <div className={classes.toolbarIcon}>
-            <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <h5>Grupo Pisiquê</h5>
-            {/* <img
+            <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <h5>Grupo Pisiquê</h5>
+              {/* <img
               src={Logo}
               alt="icon"
               style={{width: 100, height: 42}}
@@ -124,7 +131,7 @@ export default function SidBar() {
               <ChevronLeft />
             </IconButton>
           </div>
-          <Divider />
+          <Divider style={{ marginTop: 5, marginBottom: 5 }} />
           <List>
             <div style={{ display: "flex" }}>
               <div
@@ -141,55 +148,103 @@ export default function SidBar() {
                   </ListItem>
                 </Link>
 
-                <ListItem button onClick={handleClick} style={{ color: '#fff', display: 'flex', width: '100%' }}>
-                  <ListItemIcon>
+                <Link to="/perfil" style={{ color: '#fff' }}>
+                  <ListItem button>
                     <ListItemIcon style={{ color: '#fff' }}>
-                      <Book />
+                      <AccountBox />
                     </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Biblioteca" />
-                  {openForm ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={openForm} timeout="auto" unmountOnExit>
-                  <Link to="/Livros/Meus" style={{ color: '#fff' }}>
-                    <List component="div" disablePadding>
-                      <ListItem button className={classes.nested}>
-                        <ListItemIcon style={{ color: '#fff' }}>
-                          <LocalLibrary />
-                        </ListItemIcon>
-                        <ListItemText primary="Meus Livros" />
-                      </ListItem>
-                    </List>
-                  </Link>
-                  <Link to="/Livros/Todos" style={{ color: '#fff' }}>
-                    <List component="div" disablePadding>
-                      <ListItem button className={classes.nested}>
-                        <ListItemIcon style={{ color: '#fff' }}>
-                          <MenuBook />
-                        </ListItemIcon>
-                        <ListItemText primary="Todos os livros" />
-                      </ListItem>
-                    </List>
-                  </Link>
-                  <Link to="/Livros/Cadastro" style={{ color: '#fff' }}>
-                    <List component="div" disablePadding>
-                      <ListItem button className={classes.nested}>
-                        <ListItemIcon style={{ color: '#fff' }}>
-                          <PostAdd />
-                        </ListItemIcon>
-                        <ListItemText primary="Cadastrar Livro" />
-                      </ListItem>
-                    </List>
-                  </Link>
-                </Collapse>
+                    <ListItemText primary="Meu perfil" />
+                  </ListItem>
+                </Link>
+
+                <Divider style={{ marginTop: 5, marginBottom: 5 }} />
+
+                <Link to="/perfil" style={{ color: '#fff' }}>
+                  <ListItem button>
+                    <ListItemIcon style={{ color: '#fff' }}>
+                      <Today />
+                    </ListItemIcon>
+                    <ListItemText primary="Calendário" />
+                  </ListItem>
+                </Link>
+
+                <Link to="/Patients" style={{ color: '#fff' }}>
+                  <ListItem button>
+                    <ListItemIcon style={{ color: '#fff' }}>
+                      <People />
+                    </ListItemIcon>
+                    <ListItemText primary="Pacientes" />
+                  </ListItem>
+                </Link>
+
+                <Link to="/perfil" style={{ color: '#fff' }}>
+                  <ListItem button>
+                    <ListItemIcon style={{ color: '#fff' }}>
+                      <InsertDriveFile />
+                    </ListItemIcon>
+                    <ListItemText primary="Registros" />
+                  </ListItem>
+                </Link>
+
+                <Divider style={{ marginTop: 5 }} />
+
               </div>
             </div>
           </List>
 
-          <Divider />
-
           <List>
             <div>
+
+              <ListItem button onClick={handleClick} style={{ color: '#fff', display: 'flex', width: '100%' }}>
+                <ListItemIcon>
+                  <ListItemIcon style={{ color: '#fff' }}>
+                    <Book />
+                  </ListItemIcon>
+                </ListItemIcon>
+                <ListItemText primary="Biblioteca" />
+                {openForm ? <ExpandLess /> : <ExpandMore />}
+              </ListItem>
+              <Collapse in={openForm} timeout="auto" unmountOnExit>
+                <Link to="/Livros/Meus" style={{ color: '#fff' }}>
+                  <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                      <ListItemIcon style={{ color: '#fff' }}>
+                        <LocalLibrary />
+                      </ListItemIcon>
+                      <ListItemText primary="Meus Livros" />
+                    </ListItem>
+                  </List>
+                </Link>
+                <Link to="/Livros/Todos" style={{ color: '#fff' }}>
+                  <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                      <ListItemIcon style={{ color: '#fff' }}>
+                        <MenuBook />
+                      </ListItemIcon>
+                      <ListItemText primary="Todos os livros" />
+                    </ListItem>
+                  </List>
+                </Link>
+                <Link to="/Livros/Cadastro" style={{ color: '#fff' }}>
+                  <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                      <ListItemIcon style={{ color: '#fff' }}>
+                        <PostAdd />
+                      </ListItemIcon>
+                      <ListItemText primary="Cadastrar Livro" />
+                    </ListItem>
+                  </List>
+                </Link>
+              </Collapse>
+
+              <Link to="/perfil" style={{ color: '#fff' }}>
+                <ListItem button>
+                  <ListItemIcon style={{ color: '#fff' }}>
+                    <AccountBalance />
+                  </ListItemIcon>
+                  <ListItemText primary="Instituições" />
+                </ListItem>
+              </Link>
 
               <Link to="/usergroup" style={{ color: '#fff' }}>
                 <ListItem button onClick={handleClickRouter} style={{ color: '#fff', display: 'flex', width: '100%' }}>

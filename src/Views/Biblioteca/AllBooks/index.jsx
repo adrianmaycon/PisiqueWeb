@@ -54,7 +54,7 @@ export default function List() {
                             </Grid>
                             <Grid style={{ display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-between' }} item>
                                 <Typography variant="body2" color="textSecondary">
-                                    Gênero: {item.genero === 10 ? 'Fantasia' : item.genero === 20 ? 'Aventura' : item.genero === 30 ? 'Romance' : item.genero === 40 ? 'Ficção' : item.genero === 50 ? 'Terror' : item.genero}
+                                    Gênero: {item.genero === 10 ? 'Fantasia' : item.genero === 20 ? 'Aventura' : item.genero === 30 ? 'Romance' : item.genero === 40 ? 'Ficção' : item.genero === 50 ? 'Terror' : item.genero === 60 ? 'Biografia' : item.genero}
                                 </Typography>
                                 <Button variant="outlined" href={item.pdf_url} target='blank' color="primary">
                                     Visualizar Livro

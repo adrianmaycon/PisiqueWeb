@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
-export async function getBooks() {
-    let books = await firebase.firestore().collection('Livros').get()
+export async function getPatients() {
+    let books = await firebase.firestore().collection('Pacientes').get()
 
     let listBooks = []
     books.forEach(book => {
@@ -37,4 +37,4 @@ export async function UpdateBook(idBook, title, miniDescription, description, ge
     }
 }
 
-export default { getBooks, Register, UpdateBook }
+export default { getPatients, Register, UpdateBook }
