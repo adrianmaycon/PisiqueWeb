@@ -1,29 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, ButtonBase, Button, IconButton, Tooltip,
-  Dialog, DialogActions, DialogContent, DialogTitle
-} from '@material-ui/core';
-import { BookmarkBorder, DeleteForever, AspectRatio, CollectionsBookmark } from '@material-ui/icons';
-import BookService from '../../../Services/BookService';
+import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, Button } from '@material-ui/core';
 
 export default function List() {
   const classes = useStyles();
-  const [valueName, setValueName] = React.useState('');
-  const [valueDateNasc, setValueDateNasc] = React.useState('');
-  const [estadoCivil, setEstadoCivil] = React.useState('');
-
-  const [valueResenha, setValueResenha] = React.useState('');
-  const [urlImage, setUrlImage] = React.useState('');
-  const [urlPDF, setUrlPDF] = React.useState('');
-  const [writer, setWriter] = React.useState('');
-  const [idBook, setIdBook] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-  const [age, setAge] = React.useState('');
-  const [livros, setLivros] = useState([]);
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
+  const [valueName, setValueName] = React.useState('');
+  const [valueDateNasc, setValueDateNasc] = React.useState('');
+  const [estadoCivil, setEstadoCivil] = React.useState('');
+  const [valueCpf, setValueCpf] = React.useState('');
+  const [valueRg, setValueRg] = React.useState('');
+  const [valueTel01, setValueTel01] = React.useState('');
+  const [valueTel02, setValueTel02] = React.useState('');
+  const [valueEmail, setValueEmail] = React.useState('');
+  const [valueCep, setValueCep] = React.useState('');
+  const [valueEnd, setValueEnd] = React.useState('');
+  const [valueEndN, setValueEndN] = React.useState('');
+
 
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -108,8 +103,8 @@ export default function List() {
                       label="CPF"
                       placeholder=" 123.456.789-10"
                       required
-                      // value={writer}
-                      // onChange={event => setWriter(event.target.value)}
+                      value={valueCpf}
+                      onChange={event => setValueCpf(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -120,8 +115,8 @@ export default function List() {
                       style={{ width: '48%' }}
                       label="RG"
                       placeholder="123.456.7891 0"
-                      // value={writer}
-                      // onChange={event => setWriter(event.target.value)}
+                      value={valueRg}
+                      onChange={event => setValueRg(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -135,8 +130,8 @@ export default function List() {
                       style={{ width: '28%' }}
                       label="Telefone 01"
                       required
-                      // value={writer}
-                      // onChange={event => setWriter(event.target.value)}
+                      value={valueTel01}
+                      onChange={event => setValueTel01(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -146,8 +141,8 @@ export default function List() {
                     <TextField
                       style={{ width: '28%' }}
                       label="Telefone 02"
-                      // value={writer}
-                      // onChange={event => setWriter(event.target.value)}
+                      value={valueTel02}
+                      onChange={event => setValueTel02(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -162,8 +157,8 @@ export default function List() {
                       multiline
                       inputProps={{ maxLength: 36 }}
                       rowsMax="4"
-                      // value={valueTitle}
-                      // onChange={event => setValueTitle(event.target.value)}
+                      value={valueEmail}
+                      onChange={event => setValueEmail(event.target.value)}
                       variant="outlined"
                       InputLabelProps={{
                         shrink: true,
@@ -177,8 +172,8 @@ export default function List() {
                       label="CEP"
                       placeholder=" 12345-67"
                       required
-                      // value={writer}
-                      // onChange={event => setWriter(event.target.value)}
+                      value={valueCep}
+                      onChange={event => setValueCep(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -188,9 +183,9 @@ export default function List() {
                     <TextField
                       style={{ width: '64%' }}
                       label="Endereço"
-                      value={writer}
-                      // required
-                      // onChange={event => setWriter(event.target.value)}
+                      required
+                      value={valueEnd}
+                      onChange={event => setValueEnd(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -201,8 +196,8 @@ export default function List() {
                       style={{ width: '10%' }}
                       label="Nº"
                       required
-                      // value={writer}
-                      // onChange={event => setWriter(event.target.value)}
+                      value={valueEndN}
+                      onChange={event => setValueEndN(event.target.value)}
                       variant="outlined"
                       inputProps={{ maxLength: 25 }}
                       InputLabelProps={{
@@ -249,37 +244,6 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
     height: 50
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
-  paperDiv: {
-    padding: theme.spacing(2),
-    maxWidth: 500,
-    marginBottom: 15,
-    marginRight: 7.5,
-    marginLeft: 7.5,
-  },
-  image: {
-    width: 110,
-    height: 150,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-  imgModal: {
-    display: 'block',
-    maxWidth: 120,
-    maxHeight: 160,
-    marginBottom: 10,
-    marginRight: 5,
-    marginLeft: 5
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
   },
   divC: {
     display: 'flex',
