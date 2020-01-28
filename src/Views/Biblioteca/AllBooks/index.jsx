@@ -15,7 +15,7 @@ export default function List() {
             .then(books => {
                 setLivros(books)
             })
-    });
+    }, []);
 
     const handleChange = event => {
         setValue(event.target.value);
@@ -31,7 +31,6 @@ export default function List() {
 
     const BookDiv = () => {
         return (livros.map((item) =>
-
             <Paper key={item.id} className={classes.paperDiv}>
                 <Grid container spacing={2}>
                     <Grid item>

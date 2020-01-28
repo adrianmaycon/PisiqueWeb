@@ -15,6 +15,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "reactjs-pdf-reader": "^1.0.9",
     "reactstrap": "^8.0.1"
   },
   "scripts": {

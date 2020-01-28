@@ -1,7 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import { PowerSettingsNew, PostAdd, LocalLibrary, Book, MenuBook, Dashboard, ChevronLeft, ExpandLess, ExpandMore, Settings, AccountBox, Today, AccountBalance, People, InsertDriveFile } from '@material-ui/icons'
+import {
+  PowerSettingsNew, PostAdd, ListAlt, Book, MenuBook, Dashboard, ChevronLeft, ExpandLess, ExpandMore,
+  Settings, AccountBox, Today, AccountBalance, People, AllInbox
+} from '@material-ui/icons';
 import {
   ListItem, ListItemIcon, ListItemText, CssBaseline, Drawer, Button,
   AppBar, Toolbar, List, Typography, Divider, IconButton, Collapse,
@@ -10,11 +13,12 @@ import {
 
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-// import Logo from '../assets/img/logo.png';
+import Logo from '../assets/img/logoWeb.png';
 import DashboardPage from './Dashboard/index.jsx';
 import CreateBooksPage from './Biblioteca/CreateBooks/index.jsx';
 import AllBooks from './Biblioteca/AllBooks/index.jsx';
 import AllPatients from './Pacientes/AllPatients/index.jsx';
+import CreatePatients from './Pacientes/CreatePatient/index.jsx';
 import app from "../base";
 
 const routes = [
@@ -37,10 +41,16 @@ const routes = [
     main: () => <AllBooks />
   },
   {
-    path: "/Patients",
+    path: "/Patients/List",
     exact: true,
     sidebar: () => <div>Parcientes</div>,
     main: () => <AllPatients />
+  },
+  {
+    path: "/Patients/Cadastro",
+    exact: true,
+    sidebar: () => <div>Parcientes</div>,
+    main: () => <CreatePatients />
   },
 ];
 
@@ -52,7 +62,7 @@ export default function SidBar() {
   const [open, setOpen] = React.useState(true);
   const [openExit, setOpenExit] = React.useState(false);
   const [openForm, setOpenForm] = React.useState(false);
-  const [openRouter, setOpenRouter] = React.useState(false);
+  const [openPatients, setOpenPatients] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpenExit(true);
@@ -77,10 +87,11 @@ export default function SidBar() {
 
   const handleClick = () => {
     setOpenForm(!openForm);
+    setOpenPatients(false);
   };
 
-  const handleClickRouter = () => {
-    setOpenRouter(!openRouter);
+  const handleClickPatients = () => {
+    setOpenPatients(!openPatients);
     setOpenForm(false);
   };
 
@@ -120,18 +131,17 @@ export default function SidBar() {
         >
           <div className={classes.toolbarIcon}>
             <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <h5>Grupo Pisiquê</h5>
-              {/* <img
-              src={Logo}
-              alt="icon"
-              style={{width: 100, height: 42}}
-            /> */}
+              <img
+                src={Logo}
+                alt="icon"
+                style={{ width: 160, height: 30, marginLeft: 5 }}
+              />
             </div>
             <IconButton className={classes.icon} onClick={handleDrawerClose}>
               <ChevronLeft />
             </IconButton>
           </div>
-          <Divider style={{ marginTop: 5, marginBottom: 5 }} />
+          <Divider style={{ marginBottom: 5 }} />
           <List>
             <div style={{ display: "flex" }}>
               <div
@@ -168,19 +178,42 @@ export default function SidBar() {
                   </ListItem>
                 </Link>
 
-                <Link to="/Patients" style={{ color: '#fff' }}>
-                  <ListItem button>
+                <ListItem button onClick={handleClickPatients} style={{ color: '#fff', display: 'flex', width: '100%' }}>
+                  <ListItemIcon>
                     <ListItemIcon style={{ color: '#fff' }}>
                       <People />
                     </ListItemIcon>
-                    <ListItemText primary="Pacientes" />
-                  </ListItem>
-                </Link>
+                  </ListItemIcon>
+                  <ListItemText primary="Pacientes" />
+                  {openPatients ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+                <Collapse in={openPatients} timeout="auto" unmountOnExit>
+                  <Link to="/Patients/List" style={{ color: '#fff' }}>
+                    <List component="div" disablePadding>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon style={{ color: '#fff' }}>
+                          <ListAlt />
+                        </ListItemIcon>
+                        <ListItemText primary="Listagem" />
+                      </ListItem>
+                    </List>
+                  </Link>
+                  <Link to="/Patients/Cadastro" style={{ color: '#fff' }}>
+                    <List component="div" disablePadding>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon style={{ color: '#fff' }}>
+                          <PostAdd />
+                        </ListItemIcon>
+                        <ListItemText primary="Cadastro" />
+                      </ListItem>
+                    </List>
+                  </Link>
+                </Collapse>
 
                 <Link to="/perfil" style={{ color: '#fff' }}>
                   <ListItem button>
                     <ListItemIcon style={{ color: '#fff' }}>
-                      <InsertDriveFile />
+                      <AllInbox />
                     </ListItemIcon>
                     <ListItemText primary="Registros" />
                   </ListItem>
@@ -205,16 +238,6 @@ export default function SidBar() {
                 {openForm ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
               <Collapse in={openForm} timeout="auto" unmountOnExit>
-                <Link to="/Livros/Meus" style={{ color: '#fff' }}>
-                  <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon style={{ color: '#fff' }}>
-                        <LocalLibrary />
-                      </ListItemIcon>
-                      <ListItemText primary="Meus Livros" />
-                    </ListItem>
-                  </List>
-                </Link>
                 <Link to="/Livros/Todos" style={{ color: '#fff' }}>
                   <List component="div" disablePadding>
                     <ListItem button className={classes.nested}>
@@ -247,7 +270,7 @@ export default function SidBar() {
               </Link>
 
               <Link to="/usergroup" style={{ color: '#fff' }}>
-                <ListItem button onClick={handleClickRouter} style={{ color: '#fff', display: 'flex', width: '100%' }}>
+                <ListItem button style={{ color: '#fff', display: 'flex', width: '100%' }}>
                   <ListItemIcon>
                     <ListItemIcon style={{ color: '#fff' }}>
                       <Settings />

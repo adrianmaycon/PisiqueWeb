@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Paper } from '@material-ui/core';
-import PatientsService from '../../../Services/PatientService';
-
+import TablePatients from './tablePatients.jsx';
 export default function List() {
     const classes = useStyles();
-    const [livros, setLivros] = useState([]);
-
-    useEffect(() => {
-        PatientsService.getPatients()
-            .then(patient => console.log('Pacientes: ',patient))
-    });
 
     return (
         <Grid className={classes.container}>
             <Grid style={{ width: '100%', height: 250, backgroundColor: '#1D2975', position: 'fixed', zIndex: 1 }} />
             <Grid style={{ width: '100%', height: '100%', backgroundColor: '#f0ebf8', position: 'fixed', zIndex: 1, marginTop: 250 }} />
             <Grid container spacing={3} style={{ width: '100%', position: 'relative', display: 'flex', justifyContent: 'center', zIndex: 10, top: 50 }}>
-                <Grid style={{ width: '96%', height: '100%', maxWidth: 1700, minWidth: 600, minHeight: 1000 }}>
+                <Grid style={{ width: '96%', height: '100%', maxWidth: 1700, minWidth: 850, minHeight: 1000 }}>
                     <Paper className={classes.paper}>
                         <Typography variant='h5'>Pacientes</Typography>
+                        <TablePatients />
                     </Paper>
                 </Grid>
             </Grid>
