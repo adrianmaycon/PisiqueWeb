@@ -33,7 +33,7 @@ export default function List() {
       <Grid style={{ width: '100%', height: 250, backgroundColor: '#1D2975', position: 'fixed', zIndex: 1 }} />
       <Grid style={{ width: '100%', height: '100%', backgroundColor: '#f0ebf8', position: 'fixed', zIndex: 1, marginTop: 250 }} />
       <Grid container spacing={3} style={{ width: '100%', position: 'relative', display: 'flex', justifyContent: 'center', zIndex: 10, top: 100 }}>
-        <Grid style={{ width: '90%', maxWidth: 850, minWidth: 700 }}>
+        <Grid style={{ width: '90%', maxWidth: 1350, minWidth: 700 }}>
           <Paper className={classes.paper}>
             <Grid item xs={12}>
               <Grid className={classes.batTop}>
@@ -42,11 +42,11 @@ export default function List() {
                 </Typography>
               </Grid>
               <Grid style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center' }} >
-                <Grid className="block-example border border-blue" style={{ width: '100%', padding: 10, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 500 }}>
+                <Grid className="block-example border border-blue" style={{ width: '49%', marginRight: 5, padding: 10, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 550 }}>
 
                   <Grid className={classes.divC} style={{ marginTop: 10 }}>
                     <TextField
-                      style={{ width: '46%' }}
+                      style={{ width: '66%' }}
                       label="Nome Completo"
                       placeholder="Adrian Maycon"
                       multiline
@@ -60,9 +60,8 @@ export default function List() {
                         shrink: true,
                       }}
                     />
-
                     <TextField
-                      style={{ width: '20%' }}
+                      style={{ width: '30%' }}
                       label="Data de Nascimento"
                       multiline
                       required
@@ -75,8 +74,25 @@ export default function List() {
                         shrink: true,
                       }}
                     />
+                  </Grid>
 
-                    <FormControl style={{ width: '30%' }} variant="outlined" >
+                  <Grid className={classes.divC} >
+                    <TextField
+                      style={{ width: '48%' }}
+                      label="E-mail"
+                      placeholder="adrian@email.com"
+                      multiline
+                      inputProps={{ maxLength: 36 }}
+                      rowsMax="4"
+                      value={valueEmail}
+                      onChange={event => setValueEmail(event.target.value)}
+                      variant="outlined"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+
+                    <FormControl style={{ width: '48%' }} variant="outlined" >
                       <InputLabel ref={inputLabel} >
                         Estado Civíl
                     </InputLabel>
@@ -99,7 +115,7 @@ export default function List() {
 
                   <Grid className={classes.divC}>
                     <TextField
-                      style={{ width: '49%' }}
+                      style={{ width: '48%' }}
                       label="CPF"
                       placeholder=" 123.456.789-10"
                       required
@@ -127,48 +143,7 @@ export default function List() {
 
                   <Grid className={classes.divC}>
                     <TextField
-                      style={{ width: '28%' }}
-                      label="Telefone 01"
-                      required
-                      value={valueTel01}
-                      onChange={event => setValueTel01(event.target.value)}
-                      variant="outlined"
-                      inputProps={{ maxLength: 25 }}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                    <TextField
-                      style={{ width: '28%' }}
-                      label="Telefone 02"
-                      value={valueTel02}
-                      onChange={event => setValueTel02(event.target.value)}
-                      variant="outlined"
-                      inputProps={{ maxLength: 25 }}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-
-                    <TextField
-                      style={{ width: '40%' }}
-                      label="E-mail"
-                      placeholder="adrian@email.com"
-                      multiline
-                      inputProps={{ maxLength: 36 }}
-                      rowsMax="4"
-                      value={valueEmail}
-                      onChange={event => setValueEmail(event.target.value)}
-                      variant="outlined"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid className={classes.divC}>
-                    <TextField
-                      style={{ width: '22%' }}
+                      style={{ width: '27%' }}
                       label="CEP"
                       placeholder=" 12345-67"
                       required
@@ -181,7 +156,33 @@ export default function List() {
                       }}
                     />
                     <TextField
-                      style={{ width: '64%' }}
+                      style={{ width: '34%' }}
+                      label="Telefone 01"
+                      required
+                      value={valueTel01}
+                      onChange={event => setValueTel01(event.target.value)}
+                      variant="outlined"
+                      inputProps={{ maxLength: 25 }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                    <TextField
+                      style={{ width: '34%' }}
+                      label="Telefone 02"
+                      value={valueTel02}
+                      onChange={event => setValueTel02(event.target.value)}
+                      variant="outlined"
+                      inputProps={{ maxLength: 25 }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
+
+                  <Grid className={classes.divC}>
+                    <TextField
+                      style={{ width: '86%' }}
                       label="Endereço"
                       required
                       value={valueEnd}
@@ -209,6 +210,11 @@ export default function List() {
                     Cadastrar
                   </Button>
                 </Grid>
+
+                <Grid className="block-example border border-blue" style={{ width: '49%', padding: 10, marginLeft: 5, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 550 }}>
+
+                </Grid>
+
               </Grid>
             </Grid>
           </Paper>

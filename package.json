@@ -12,9 +12,11 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-icons": "^3.7.0",
+    "react-number-format": "^4.3.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "react-text-mask": "^5.4.3",
     "reactjs-pdf-reader": "^1.0.9",
     "reactstrap": "^8.0.1"
   },
