@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, Button } from '@material-ui/core';
+import axios from 'axios'
 
 export default function List() {
   const classes = useStyles();
@@ -16,8 +17,12 @@ export default function List() {
   const [valueTel02, setValueTel02] = React.useState('');
   const [valueEmail, setValueEmail] = React.useState('');
   const [valueCep, setValueCep] = React.useState('');
+  const [valueBairro, setValueBairro] = React.useState('');
+  const [valueUF, setValueUF] = React.useState('');
+  const [valueCity, setValueCity] = React.useState('');
   const [valueEnd, setValueEnd] = React.useState('');
   const [valueEndN, setValueEndN] = React.useState('');
+  const [disabledCep, setDisabledCep] = React.useState(true);
 
 
   React.useEffect(() => {
@@ -27,6 +32,23 @@ export default function List() {
   const handleChange = event => {
     setEstadoCivil(event.target.value);
   };
+
+  if (valueCep.length === 9 && disabledCep) {
+
+    axios.get(`https://viacep.com.br/ws/${valueCep}/json/`)
+      .then((response) => {
+        console.log('Response: ', response.data);
+        setValueEnd(response.data.logradouro)
+        setValueBairro(response.data.bairro)
+        setValueCity(response.data.localidade)
+        setValueUF(response.data.uf)
+        setDisabledCep(false)
+      })
+      .catch(function (error) {
+        console.log('Error: ', error);
+      })
+
+  }
 
   return (
     <Grid className={classes.container}>
@@ -144,7 +166,6 @@ export default function List() {
                       style={{ width: '27%' }}
                       label="CEP"
                       placeholder=" 12345-67"
-                      required
                       value={valueCep}
                       onChange={event => setValueCep(event.target.value)}
                       variant="outlined"
@@ -180,7 +201,7 @@ export default function List() {
 
                   <Grid className={classes.divC}>
                     <TextField
-                      style={{ width: '86%' }}
+                      style={{ width: '84%' }}
                       label="Endereço"
                       required
                       value={valueEnd}
@@ -192,7 +213,7 @@ export default function List() {
                       }}
                     />
                     <TextField
-                      style={{ width: '10%' }}
+                      style={{ width: '12%' }}
                       label="Nº"
                       required
                       value={valueEndN}
@@ -204,6 +225,45 @@ export default function List() {
                       }}
                     />
                   </Grid>
+
+                  <Grid className={classes.divC}>
+                    <TextField
+                      style={{ width: '41.5%' }}
+                      label="Bairro"
+                      required
+                      value={valueBairro}
+                      onChange={event => setValueBairro(event.target.value)}
+                      variant="outlined"
+                      inputProps={{ maxLength: 25 }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                    <TextField
+                      style={{ width: '41.5%' }}
+                      label="Cidade"
+                      required
+                      value={valueCity}
+                      onChange={event => setValueCity(event.target.value)}
+                      variant="outlined"
+                      inputProps={{ maxLength: 25 }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                    <TextField
+                      style={{ width: '12%' }}
+                      label="UF"
+                      value={valueUF}
+                      onChange={event => setValueUF(event.target.value)}
+                      variant="outlined"
+                      inputProps={{ maxLength: 25 }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
+
                   <Button variant="outlined" onClick={() => null} style={{ width: '98%', height: 50 }} color="primary">
                     Cadastrar
                   </Button>
