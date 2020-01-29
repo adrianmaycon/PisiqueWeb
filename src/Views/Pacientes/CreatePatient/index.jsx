@@ -42,16 +42,15 @@ export default function List() {
                 </Typography>
               </Grid>
               <Grid style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center' }} >
-                <Grid className="block-example border border-blue" style={{ width: '49%', marginRight: 5, padding: 10, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 550 }}>
+                <Grid className="block-example border border-blue" style={{ width: '49%', marginLeft: 5, marginBottom: 10, marginRight: 5, padding: 10, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 500 }}>
 
                   <Grid className={classes.divC} style={{ marginTop: 10 }}>
                     <TextField
                       style={{ width: '66%' }}
                       label="Nome Completo"
-                      placeholder="Adrian Maycon"
                       multiline
                       required
-                      inputProps={{ maxLength: 36 }}
+                      inputProps={{ maxLength: 40 }}
                       rowsMax="4"
                       value={valueName}
                       onChange={event => setValueName(event.target.value)}
@@ -62,7 +61,7 @@ export default function List() {
                     />
                     <TextField
                       style={{ width: '30%' }}
-                      label="Data de Nascimento"
+                      label="Data de Nasc."
                       multiline
                       required
                       inputProps={{ maxLength: 36 }}
@@ -80,7 +79,6 @@ export default function List() {
                     <TextField
                       style={{ width: '48%' }}
                       label="E-mail"
-                      placeholder="adrian@email.com"
                       multiline
                       inputProps={{ maxLength: 36 }}
                       rowsMax="4"
@@ -211,10 +209,17 @@ export default function List() {
                   </Button>
                 </Grid>
 
-                <Grid className="block-example border border-blue" style={{ width: '49%', padding: 10, marginLeft: 5, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 550 }}>
-
+                <Grid className="block-example border border-blue" style={{ width: '49%', padding: 10, marginBottom: 10, marginLeft: 5, marginRight: 5, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', minWidth: 500 }}>
+                  <Grid style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 40, marginTop: 10 }}>
+                    <Typography variant="h5" style={{ fontSize: 32 }} gutterBottom>
+                      Dados do Paciente
+                    </Typography>
+                  </Grid>
+                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                    <Typography variant="subtitle2" >Paciente: </Typography>
+                    <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueName}</Typography>
+                  </Grid>
                 </Grid>
-
               </Grid>
             </Grid>
           </Paper>
@@ -235,7 +240,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     padding: theme.spacing(2),
-    paddingBottom: 60,
+    paddingBottom: 20,
     justifyContent: 'space-between',
     color: theme.palette.text.secondary,
   },
