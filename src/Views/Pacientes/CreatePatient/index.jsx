@@ -24,7 +24,6 @@ export default function List() {
   const [valueEndN, setValueEndN] = React.useState('');
   const [disabledCep, setDisabledCep] = React.useState(true);
 
-
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
@@ -47,7 +46,6 @@ export default function List() {
       .catch(function (error) {
         console.log('Error: ', error);
       })
-
   }
 
   return (
@@ -81,6 +79,7 @@ export default function List() {
                         shrink: true,
                       }}
                     />
+
                     <TextField
                       style={{ width: '30%' }}
                       label="Data de Nasc."
@@ -101,9 +100,7 @@ export default function List() {
                     <TextField
                       style={{ width: '48%' }}
                       label="E-mail"
-                      multiline
                       inputProps={{ maxLength: 36 }}
-                      rowsMax="4"
                       value={valueEmail}
                       onChange={event => setValueEmail(event.target.value)}
                       variant="outlined"
@@ -147,6 +144,7 @@ export default function List() {
                         shrink: true,
                       }}
                     />
+
                     <TextField
                       style={{ width: '48%' }}
                       label="RG"
@@ -278,6 +276,16 @@ export default function List() {
                   <Grid style={{ width: '90%', display: 'flex', flexDirection: 'column', height: 40 }}>
                     <Typography variant="subtitle2" >Paciente: </Typography>
                     <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueName}</Typography>
+                  </Grid>
+                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
+                    <Grid style={{ width: '60%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Email: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueEmail}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '38%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Data de Nasc.: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueDateNasc}</Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>

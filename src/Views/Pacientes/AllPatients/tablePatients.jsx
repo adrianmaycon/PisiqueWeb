@@ -48,6 +48,7 @@ export default function List() {
                         </Link>
                     </Tooltip>
             }}
+            onRowClick={(event, rowData, togglePanel) => null}
         />
     )
 }
