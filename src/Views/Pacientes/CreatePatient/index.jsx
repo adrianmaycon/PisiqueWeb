@@ -68,7 +68,6 @@ export default function List() {
                     <TextField
                       style={{ width: '66%' }}
                       label="Nome Completo"
-                      multiline
                       required
                       inputProps={{ maxLength: 40 }}
                       rowsMax="4"
@@ -83,10 +82,8 @@ export default function List() {
                     <TextField
                       style={{ width: '30%' }}
                       label="Data de Nasc."
-                      multiline
                       required
-                      inputProps={{ maxLength: 36 }}
-                      rowsMax="4"
+                      inputProps={{ maxLength: 10 }}
                       value={valueDateNasc}
                       onChange={event => setValueDateNasc(event.target.value)}
                       variant="outlined"
@@ -139,7 +136,7 @@ export default function List() {
                       value={valueCpf}
                       onChange={event => setValueCpf(event.target.value)}
                       variant="outlined"
-                      inputProps={{ maxLength: 25 }}
+                      inputProps={{ maxLength: 14 }}
                       InputLabelProps={{
                         shrink: true,
                       }}

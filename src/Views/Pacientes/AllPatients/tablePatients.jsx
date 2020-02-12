@@ -22,6 +22,27 @@ export default function List() {
                 { title: 'Telefone', field: 'tel01' },
                 { title: 'Data de Nascimento', field: 'dataNasc' },
             ]}
+            localization={{
+                pagination: {
+                    labelDisplayedRows: '{from}-{to} de {count}',
+                    firstTooltip: 'Primeira página',
+                    previousTooltip: 'Página anterior',
+                    nextTooltip: 'Próxima página',
+                    lastTooltip: 'Última página',
+                    labelRowsSelect: 'Linhas'
+                },
+                toolbar: {
+                    searchTooltip: 'Buscar',
+                    searchPlaceholder: 'Buscar',
+                    nRowsSelected: '{0} Documento(s) selecionado'
+                },
+                header: {
+                    actions: 'Ações',
+                },
+                body: {
+                    emptyDataSourceMessage: 'Não há registros a serem exibidos',
+                }
+            }}
             data={patients}
             actions={[
                 {
