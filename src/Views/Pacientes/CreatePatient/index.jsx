@@ -33,7 +33,6 @@ export default function List() {
   };
 
   if (valueCep.length === 9 && disabledCep) {
-
     axios.get(`https://viacep.com.br/ws/${valueCep}/json/`)
       .then((response) => {
         console.log('Response: ', response.data);
@@ -46,6 +45,23 @@ export default function List() {
       .catch(function (error) {
         console.log('Error: ', error);
       })
+  }
+
+  if (valueCpf.length === 11) {
+    const digitos = valueCpf.split('').map(digito => digito.toString())
+
+    let a = digitos.slice(0, 9).reduce((acumulador, valorAtual, indice) => parseInt(acumulador) + parseInt(valorAtual * (10 - indice)), digitos[0]) - parseInt(valueCpf.split('')[0])
+    let b = digitos.slice(0, 10).reduce((acumulador, valorAtual, indice) => parseInt(acumulador) + parseInt(valorAtual * (11 - indice)), digitos[0]) - parseInt(valueCpf.split('')[0])
+
+    let valorA = a % 11 < 2 ? 0 : 11 - (a % 11)
+    let valorB = b % 11 >= 2 ? 11 - (b % 11) : 0
+
+    let v1 = parseInt(valueCpf.split('')[9])
+    let v2 = parseInt(valueCpf.split('')[10])
+
+    let statusCpf = valorA === v1 && valorB === v2 ? "CPF Válido" : "CPF Inválido"
+
+    console.log(statusCpf)
   }
 
   return (
@@ -131,12 +147,12 @@ export default function List() {
                     <TextField
                       style={{ width: '48%' }}
                       label="CPF"
-                      placeholder=" 123.456.789-10"
+                      placeholder=" 12345678910"
                       required
                       value={valueCpf}
                       onChange={event => setValueCpf(event.target.value)}
                       variant="outlined"
-                      inputProps={{ maxLength: 14 }}
+                      inputProps={{ maxLength: 11 }}
                       InputLabelProps={{
                         shrink: true,
                       }}
