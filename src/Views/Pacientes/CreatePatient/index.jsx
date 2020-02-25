@@ -1,7 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, Paper, TextField, Button } from '@material-ui/core';
-import axios from 'axios'
+import axios from 'axios';
+
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+import moment from 'moment';
+import ptLocale from "date-fns/locale/pt-BR";
 
 export default function List() {
   const classes = useStyles();
@@ -9,7 +19,6 @@ export default function List() {
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   const [valueName, setValueName] = React.useState('');
-  const [valueDateNasc, setValueDateNasc] = React.useState('');
   const [estadoCivil, setEstadoCivil] = React.useState('');
   const [valueCpf, setValueCpf] = React.useState('');
   const [valueRg, setValueRg] = React.useState('');
@@ -24,12 +33,19 @@ export default function List() {
   const [valueEndN, setValueEndN] = React.useState('');
   const [disabledCep, setDisabledCep] = React.useState(true);
 
+  const [selectedDate, setSelectedDate] = React.useState(new Date(`${moment().format()}`));
+
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
   const handleChange = event => {
     setEstadoCivil(event.target.value);
+  };
+
+  const handleDateChange = date => {
+    console.log(date)
+    setSelectedDate(date);
   };
 
   if (valueCep.length === 9 && disabledCep) {
@@ -79,10 +95,9 @@ export default function List() {
               </Grid>
               <Grid style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center' }} >
                 <Grid className="block-example border border-blue" style={{ width: '49%', marginLeft: 5, marginBottom: 10, marginRight: 5, padding: 10, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: 500 }}>
-
                   <Grid className={classes.divC} style={{ marginTop: 10 }}>
                     <TextField
-                      style={{ width: '66%' }}
+                      style={{ width: '65%' }}
                       label="Nome Completo"
                       required
                       inputProps={{ maxLength: 40 }}
@@ -95,18 +110,24 @@ export default function List() {
                       }}
                     />
 
-                    <TextField
-                      style={{ width: '30%' }}
-                      label="Data de Nasc."
-                      required
-                      inputProps={{ maxLength: 10 }}
-                      value={valueDateNasc}
-                      onChange={event => setValueDateNasc(event.target.value)}
-                      variant="outlined"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptLocale}>
+                      <KeyboardDatePicker
+                        style={{ width: '30%' }}
+                        margin="normal"
+                        variant="outlined"
+                        label="Data de Nasc."
+                        format="dd/MM/yyyy"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                          'aria-label': 'change date',
+                        }}
+                        invalidDateMessage="Formato de data inválido"
+                        maxDateMessage="Data Inválida"
+                        minDateMessage="Data Inválida"
+
+                      />
+                    </MuiPickersUtilsProvider>
                   </Grid>
 
                   <Grid className={classes.divC} >
@@ -297,7 +318,7 @@ export default function List() {
                     </Grid>
                     <Grid style={{ width: '38%', display: 'flex', flexDirection: 'column', height: 40 }}>
                       <Typography variant="subtitle2" >Data de Nasc.: </Typography>
-                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueDateNasc}</Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{moment(selectedDate).format('DD/MM/YYYY')}</Typography>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -332,10 +353,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     justifyContent: 'space-between',
     color: theme.palette.text.secondary,
-  },
-  button: {
-    margin: theme.spacing(1),
-    height: 50
   },
   divC: {
     display: 'flex',
