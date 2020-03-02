@@ -32,8 +32,9 @@ export default function List() {
   const [valueEnd, setValueEnd] = React.useState('');
   const [valueEndN, setValueEndN] = React.useState('');
   const [disabledCep, setDisabledCep] = React.useState(true);
-
   const [selectedDate, setSelectedDate] = React.useState(new Date(`${moment().format()}`));
+
+  const [errorName, setErrorName] = React.useState(false);
 
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -47,6 +48,14 @@ export default function List() {
     console.log(date)
     setSelectedDate(date);
   };
+
+  const validateField = () => {
+    if (!valueName) {
+      setErrorName(true)
+    } else {
+      setErrorName(false)
+    }
+  }
 
   if (valueCep.length === 9 && disabledCep) {
     axios.get(`https://viacep.com.br/ws/${valueCep}/json/`)
@@ -100,6 +109,7 @@ export default function List() {
                       style={{ width: '65%' }}
                       label="Nome Completo"
                       required
+                      error={errorName}
                       inputProps={{ maxLength: 38 }}
                       rowsMax="4"
                       value={valueName}
@@ -116,6 +126,7 @@ export default function List() {
                         margin="normal"
                         variant="outlined"
                         label="Data de Nasc."
+                        required
                         format="dd/MM/yyyy"
                         value={selectedDate}
                         onChange={handleDateChange}
@@ -143,7 +154,7 @@ export default function List() {
                       }}
                     />
 
-                    <FormControl style={{ width: '48%' }} variant="outlined" >
+                    <FormControl style={{ width: '48%' }} variant="outlined" required>
                       <InputLabel ref={inputLabel} >
                         Estado Civíl
                     </InputLabel>
@@ -365,7 +376,7 @@ export default function List() {
                       <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueUF}</Typography>
                     </Grid>
                   </Grid>
-                  <Button variant="outlined" onClick={() => null} style={{ width: '98%', height: 50, marginTop: 38 }} color="primary">
+                  <Button variant="outlined" onClick={() => validateField()} style={{ width: '98%', height: 50, marginTop: 38 }} color="primary">
                     Cadastrar
                   </Button>
                 </Grid>
