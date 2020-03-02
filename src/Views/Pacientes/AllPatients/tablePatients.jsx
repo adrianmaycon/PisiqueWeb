@@ -8,6 +8,8 @@ import PatientsService from '../../../Services/PatientService';
 export default function List() {
     const [patients, setPatients] = useState([]);
 
+    console.log(patients)
+
     useEffect(() => {
         PatientsService.getPatients()
             .then((patient) => setPatients(patient))
@@ -47,22 +49,22 @@ export default function List() {
             actions={[
                 {
                     icon: 'assignment',
-                    tooltip: 'Visualizar Passos',
+                    tooltip: 'Visualizar Parciente',
                     onClick: (event, rowData) => null
                 }
             ]}
-            options={{ actionsColumnIndex: -1, draggable: false, sorting: false }}
+            options={{ actionsColumnIndex: -1, draggable: false, sorting: false, pageSize: 10 }}
             components={{
                 Container: props => <Paper {...props} elevation={0} />,
                 Pagination: props => (
                     <TablePagination
                         {...props}
-                        rowsPerPageOptions={[5, 10]}
+                        rowsPerPageOptions={[10, 15, 20]}
                     />
                 ),
                 Action: props =>
-                    <Tooltip title="Visualizar Passos">
-                        <Link to={`/reports/`}>
+                    <Tooltip title="Visualizar Parciente">
+                        <Link to={`/details/${props.data.id}`}>
                             <IconButton>
                                 <AssignmentIcon />
                             </IconButton>

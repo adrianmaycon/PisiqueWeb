@@ -100,7 +100,7 @@ export default function List() {
                       style={{ width: '65%' }}
                       label="Nome Completo"
                       required
-                      inputProps={{ maxLength: 40 }}
+                      inputProps={{ maxLength: 38 }}
                       rowsMax="4"
                       value={valueName}
                       onChange={event => setValueName(event.target.value)}
@@ -182,11 +182,11 @@ export default function List() {
                     <TextField
                       style={{ width: '48%' }}
                       label="RG"
-                      placeholder="123.456.7891 0"
+                      placeholder="12345678910"
                       value={valueRg}
                       onChange={event => setValueRg(event.target.value)}
                       variant="outlined"
-                      inputProps={{ maxLength: 25 }}
+                      inputProps={{ maxLength: 11 }}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -251,7 +251,7 @@ export default function List() {
                       value={valueEndN}
                       onChange={event => setValueEndN(event.target.value)}
                       variant="outlined"
-                      inputProps={{ maxLength: 25 }}
+                      inputProps={{ maxLength: 6 }}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -295,10 +295,6 @@ export default function List() {
                       }}
                     />
                   </Grid>
-
-                  <Button variant="outlined" onClick={() => null} style={{ width: '98%', height: 50 }} color="primary">
-                    Cadastrar
-                  </Button>
                 </Grid>
 
                 <Grid className="block-example border border-blue" style={{ width: '49%', padding: 10, marginBottom: 10, marginLeft: 5, marginRight: 5, borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', minWidth: 500 }}>
@@ -307,20 +303,71 @@ export default function List() {
                       Dados do Paciente
                     </Typography>
                   </Grid>
-                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'column', height: 40 }}>
-                    <Typography variant="subtitle2" >Paciente: </Typography>
-                    <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueName}</Typography>
-                  </Grid>
                   <Grid style={{ width: '90%', display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
-                    <Grid style={{ width: '60%', display: 'flex', flexDirection: 'column', height: 40 }}>
-                      <Typography variant="subtitle2" >Email: </Typography>
-                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueEmail}</Typography>
+                    <Grid style={{ width: '65%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Paciente: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueName}</Typography>
                     </Grid>
-                    <Grid style={{ width: '38%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                    <Grid style={{ width: '33%', display: 'flex', flexDirection: 'column', height: 40 }}>
                       <Typography variant="subtitle2" >Data de Nasc.: </Typography>
                       <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{moment(selectedDate).format('DD/MM/YYYY')}</Typography>
                     </Grid>
                   </Grid>
+                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
+                    <Grid style={{ width: '65%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Email: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueEmail}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '33%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Estado Civíl: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{estadoCivil === 11 ? 'Solteiro(a)' : estadoCivil === 12 ? 'Casado(a)' : estadoCivil === 13 ? 'Divorciado(a)' : estadoCivil === 14 ? 'Viúvo(a)' : estadoCivil === 15 ? 'Separado(a)' : ''}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
+                    <Grid style={{ width: '32%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >CPF: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueCpf}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '32%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >RG: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueRg}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '32%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Telefone: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueTel01}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
+                    <Grid style={{ width: '54%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Endereço: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueEnd}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '8%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >N°: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueEndN}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '34%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Bairro: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueBairro}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid style={{ width: '90%', display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
+                    <Grid style={{ width: '30%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >CEP: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueCep}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '50%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >Cidade: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueCity}</Typography>
+                    </Grid>
+                    <Grid style={{ width: '16%', display: 'flex', flexDirection: 'column', height: 40 }}>
+                      <Typography variant="subtitle2" >UF: </Typography>
+                      <Typography variant="body2" style={{ padding: 5, marginTop: 2.5, minHeight: 30, display: 'flex', justifyContent: 'center' }} className="block-example border border-blue">{valueUF}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Button variant="outlined" onClick={() => null} style={{ width: '98%', height: 50, marginTop: 38 }} color="primary">
+                    Cadastrar
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -353,6 +400,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     justifyContent: 'space-between',
     color: theme.palette.text.secondary,
+    marginBottom: 20,
   },
   divC: {
     display: 'flex',
