@@ -5,25 +5,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	/* background: #f6f5f7; */
-	/* background-image: url('https://www.zukunftkunde.de/wp-content/uploads/IBM-Watson-ist-Doktor-digital.jpg');  */
-	/* background-image: url('https://source.unsplash.com/random'); */
-	background-image: url('https://conteudo.imguol.com.br/c/noticias/26/2019/12/20/tecnologia-dados-saude-health-tech-digital-digitalizacao-1576876624906_v2_1920x1280.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	/* height: 100vh;
-	z-index: 100; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 98.3vh;
-	/* margin: -20px 0 50px; */
-}
-
 h1 {
 	font-weight: bold;
 	margin: 0;
@@ -104,9 +85,9 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
-	min-width: 656px;
-	max-width: 100%;
+	width: 700px;
+	min-width: 856px;
+	max-width: 990px;
 	min-height: 480px;
 }
 
