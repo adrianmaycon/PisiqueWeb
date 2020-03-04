@@ -35,6 +35,7 @@ export default function List() {
   const [selectedDate, setSelectedDate] = React.useState(new Date(`${moment().format()}`));
 
   const [errorName, setErrorName] = React.useState(false);
+  const [errorEstadoCivil, setErrorEstadoCivil] = React.useState(false);
 
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -50,11 +51,8 @@ export default function List() {
   };
 
   const validateField = () => {
-    if (!valueName) {
-      setErrorName(true)
-    } else {
-      setErrorName(false)
-    }
+    !valueName ? setErrorName(true) : setErrorName(false)
+    !estadoCivil ? setErrorEstadoCivil(true) : setErrorEstadoCivil(false)
   }
 
   if (valueCep.length === 9 && disabledCep) {
@@ -154,7 +152,7 @@ export default function List() {
                       }}
                     />
 
-                    <FormControl style={{ width: '48%' }} variant="outlined" required>
+                    <FormControl style={{ width: '48%' }} variant="outlined" required error={errorEstadoCivil}>
                       <InputLabel ref={inputLabel} >
                         Estado Civíl
                     </InputLabel>
