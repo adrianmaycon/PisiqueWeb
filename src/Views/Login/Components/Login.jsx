@@ -2,7 +2,8 @@ import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect, Link } from "react-router-dom";
 import app from "../../../base.js";
 import { AuthContext } from "../../../Auth.js";
-import { Typography, Grid, TextField, Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { IconButton, Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './Css/styles.css';
 
@@ -21,6 +22,11 @@ const Login = ({ history }) => {
         history.push("/");
       } catch (error) {
         alert('Login ou Senha inválidos!');
+                <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Link onClick={() => setActive(true)}>
+                    {" Não possui uma conta? Inscrever-se"}
+                  </Link>
+                </Grid>
       }
     },
     [history]
@@ -55,6 +61,9 @@ const Login = ({ history }) => {
           <div class="form-container sign-in-container">
             <form className={classes.form} noValidate onSubmit={handleLogin}>
               <h1>Login</h1>
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -80,19 +89,14 @@ const Login = ({ history }) => {
               />
               <Button
                 type="submit"
-                variant="contained" 
-                color="primary" 
+                variant="contained"
+                color="primary"
                 disableElevation
                 // fullWidth
                 className={classes.submit}
               >
                 Entrar
               </Button>
-              <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Link onClick={() => setActive(true)}>
-                  {" Não possui uma conta? Inscrever-se"}
-                </Link>
-              </Grid>
             </form>
             {/* <form noValidate onSubmit={handleLogin}>
               <h1>Login</h1>
@@ -123,7 +127,7 @@ const Login = ({ history }) => {
             </div>
           </div>
         </div>
-      {/* </div> */}
+        {/* </div> */}
       </Grid>
     </Grid>
   );
@@ -165,7 +169,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: '12px',
     marginTop: 15,
     width: 200,
-    textTransform: 'none',
     fontWeight: 'bold',
     padding: '12px 45px',
     letterSpacing: '1px',
