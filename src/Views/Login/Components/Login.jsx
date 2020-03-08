@@ -2,7 +2,9 @@ import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect, Link } from "react-router-dom";
 import app from "../../../base.js";
 import { AuthContext } from "../../../Auth.js";
-import DeleteIcon from '@material-ui/icons/Delete';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import FacebookIcon from '@material-ui/icons/Facebook';
 import { IconButton, Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './Css/styles.css';
@@ -22,11 +24,6 @@ const Login = ({ history }) => {
         history.push("/");
       } catch (error) {
         alert('Login ou Senha inválidos!');
-                <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Link onClick={() => setActive(true)}>
-                    {" Não possui uma conta? Inscrever-se"}
-                  </Link>
-                </Grid>
       }
     },
     [history]
@@ -40,7 +37,6 @@ const Login = ({ history }) => {
 
   return (
     <Grid className={classes.body}>
-      {/* <div class="central"> */}
       <Grid className={classes.central}>
         <div style={{ width: 700 }} class={`container ${active ? 'right-panel-active' : ''}`} id="container">
           <div class="form-container sign-up-container">
@@ -61,9 +57,18 @@ const Login = ({ history }) => {
           <div class="form-container sign-in-container">
             <form className={classes.form} noValidate onSubmit={handleLogin}>
               <h1>Login</h1>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
+              <Grid style={{ display: 'flex', width: '70%', justifyContent: 'space-around', marginBottom: 20, marginTop: 20 }}>
+                <IconButton aria-label="delete" style={{ backgroundColor: '#3b5998', color: '#FFFFFF' }}>
+                  <FacebookIcon />
+                </IconButton>
+                <IconButton aria-label="delete" style={{ backgroundColor: '#1664af', color: '#FFFFFF' }}>
+                  <SupervisedUserCircleIcon />
+                </IconButton>
+                <IconButton aria-label="delete" style={{ backgroundColor: '#0077b5', color: '#FFFFFF' }}>
+                  <LinkedInIcon />
+                </IconButton>
+              </Grid>
+
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -75,6 +80,7 @@ const Login = ({ history }) => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                InputLabelProps={{ shrink: true }}
               />
               <TextField
                 variant="outlined"
@@ -97,20 +103,12 @@ const Login = ({ history }) => {
               >
                 Entrar
               </Button>
+              <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Link onClick={() => setActive(true)}>
+                  {" Não possui uma conta? Inscrever-se"}
+                </Link>
+              </Grid>
             </form>
-            {/* <form noValidate onSubmit={handleLogin}>
-              <h1>Login</h1>
-              <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-              </div>
-              <span>ou use sua conta</span>
-              <input type="email" placeholder="Email" />
-              <input style={{ marginTop: 5 }} type="password" placeholder="Senha" />
-              <Typography variant="caption" display="block" gutterBottom style={{ marginTop: 10 }}> Esqueceu sua senha?</Typography>
-              <button style={{ borderRadius: 30 }}>Entrar</button>
-            </form> */}
           </div>
           <div class="overlay-container">
             <div class="overlay">
@@ -127,7 +125,6 @@ const Login = ({ history }) => {
             </div>
           </div>
         </div>
-        {/* </div> */}
       </Grid>
     </Grid>
   );
