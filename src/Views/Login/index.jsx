@@ -89,7 +89,6 @@ const Login = ({ history }) => {
               <Button
                 variant="contained"
                 color="primary"
-                disableElevation
                 className={classes.submit}
                 onClick={handleRegister}
               >
@@ -148,7 +147,6 @@ const Login = ({ history }) => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                disableElevation
                 className={classes.submit}
               >
                 Entrar
