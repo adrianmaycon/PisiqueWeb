@@ -5,9 +5,19 @@
 	box-sizing: border-box;
 }
 
-h1 {
+/* h1 {
 	font-weight: bold;
 	margin: 0;
+} */
+
+.pisique {
+	font-family: 'Baloo Chettan 2', cursive;
+	font-size: 50px;
+}
+
+.sub {
+	font-family: 'Baloo Chettan 2', cursive;
+	font-size: 40px;
 }
 
 h2 {

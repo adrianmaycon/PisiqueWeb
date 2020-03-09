@@ -13,7 +13,7 @@ const Login = ({ history }) => {
   const classes = useStyles();
 
   const [active, setActive] = React.useState(false);
-  
+
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
@@ -29,7 +29,7 @@ const Login = ({ history }) => {
     },
     [history]
   );
-  
+
   const handleRegister = () => {
     console.log('Cadastro')
   }
@@ -45,8 +45,8 @@ const Login = ({ history }) => {
       <Grid className={classes.central}>
         <Grid style={{ width: 700 }} class={`container ${active ? 'right-panel-active' : ''}`} id="container">
           <Grid class="form-container sign-up-container">
-            <form className={classes.form} > 
-              <h1>Criar Conta</h1>
+            <form className={classes.form} >
+              <h1 class="sub">Criar Conta</h1>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -105,7 +105,7 @@ const Login = ({ history }) => {
 
           <Grid class="form-container sign-in-container">
             <form className={classes.form} noValidate onSubmit={handleLogin}>
-              <h1>Login</h1>
+              <h1 class="sub">Login</h1>
               <Grid style={{ display: 'flex', width: '70%', justifyContent: 'space-around', marginBottom: 20, marginTop: 20 }}>
                 <IconButton aria-label="delete" style={{ backgroundColor: '#3b5998', color: '#FFFFFF' }}>
                   <FacebookIcon />
@@ -163,12 +163,12 @@ const Login = ({ history }) => {
           <Grid class="overlay-container">
             <Grid class="overlay">
               <Grid class="overlay-panel overlay-left">
-                <h1>Pisiquê</h1>
+                <h1 class="pisique">Pisiquê</h1>
                 <p style={{ marginTop: 25, marginBottom: 25 }}>Para se manter conectado, faça login com suas informações pessoais</p>
                 <button style={{ borderRadius: 30 }} class="ghost" id="signIn" onClick={() => setActive(false)}>Entrar na Conta</button>
               </Grid>
               <Grid class="overlay-panel overlay-right">
-                <h1>Pisiquê</h1>
+                <h1 class="pisique">Pisiquê</h1>
                 <p style={{ marginTop: 25, marginBottom: 25 }}>Digite seus dados pessoais e comece a jornada conosco</p>
                 <button style={{ borderRadius: 30 }} class="ghost" id="signUp" onClick={() => setActive(true)}>Inscrever-se</button>
               </Grid>
