@@ -10,6 +10,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
+import PatientService from '../../../Services/PatientService.js'
 import moment from 'moment';
 import ptLocale from "date-fns/locale/pt-BR";
 
@@ -36,6 +37,13 @@ export default function List() {
 
   const [errorName, setErrorName] = React.useState(false);
   const [errorEstadoCivil, setErrorEstadoCivil] = React.useState(false);
+  const [errorCpf, setErrorCpf] = React.useState(false);
+  const [errorTel, setErrorTel] = React.useState(false);
+  const [errorEnd, setErrorEnd] = React.useState(false);
+  const [errorEndN, setErrorEndN] = React.useState(false);
+  const [errorCity, setErrorCity] = React.useState(false);
+  const [errorUf, setErrorUf] = React.useState(false);
+  const [errorBairro, setErrorBairro] = React.useState(false);
 
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -53,6 +61,35 @@ export default function List() {
   const validateField = () => {
     !valueName ? setErrorName(true) : setErrorName(false)
     !estadoCivil ? setErrorEstadoCivil(true) : setErrorEstadoCivil(false)
+    !valueCpf ? setErrorCpf(true) : setErrorCpf(false)
+    !valueTel01 ? setErrorTel(true) : setErrorTel(false)
+    !valueEnd ? setErrorEnd(true) : setErrorEnd(false)
+    !valueEndN ? setErrorEndN(true) : setErrorEndN(false)
+    !valueCity ? setErrorCity(true) : setErrorCity(false)
+    !valueUF ? setErrorUf(true) : setErrorUf(false)
+    !valueBairro ? setErrorBairro(true) : setErrorBairro(false)
+
+    if (valueName && estadoCivil && valueCpf && valueTel01 && valueEnd && valueEndN && valueCity && valueUF && valueBairro) {
+      let address = { cep: valueCep, city: valueCity, logradouro: valueEnd, numero: valueEndN, uf: valueUF }
+      let dataNasc = moment(selectedDate).format('DD/MM/YYYY')
+      let dateRegister = { data: moment().format('DD/MM/YYYY'), hora: moment().format('LT') }
+      PatientService.Register(address, valueCpf, dataNasc, dateRegister, valueEmail, estadoCivil, valueName, valueRg, valueTel01, valueTel02)
+        .then(result => {
+          setValueBairro('')
+          setValueName('')
+          setValueEnd('')
+          setValueEndN('')
+          setValueCep('')
+          setValueCity('')
+          setValueCpf('')
+          setValueRg('')
+          setEstadoCivil('')
+          setSelectedDate(new Date(`${moment().format()}`))
+        })
+    } else {
+      console.log('Algo esta faltando')
+    }
+
   }
 
   if (valueCep.length === 9 && disabledCep) {
@@ -179,6 +216,7 @@ export default function List() {
                       label="CPF"
                       placeholder=" 12345678910"
                       required
+                      error={errorCpf}
                       value={valueCpf}
                       onChange={event => setValueCpf(event.target.value)}
                       variant="outlined"
@@ -219,6 +257,7 @@ export default function List() {
                       style={{ width: '34%' }}
                       label="Telefone 01"
                       required
+                      error={errorTel}
                       value={valueTel01}
                       onChange={event => setValueTel01(event.target.value)}
                       variant="outlined"
@@ -245,6 +284,7 @@ export default function List() {
                       style={{ width: '84%' }}
                       label="Endereço"
                       required
+                      error={errorEnd}
                       value={valueEnd}
                       onChange={event => setValueEnd(event.target.value)}
                       variant="outlined"
@@ -257,6 +297,7 @@ export default function List() {
                       style={{ width: '12%' }}
                       label="Nº"
                       required
+                      error={errorEndN}
                       value={valueEndN}
                       onChange={event => setValueEndN(event.target.value)}
                       variant="outlined"
@@ -272,6 +313,7 @@ export default function List() {
                       style={{ width: '41.5%' }}
                       label="Bairro"
                       required
+                      error={errorBairro}
                       value={valueBairro}
                       onChange={event => setValueBairro(event.target.value)}
                       variant="outlined"
@@ -284,6 +326,7 @@ export default function List() {
                       style={{ width: '41.5%' }}
                       label="Cidade"
                       required
+                      error={errorCity}
                       value={valueCity}
                       onChange={event => setValueCity(event.target.value)}
                       variant="outlined"
@@ -295,6 +338,7 @@ export default function List() {
                     <TextField
                       style={{ width: '12%' }}
                       label="UF"
+                      error={errorUf}
                       value={valueUF}
                       onChange={event => setValueUF(event.target.value)}
                       variant="outlined"

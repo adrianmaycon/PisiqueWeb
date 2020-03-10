@@ -11,12 +11,13 @@ export async function getPatients() {
     return listBooks
 }
 
-export async function Register(title, miniDescription, description, genero, image_url, pdf_url, writer) {
+export async function Register(address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02) {
     try {
-        let livro = { title, miniDescription, description, genero, image_url, pdf_url, writer }
+        let paciente = { address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02 }
+        console.log('Paciente: ', paciente)
 
         firebase.firestore()
-            .collection('Livros').add(livro)
+            .collection('Pacientes').add(paciente)
 
         return 'Success'
     } catch (error) {

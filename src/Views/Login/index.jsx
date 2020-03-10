@@ -180,6 +180,7 @@ const Login = ({ history }) => {
 
 const useStyles = makeStyles(theme => ({
   body: {
+    // backgroundImage: 'url(https://raw.githubusercontent.com/grupopisique/Template/master/src/assets/img/capa.png)',
     backgroundImage: 'url(https://conteudo.imguol.com.br/c/noticias/26/2019/12/20/tecnologia-dados-saude-health-tech-digital-digitalizacao-1576876624906_v2_1920x1280.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',

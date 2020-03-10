@@ -12,8 +12,9 @@ export default function List() {
 
     useEffect(() => {
         PatientsService.getPatients()
-            .then((patient) => setPatients(patient))
+            .then((patient) => { setPatients(patient) })
     }, []);
+
 
     return (
         <MaterialTable
