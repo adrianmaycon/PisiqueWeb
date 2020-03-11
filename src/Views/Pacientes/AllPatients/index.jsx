@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
 import { Paper, Tooltip, TablePagination, IconButton, Grid, Typography } from '@material-ui/core';
 import PatientsService from '../../../Services/PatientService';
 
@@ -76,11 +75,9 @@ export default function List() {
                                 ),
                                 Action: props =>
                                     <Tooltip title="Visualizar Parciente">
-                                        <Link to={`/details/${props.data.id}`}>
-                                            <IconButton>
-                                                <AssignmentIcon />
-                                            </IconButton>
-                                        </Link>
+                                        <IconButton onClick={() => alert(props.data.id)}>
+                                            <AssignmentIcon />
+                                        </IconButton>
                                     </Tooltip>
                             }}
                             onRowClick={(event, rowData, togglePanel) => null}
