@@ -1,14 +1,14 @@
 import firebase from 'firebase'
 
 export async function getPatients() {
-    let books = await firebase.firestore().collection('Pacientes').get()
+    let patient = await firebase.firestore().collection('Pacientes').get()
 
-    let listBooks = []
-    books.forEach(book => {
-        listBooks.push({ id: book.id, ...book.data() })
+    let listPstients = []
+    patient.forEach(patient => {
+        listPstients.push({ id: patient.id, ...patient.data() })
     })
 
-    return listBooks
+    return listPstients
 }
 
 export async function Register(address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02) {
@@ -26,16 +26,4 @@ export async function Register(address, cpf, dataNasc, dateRegister, email, mari
     }
 }
 
-export async function UpdateBook(idBook, title, miniDescription, description, genero, image_url, pdf_url, writer) {
-    try {
-        await firebase.firestore().collection('Livros').doc(idBook).update({
-            title, miniDescription, description, genero, image_url, pdf_url, writer
-        })
-        return true
-    } catch (error) {
-        console.warn("Error UpdateBook: ", error);
-        throw error
-    }
-}
-
-export default { getPatients, Register, UpdateBook }
+export default { getPatients, Register }
