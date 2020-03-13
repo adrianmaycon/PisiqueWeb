@@ -23,7 +23,8 @@
     "react-scripts": "3.0.0",
     "react-text-mask": "^5.4.3",
     "reactjs-pdf-reader": "^1.0.9",
-    "reactstrap": "^8.0.1"
+    "reactstrap": "^8.0.1",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

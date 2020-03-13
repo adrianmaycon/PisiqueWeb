@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import {
-  PowerSettingsNew, PostAdd, ListAlt, Book, MenuBook, Dashboard, ChevronLeft, ExpandLess, ExpandMore,
-  Settings, AccountBox, Today, AccountBalance, People, AllInbox
+  PowerSettingsNew, PostAdd, ListAlt, Book, MenuBook, ChevronLeft, ExpandLess, ExpandMore,
+  Settings, AccountBox, Today, AccountBalance, People, AllInbox, PieChart
 } from '@material-ui/icons';
 import {
   ListItem, ListItemIcon, ListItemText, CssBaseline, Drawer, Button,
@@ -152,7 +152,7 @@ export default function SidBar() {
                 <Link to="/dashboard" style={{ color: '#fff' }}>
                   <ListItem button>
                     <ListItemIcon style={{ color: '#fff' }}>
-                      <Dashboard />
+                      <PieChart />
                     </ListItemIcon>
                     <ListItemText primary="Princinpal" />
                   </ListItem>
