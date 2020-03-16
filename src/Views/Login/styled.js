@@ -1,15 +1,16 @@
 import styled from 'styled-components'
-import { Grid } from '@material-ui/core';
 
-export const Container = styled(Grid)`
-    background-image: url(https://conteudo.imguol.com.br/c/noticias/26/2019/12/20/tecnologia-dados-saude-health-tech-digital-digitalizacao-1576876624906_v2_1920x1280.jpg);
+export const Container = styled.div`
+    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    @media only screen and (min-width: 850px) {
+        background-image: url(https://conteudo.imguol.com.br/c/noticias/26/2019/12/20/tecnologia-dados-saude-health-tech-digital-digitalizacao-1576876624906_v2_1920x1280.jpg);
+    }
 `;
 
-export const Body = styled(Grid)`
+export const Body = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +19,7 @@ export const Body = styled(Grid)`
     height: 98.3vh;
 `;
 
-export const Box = styled(Grid)`
+export const Box = styled.div`
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
@@ -29,6 +30,7 @@ export const Box = styled(Grid)`
     min-width: 856px;
     max-width: 990px;
     min-height: 480px;
+
 `;
 export const Button = styled.button`
     width: 80%;

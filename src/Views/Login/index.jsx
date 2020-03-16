@@ -25,9 +25,7 @@ const Login = ({ history }) => {
         history.push("/");
       } catch (error) {
         setInfo(true)
-      } finally {
-        setOpen(false);
-      }
+      } 
     },
     [history]
   );
