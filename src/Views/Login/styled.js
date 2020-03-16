@@ -69,24 +69,6 @@ export const Title = styled.h1`
     font-size: ${props => props.size}px;
 `;
 
-//height: 50px;
-export const Info = styled.div`
-    z-index: 10;
-    width: 90%;
-    max-width: 850px;
-    padding: 15px;
-    display: flex;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff4e5;
-
-    h5 {
-        margin-left: 20px;
-    }
-`;
-
 export const Link = styled.span`
     color: #007bff;
     margin-top: 10px;

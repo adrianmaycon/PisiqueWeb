@@ -2,31 +2,31 @@ import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from "react-router-dom";
 import app from "../../base.js";
 import { AuthContext } from "../../Auth.js";
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import ReportProblemRoundedIcon from '@material-ui/icons/ReportProblemRounded';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import { IconButton, Grid, TextField } from '@material-ui/core';
+import { SupervisedUserCircle, Facebook, LinkedIn, Close } from '@material-ui/icons';
+import { IconButton, Grid, TextField, Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import './Css/styles.css';
-
-import { Container, Body, Form, Button, ButtonSecundary, Title, Link, Info } from './styled'
+import { Container, Body, Form, Button, ButtonSecundary, Title, Link } from './styled'
 
 const Login = ({ history }) => {
+
   const [active, setActive] = React.useState(false);
   const [info, setInfo] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
+        setOpen(true);
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
         setInfo(true)
-        setTimeout(() => { setInfo(false) }, 3000);
+      } finally {
+        setOpen(false);
       }
     },
     [history]
@@ -44,11 +44,27 @@ const Login = ({ history }) => {
 
   return (
     <Container>
+      <Backdrop style={{ zIndex: 200, color: '#fff' }} open={open} >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Body>
-        {info ? <Info>
-          <ReportProblemRoundedIcon style={{ color: '#ffa117', fontSize: '35px' }} />
-          <h5>Atenção! Login ou Senha inválidos!</h5>
-        </Info> : ''}
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          open={info}
+          autoHideDuration={6000}
+          onClose={() => setInfo(false)}
+          message="Atenção! Login ou Senha inválidos!"
+          action={
+            <React.Fragment>
+              <IconButton size="small" aria-label="close" color="inherit" onClick={() => setInfo(false)}>
+                <Close fontSize="small" />
+              </IconButton>
+            </React.Fragment>
+          }
+        />
         <div style={{ width: '700px' }} className={`container ${active ? 'right-panel-active' : ''}`} >
           <div className="form-container sign-up-container">
             <Form>
@@ -106,13 +122,13 @@ const Login = ({ history }) => {
               <Title size={40}>Login</Title>
               <Grid style={{ display: 'flex', width: '70%', justifyContent: 'space-around', marginBottom: 20, marginTop: 20 }}>
                 <IconButton aria-label="delete" style={{ backgroundColor: '#3b5998', color: '#FFFFFF' }}>
-                  <FacebookIcon />
+                  <Facebook />
                 </IconButton>
                 <IconButton aria-label="delete" style={{ backgroundColor: '#1664af', color: '#FFFFFF' }}>
-                  <SupervisedUserCircleIcon />
+                  <SupervisedUserCircle />
                 </IconButton>
                 <IconButton aria-label="delete" style={{ backgroundColor: '#0077b5', color: '#FFFFFF' }}>
-                  <LinkedInIcon />
+                  <LinkedIn />
                 </IconButton>
               </Grid>
 
