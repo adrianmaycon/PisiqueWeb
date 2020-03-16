@@ -14,11 +14,11 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Logo from '../assets/img/logoWeb.png';
-import DashboardPage from './Dashboard/index.jsx';
-import CreateBooksPage from './Biblioteca/CreateBooks/index.jsx';
-import AllBooks from './Biblioteca/AllBooks/index.jsx';
-import AllPatients from './Pacientes/AllPatients/index.jsx';
-import CreatePatients from './Pacientes/CreatePatient/index.jsx';
+import Dashboard from './Dashboard';
+import CreateBooks from './CreateBooks';
+import ListBooks from './ListBooks';
+import ListPatients from './ListPatients';
+import CreatePatient from './CreatePatient';
 import app from "../base";
 
 const routes = [
@@ -26,31 +26,31 @@ const routes = [
     path: "/dashboard",
     exact: true,
     sidebar: () => <div>Dashboard</div>,
-    main: () => <DashboardPage />
+    main: () => <Dashboard />
   },
   {
     path: "/Livros/Cadastro",
     exact: true,
     sidebar: () => <div>Cadastro de Livros</div>,
-    main: () => <CreateBooksPage />
+    main: () => <CreateBooks />
   },
   {
     path: "/Livros/Todos",
     exact: true,
     sidebar: () => <div>Meus Livros</div>,
-    main: () => <AllBooks />
+    main: () => <ListBooks />
   },
   {
     path: "/Patients/List",
     exact: true,
     sidebar: () => <div>Parcientes</div>,
-    main: () => <AllPatients />
+    main: () => <ListPatients />
   },
   {
     path: "/Patients/Cadastro",
     exact: true,
     sidebar: () => <div>Parcientes</div>,
-    main: () => <CreatePatients />
+    main: () => <CreatePatient />
   },
 ];
 

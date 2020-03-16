@@ -1,11 +1,11 @@
 import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from "react-router-dom";
-import app from "../../base.js";
-import { AuthContext } from "../../Auth.js";
+import app from "../base.js";
+import { AuthContext } from "../Auth.js";
 import { SupervisedUserCircle, Facebook, LinkedIn, Close } from '@material-ui/icons';
 import { IconButton, Grid, TextField, Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
-import './Css/styles.css';
-import { Container, Body, Form, Button, ButtonSecundary, Title, Link } from './styled'
+import './styles/StyleLogin.css';
+import { Container, Body, Form, Button, ButtonSecundary, Title, Link } from './styles/StyleLogin.js'
 
 const Login = ({ history }) => {
 

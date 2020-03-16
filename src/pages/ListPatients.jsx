@@ -6,7 +6,7 @@ import MaterialTable from 'material-table';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tooltip, TablePagination, IconButton, Grid, Typography } from '@material-ui/core';
-import PatientsService from '../../../Services/PatientService';
+import PatientsService from '../Services/PatientService';
 
 export default function List() {
     const classes = useStyles();

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import SidBar from "./Views/SidBar.jsx";
-import Login from "./Views/Login/index.jsx";
-import SignUp from "./Views/SignUp";
+import SidBar from "./pages/SidBar";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 
