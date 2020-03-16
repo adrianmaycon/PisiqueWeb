@@ -18,14 +18,17 @@ const Login = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        setOpen(true);
+        if (email.value && password.value) {
+          setOpen(true);
+        }
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
         setInfo(true)
-      } 
+        setOpen(false);
+      }
     },
     [history]
   );
