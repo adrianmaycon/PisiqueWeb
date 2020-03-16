@@ -19,7 +19,7 @@ import CreateBooks from './CreateBooks';
 import ListBooks from './ListBooks';
 import ListPatients from './ListPatients';
 import CreatePatient from './CreatePatient';
-import app from "../base";
+import app from "../config/base";
 
 const routes = [
   {

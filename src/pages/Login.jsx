@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from "react-router-dom";
-import app from "../base.js";
-import { AuthContext } from "../Auth.js";
+import app from "../config/base";
+import { AuthContext } from "../config/Auth";
 import { SupervisedUserCircle, Facebook, LinkedIn, Close } from '@material-ui/icons';
 import { IconButton, Grid, TextField, Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import './styles/StyleLogin.css';
