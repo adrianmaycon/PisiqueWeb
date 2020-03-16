@@ -5,7 +5,7 @@ import {
   Dialog, DialogActions, DialogContent, DialogTitle
 } from '@material-ui/core';
 import { BookmarkBorder, DeleteForever, AspectRatio, CollectionsBookmark } from '@material-ui/icons';
-import BookService from '../Services/BookService';
+import BookService from '../services/BookService';
 
 export default function List() {
   const classes = useStyles();

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Paper, ButtonBase, Button, IconButton, Divider, InputBase } from '@material-ui/core';
 import { BookmarkBorder, Close, Search, MenuBook } from '@material-ui/icons';
-import BookService from '../Services/BookService';
+import BookService from '../services/BookService';
 
 export default function List() {
     const classes = useStyles();

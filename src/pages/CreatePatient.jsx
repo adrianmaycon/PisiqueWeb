@@ -10,7 +10,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-import PatientService from '../Services/PatientService.js'
+import PatientService from '../services/PatientService.js'
 import moment from 'moment';
 import ptLocale from "date-fns/locale/pt-BR";
 
