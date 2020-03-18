@@ -1,17 +1,12 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Tooltip, TablePagination, IconButton, Grid, Typography } from '@material-ui/core';
+import { Paper, Tooltip, TablePagination, IconButton, Typography } from '@material-ui/core';
 import PatientsService from '../services/PatientService';
+import { Container, DarkBlue, LightGrayishViolet, PaperContainer, ContainerPosition, ContainerSize } from './styles/StyleListPatients.js';
 
 export default function List() {
-    const classes = useStyles();
     const [patients, setPatients] = useState([]);
-
     console.log(patients)
 
     useEffect(() => {
@@ -20,12 +15,12 @@ export default function List() {
     }, []);
 
     return (
-        <Grid className={classes.container}>
-            <Grid style={{ width: '100%', height: 250, backgroundColor: '#1D2975', position: 'fixed', zIndex: 1 }} />
-            <Grid style={{ width: '100%', height: '100%', backgroundColor: '#f0ebf8', position: 'fixed', zIndex: 1, marginTop: 250 }} />
-            <Grid container spacing={3} style={{ width: '100%', position: 'relative', display: 'flex', justifyContent: 'center', zIndex: 10, top: 50 }}>
-                <Grid style={{ width: '96%', height: '100%', maxWidth: 1700, minWidth: 850, minHeight: 1000 }}>
-                    <Paper className={classes.paper}>
+        <Container>
+            <DarkBlue />
+            <LightGrayishViolet />
+            <ContainerPosition>
+                <ContainerSize>
+                    <PaperContainer>
                         <Typography variant='h5'>Pacientes</Typography>
                         <MaterialTable
                             title="Listagem dos Pacientes"
@@ -82,99 +77,9 @@ export default function List() {
                             }}
                             onRowClick={(event, rowData, togglePanel) => null}
                         />
-                    </Paper>
-                </Grid>
-            </Grid>
-        </Grid>
+                    </PaperContainer>
+                </ContainerSize>
+            </ContainerPosition>
+        </Container>
     );
 }
-
-const useStyles = makeStyles(theme => ({
-    container: {
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-    },
-    paper: {
-        marginBottom: 15,
-        display: 'flex',
-        flexDirection: 'column',
-        padding: theme.spacing(2),
-        paddingBottom: 60,
-        justifyContent: 'space-between',
-        color: theme.palette.text.secondary,
-    },
-    batTop: {
-        marginBottom: 15,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: theme.spacing(2),
-        justifyContent: 'space-between',
-        color: theme.palette.text.secondary,
-    },
-    button: {
-        margin: theme.spacing(1),
-        height: 50
-    },
-    divBooks: {
-        width: "100%",
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    divBanner: {
-        width: "100%",
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: 20,
-        marginTop: 20,
-    },
-    divSearch: {
-        width: "100%",
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: 20,
-    },
-    extendedIcon: {
-        marginRight: theme.spacing(1),
-    },
-    root: {
-        flexGrow: 1,
-    },
-    paperDiv: {
-        padding: theme.spacing(2),
-        maxWidth: 500,
-        marginBottom: 15,
-        marginRight: 7.5,
-        marginLeft: 7.5,
-    },
-    image: {
-        width: 110,
-        height: 150,
-    },
-    img: {
-        margin: 'auto',
-        display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%',
-    },
-    rootSearch: {
-        padding: '2px 4px',
-        display: 'flex',
-        alignItems: 'center',
-        width: '96.5%',
-    },
-    inputSearch: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
-    },
-    iconButtonSearch: {
-        padding: 10,
-    },
-    dividerSearch: {
-        height: 28,
-        margin: 4,
-    },
-}));
