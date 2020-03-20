@@ -58,3 +58,41 @@ export const PaperContainer = styled(Paper)`
         justify-content: space-between;
         color: #757575;
 `;
+
+export const ContainerDialog = styled.div`
+        width: 100%;
+        min-width: 550px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+`;
+
+export const BoxRow = styled.div`
+    width: 100%;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+`;
+
+export const BoxPosition = styled.div`
+    width: ${props => props.size}%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+`;
+
+export const BoxTitle = styled.b`
+        /* width: 95%; */
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-family: 'Varela Round', sans-serif;
+`;
+
+export const BoxText = styled.p`
+        /* width: 95%; */
+        display: flex;
+        font-size: 22px;
+        font-family: 'Varela Round', sans-serif;
+        align-items: center;
+`;
