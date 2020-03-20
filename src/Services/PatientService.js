@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-export async function getPatients() {
+export async function GetPatients() {
     let patient = await firebase.firestore().collection('Pacientes').get()
 
     let listPstients = []
@@ -9,6 +9,27 @@ export async function getPatients() {
     })
 
     return listPstients
+}
+
+export async function GetDataPatient(id) {
+
+    let patient = await firebase.firestore().collection('Pacientes').doc(`${id}`);
+
+    let getDoc = patient.get()
+        .then(doc => {
+            if (!doc.exists) {
+                return console.log('Esse documento não existe!');
+            } else {
+                // console.log('Dados do documento:', doc.data());
+                return doc.data();
+            }
+        })
+        .catch(err => {
+            console.log('Erro ao obter o documento', err);
+        });
+
+    return getDoc
+
 }
 
 export async function Register(address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02) {
@@ -26,4 +47,4 @@ export async function Register(address, cpf, dataNasc, dateRegister, email, mari
     }
 }
 
-export default { getPatients, Register }
+export default { GetPatients, Register, GetDataPatient }

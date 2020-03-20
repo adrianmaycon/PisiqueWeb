@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 import { Paper } from '@material-ui/core';
 
+export const PositionCenter = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`;
+
 export const Container = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    max-width: 1200px;
 `;
 
 export const DarkBlue = styled.div`
@@ -45,7 +53,7 @@ export const PaperContainer = styled(Paper)`
         margin-bottom: 15px;
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 20px;
         padding-bottom: 60px;
         justify-content: space-between;
         color: #757575;

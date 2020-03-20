@@ -81,6 +81,9 @@ export default function List() {
           setValueEndN('')
           setValueCep('')
           setValueCity('')
+          setValueEmail('')
+          setValueTel01('')
+          setValueTel02('')
           setValueCpf('')
           setValueRg('')
           setEstadoCivil('')
@@ -92,7 +95,7 @@ export default function List() {
 
   }
 
-  if (valueCep.length === 9 && disabledCep) {
+  if (valueCep.length === 8 && disabledCep) {
     axios.get(`https://viacep.com.br/ws/${valueCep}/json/`)
       .then((response) => {
         console.log('Response: ', response.data);
@@ -244,11 +247,11 @@ export default function List() {
                     <TextField
                       style={{ width: '27%' }}
                       label="CEP"
-                      placeholder=" 12345-67"
+                      placeholder="123456788"
                       value={valueCep}
                       onChange={event => setValueCep(event.target.value)}
                       variant="outlined"
-                      inputProps={{ maxLength: 25 }}
+                      inputProps={{ maxLength: 8 }}
                       InputLabelProps={{
                         shrink: true,
                       }}
