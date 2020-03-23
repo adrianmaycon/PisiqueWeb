@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import { PositionCenter, Container, DarkBlue, LightGrayishViolet, PaperContainer, ContainerPosition, ContainerSize, ContainerDialog, BoxRow, BoxPosition, BoxTitle, BoxText } from './styles/StyleListPatients.js';
-import { Paper, Tooltip, TablePagination, IconButton, Typography, Button, Dialog, DialogActions, DialogContent, DialogTitle, Avatar, Backdrop, CircularProgress } from '@material-ui/core';
+import { Paper, Tooltip, TablePagination, IconButton, Typography, Button, Dialog, DialogActions, DialogContent, DialogTitle, Avatar, Backdrop, CircularProgress, Divider } from '@material-ui/core';
 import PatientsService from '../services/PatientService';
+import moment from 'moment';
 
 export default function List() {
     const [patients, setPatients] = useState([]);
@@ -12,6 +15,7 @@ export default function List() {
     const [dataPatient, setDataPatient] = useState({});
 
     const handleOpen = (id) => {
+        setDataPatient({})
         setOpenLoading(true)
 
         PatientsService.GetDataPatient(id)
@@ -24,7 +28,6 @@ export default function List() {
 
     const handleClose = () => {
         setOpen(false);
-        // setDataPatient({})
     };
 
     useEffect(() => {
@@ -34,8 +37,10 @@ export default function List() {
 
     const DialogCopy = () => {
         let patient = dataPatient;
-        let cpfCod = `${patient.cpf}`
-
+        let cpfCod = `${patient.cpf}`;
+        let lName = patient.name || "Adrian";
+        let address = patient.address || "";
+        
         return (
             <div>
                 <Dialog
@@ -45,11 +50,17 @@ export default function List() {
                     <DialogTitle>{`Paciente - ${cpfCod.replace(/\D+/g, '')}`}</DialogTitle>
                     <DialogContent>
                         <ContainerDialog>
-                            <Avatar src={patient.image} style={{ fontSize: 70, width: 150, height: 150, marginBottom: 40 }}>A</Avatar>
+                            <Avatar src={patient.image} style={{ fontSize: 70, width: 150, height: 150, marginBottom: 25 }}>{lName.substr(0, 1)}</Avatar>
+                            <BoxRow>
+                                <BoxPosition size={100}>
+                                    <BoxTitle><PersonRoundedIcon style={{ marginRight: 10 }} /> Dados Pessoais </BoxTitle>
+                                    <Divider />
+                                </BoxPosition>
+                            </BoxRow>
                             <BoxRow>
                                 <BoxPosition size={70}>
                                     <BoxTitle>Nome </BoxTitle>
-                                    <BoxText>{patient.name}</BoxText>
+                                    <BoxText>{patient.name}</BoxText> 
                                 </BoxPosition>
                                 <BoxPosition size={30}>
                                     <BoxTitle>Data de Nasc </BoxTitle>
@@ -76,10 +87,53 @@ export default function List() {
                                     <BoxText>{patient.rg}</BoxText>
                                 </BoxPosition>
                             </BoxRow>
+                            <BoxRow>
+                                <BoxPosition size={50}>
+                                    <BoxTitle>Telefone 01 </BoxTitle>
+                                    <BoxText>{patient.tel01}</BoxText>
+                                </BoxPosition>
+                                <BoxPosition size={50}>
+                                    <BoxTitle>Telefone 02 </BoxTitle>
+                                    <BoxText>{patient.tel02 || "Não informado"}</BoxText>
+                                </BoxPosition>
+                            </BoxRow>
+                            <BoxRow >
+                                <BoxPosition size={100}>
+                                    <BoxTitle><HomeRoundedIcon style={{ marginRight: 10 }} /> Dados Residênciais</BoxTitle>
+                                    <Divider />
+                                </BoxPosition>
+                            </BoxRow>
+                            <BoxRow>
+                                <BoxPosition size={80}>
+                                    <BoxTitle>Endereço </BoxTitle>
+                                    <BoxText>{address.logradouro}</BoxText>
+                                </BoxPosition>
+                                <BoxPosition size={20}>
+                                    <BoxTitle>Número </BoxTitle>
+                                    <BoxText>{address.numero}</BoxText>
+                                </BoxPosition>
+                            </BoxRow>
+                            <BoxRow>
+                                <BoxPosition size={40}>
+                                    <BoxTitle>CEP </BoxTitle>
+                                    <BoxText>{address.cep}</BoxText>
+                                </BoxPosition>
+                                <BoxPosition size={40}>
+                                    <BoxTitle>Cidade </BoxTitle>
+                                    <BoxText>{address.city}</BoxText>
+                                </BoxPosition>
+                                <BoxPosition size={20}>
+                                    <BoxTitle>UF </BoxTitle>
+                                    <BoxText>{address.uf}</BoxText>
+                                </BoxPosition>
+                            </BoxRow>
                         </ContainerDialog>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary" >
+                    <DialogActions style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <p style={{marginLeft: 30, color: '#635858de'}}>
+                            {`Resgitrado - ${moment(patient.dataRegister).format('DD/MM/YYYY')} - ${moment(patient.dataRegister).format('LT')}`}
+                        </p>
+                        <Button onClick={handleClose} color="primary" style={{marginRight: 30}} >
                             Fechar
                         </Button>
                     </DialogActions>
@@ -87,7 +141,6 @@ export default function List() {
             </div>
         )
     }
-
 
     return (
         <PositionCenter>

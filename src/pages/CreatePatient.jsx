@@ -72,7 +72,7 @@ export default function List() {
     if (valueName && estadoCivil && valueCpf && valueTel01 && valueEnd && valueEndN && valueCity && valueUF && valueBairro) {
       let address = { cep: valueCep, city: valueCity, logradouro: valueEnd, numero: valueEndN, uf: valueUF }
       let dataNasc = moment(selectedDate).format('DD/MM/YYYY')
-      let dateRegister = { data: moment().format('DD/MM/YYYY'), hora: moment().format('LT') }
+      let dateRegister = moment().format();
       PatientService.Register(address, valueCpf, dataNasc, dateRegister, valueEmail, estadoCivil, valueName, valueRg, valueTel01, valueTel02)
         .then(result => {
           setValueBairro('')

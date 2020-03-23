@@ -61,7 +61,7 @@ export const PaperContainer = styled(Paper)`
 
 export const ContainerDialog = styled.div`
         width: 100%;
-        min-width: 550px;
+        min-width: 560px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -84,7 +84,9 @@ export const BoxPosition = styled.div`
 
 export const BoxTitle = styled.b`
         /* width: 95%; */
+        display: flex; 
         font-size: 15px;
+        align-items: center;
         margin-bottom: 10px;
         font-family: 'Varela Round', sans-serif;
 `;

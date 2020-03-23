@@ -32,9 +32,9 @@ export async function GetDataPatient(id) {
 
 }
 
-export async function Register(address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02) {
+export async function Register(address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02, image = "") {
     try {
-        let paciente = { address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02 }
+        let paciente = { address, cpf, dataNasc, dateRegister, email, maritalStatos, name, rg, tel01, tel02, image }
         console.log('Paciente: ', paciente)
 
         firebase.firestore()

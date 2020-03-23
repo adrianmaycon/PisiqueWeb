@@ -13,6 +13,11 @@ const Login = ({ history }) => {
   const [info, setInfo] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
+  // React.useEffect(() => {
+  //   setOpen(true);
+  //   setTimeout(() => setOpen(false), 1000);
+  // }, []);
+
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
