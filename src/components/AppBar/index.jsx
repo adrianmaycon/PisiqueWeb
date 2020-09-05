@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import { Modal, Input } from "../../assets/styles/components";
 
-import { FaTimes, FaExclamationCircle } from "react-icons/fa";
+import { FaTimes, FaExclamationCircle, FaChevronCircleRight } from "react-icons/fa";
 import './styles.css';
 
 import { authConfig } from '../../auth/config';
@@ -22,6 +22,7 @@ const AppBar = withRouter(({ history }) => {
 
     const [erroConfirmPassword, setErroConfirmPassword] = useState(false);
     const [errorMessageLogin, setErrorMessageLogin] = useState(false);
+    const [errorMessageCreate, setErrorMessageCreate] = useState(false);
 
     const [message, setMessage] = useState(false);
 
@@ -70,7 +71,7 @@ const AppBar = withRouter(({ history }) => {
                 await authConfig
                     .auth()
                     .signInWithEmailAndPassword(email.value, password.value);
-                history.push('/atendimento')
+                history.push('/choice')
             } catch (error) {
                 setErrorMessageLogin(true)
 
@@ -99,14 +100,23 @@ const AppBar = withRouter(({ history }) => {
                 setErroConfirmPassword(false)
 
                 try {
+                    setErrorMessageCreate(false)
+
                     await authConfig
                         .auth()
                         .createUserWithEmailAndPassword(email.value, password.value);
                     history.push('/')
                 } catch (error) {
-                    console.log('ERRO: ', error)
+
+                    if (error.code === 'auth/email-already-in-use') {
+                        setErrorMessageCreate(true)
+                        setMessage("Email ja cadastrado")
+                    } else {
+                        setErrorMessageCreate(false)
+                    }
+
                 }
-            }            
+            }
         },
         [history],
     );
@@ -188,13 +198,17 @@ const AppBar = withRouter(({ history }) => {
                                     <div>
                                         <label>Cadastre-se com email e senha</label>
 
+                                        <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 5 }}>
+                                            {errorMessageCreate && <span><FaExclamationCircle id="iconError" />{message}</span>}
+                                        </div>
+
                                         <Input
                                             required
                                             width={'264px'}
                                             height={'40px'}
                                             marginTop={7}
                                             placeholder='E-mail'
-                                            type="email" 
+                                            type="email"
                                             name="email"
                                         />
 
@@ -206,7 +220,7 @@ const AppBar = withRouter(({ history }) => {
                                             marginTop={10}
                                             marginBottom={10}
                                             placeholder='Senha'
-                                            type="password" 
+                                            type="password"
                                             name="password"
                                         />
 
@@ -217,7 +231,7 @@ const AppBar = withRouter(({ history }) => {
                                             marginTop={10}
                                             marginBottom={10}
                                             placeholder='Confirmar Senha'
-                                            type="password" 
+                                            type="password"
                                             name="confirmPassword"
                                         />
 
@@ -274,14 +288,20 @@ const AppBar = withRouter(({ history }) => {
         <div>
             <Access />
             <div id="app-bar" >
-                <div id="container">
-                    <a href="/">Página inicial</a>
+                <nav>
+                    <div id="menu">
+                        <a href="/">Página inicial</a>
+                        <a href="/">Blog</a>
+                        <a href="/">Sobre nós</a>
+                        <a href="/">Contato</a>
+                    </div>
+                    <FaChevronCircleRight className="icon-menu" />
                     {logado ?
                         <button type="button" id="login" onClick={() => authConfig.auth().signOut()}>Deslogar</button>
                         :
                         <button type="button" id="login" onClick={() => setOpen(true)}>Entrar no sistema</button>
                     }
-                </div>
+                </nav>
             </div>
         </div>
     )

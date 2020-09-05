@@ -68,10 +68,20 @@
 
 .buttons-container a.profissional {
     background: var(--color-primary-lighter);
+    transition: transform 100ms ease-in;
+}
+
+a.profissional:active {
+	transform: scale(0.95);
 }
 
 .buttons-container a.apoio {
     background: var(--color-secundary);
+    transition: transform 100ms ease-in;
+}
+
+a.apoio:active {
+	transform: scale(0.95);
 }
 
 .buttons-container a.profissional:hover {
