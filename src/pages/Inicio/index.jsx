@@ -13,7 +13,7 @@ function Inicio() {
     const [totalConnections, setTotalConnections] = useState(0);
 
     useEffect(() => {
-        setTotalConnections(1564)
+        setTotalConnections(1000)
     }, [])
 
     return (
@@ -45,7 +45,7 @@ function Inicio() {
                     </div>
 
                     <span className="total-connections">
-                        Total de {totalConnections} membros cadastrados <FaSeedling id="img" />
+                        Total de +{totalConnections} membros cadastrados <FaSeedling id="img" />
                     </span>
                 </div>
             </div>

@@ -1,0 +1,15 @@
+.editor-block {
+    position: relative;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+}
+
+ .editor-block label {
+    font-size: 1.4rem;
+    line-height: 3.5rem;
+}
+
+.ck-editor__editable_inline {
+    min-height: 350px;
+    border-radius: 0 0 0.8rem 0.8rem !important;
+}

@@ -9,7 +9,12 @@ import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
 
-const Cadastrar = withRouter(({ history }) => {
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
+import CKEditor from "@ckeditor/ckeditor5-react"
+
+const RegisterPsi = withRouter(({ hstory }) => {
+
+    const [text, setText] = useState("")
 
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
@@ -48,7 +53,7 @@ const Cadastrar = withRouter(({ history }) => {
 
     return (
         <div id="page-teacher-form" className="container">
-            <PageHeader 
+            <PageHeader
                 title="Que incrível que você quer fazer parte do Grupo Pisiquê!"
                 description="O primeiro passo é preencher esse formulário de inscrição"
                 link="/choice"
@@ -57,6 +62,15 @@ const Cadastrar = withRouter(({ history }) => {
             <main>
                 <form onSubmit={handleCreateClass}>
                     <fieldset>
+                        <CKEditor
+                            editor={ClassicEditor}
+                            data={text}
+                            onChange={(event, editor) => {
+                                const data = editor.getData()
+                                setText(data)
+                            }}
+                        />
+
                         <legend>Seus dados</legend>
 
                         <Input
@@ -184,13 +198,4 @@ const Cadastrar = withRouter(({ history }) => {
     )
 })
 
-export default Cadastrar;
-//     const history = useHistory();
-
-
-
-//     return (
-
-//     )
-// )
-// }
+export default RegisterPsi;
