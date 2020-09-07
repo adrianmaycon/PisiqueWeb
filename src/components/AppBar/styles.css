@@ -221,6 +221,72 @@ nav #login{
     
 }
 
+.click {
+    border: 1px solid rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.click span {
+    color: #ffffff;
+    font-family: Nunito;
+    font-size: 1.8rem;
+    line-height: 2rem;
+}
+
+.click span .icon {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+     margin-bottom: -6px;
+}
+
+.div-popover {
+    position: absolute;
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.div-popover header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.div-popover span {
+    cursor: pointer;
+}
+
+.div-popover span:hover {
+    text-decoration: underline;
+}
+
+.div-popover .avatar {
+    width: 50%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.div-popover main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(68, 68, 68, 0.5);
+}
+
+.div-popover main span + span {
+    margin-top: 1rem;
+}
 @media (max-width: 730px) {
 
     .container-modal {

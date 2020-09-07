@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import psi from '../../assets/images/icons/psi.svg';
 import study from '../../assets/images/icons/estudante.svg';
 import userGp from '../../assets/images/icons/userGp.svg';
@@ -14,6 +15,7 @@ function Choices() {
         <div id="container-choices">
             <header>
                 <h1>Escolha seu login</h1>
+                {/* <input type="checkbox" name="checkbox" className="switch" /> */}
             </header>
 
             <main>
@@ -40,7 +42,9 @@ function Choices() {
                 <p>{choice === 1 ? 'Conteudos exclusivos, realizar atendimento, tudo que é necessário para você em uma plataforma' : choice === 2 ? 'Acesso a todos os profissionais e conteúdos cadastrados na plataforma' : 'Acesso a conteúdos exclusivos, interação com outros estudantes de psicologia e muito mais'}</p>
                 <div className="row">
                     <h1>Continuar como {choice === 1 ? "Psicólogo" : choice === 2 ? "Usuário GP" : "Estudante"}</h1>
-                    <button type="button"><FaArrowRight /></button>
+                    <Link to="/cadastro">
+                        <button type="button"><FaArrowRight /></button>
+                    </Link>
                 </div>
             </footer>
         </div>

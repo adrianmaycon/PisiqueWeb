@@ -119,6 +119,7 @@
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         grid-gap: 1.6rem;
+        margin-bottom: 20px;
     }
 
     #page-teacher-form main .schedule-item .input-block {

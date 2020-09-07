@@ -1,20 +1,27 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 import { Modal, Input } from "../../assets/styles/components";
 
 import { FaTimes, FaExclamationCircle, FaChevronCircleRight } from "react-icons/fa";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import './styles.css';
+
+import UsersService from '../../services/UsersService';
 
 import { authConfig } from '../../auth/config';
 import { AuthContext } from '../../auth/AuthContext';
 
-const AppBar = withRouter(({ history }) => {
+const AppBar = withRouter((props, { history }) => {
     const [logado, setLogado] = useState(false);
 
     const [conection, setConection] = useState(true);
 
+    const [userData, setUserData] = useState({});
+
     const [open, setOpen] = useState(false);
+    const [openPopover, setOpenPopover] = useState(false);
 
     const [openLogin, setOpenLogin] = useState(true);
     const [openCreate, setOpenCreate] = useState(false);
@@ -29,11 +36,22 @@ const AppBar = withRouter(({ history }) => {
     const { usuario } = useContext(AuthContext);
 
     useEffect(() => {
+        let cookies = new Cookies();
+
         if (!!usuario) {
             setLogado(true)
+            cookies.set('email', usuario.email, { path: '/' })
+            console.log(usuario.email)
+
+            UsersService.GetDataUser(usuario.email)
+                .then(user => {
+                    console.log(user)
+                    setUserData(user)
+                })
         } else {
             setLogado(false)
         }
+
     }, [usuario])
 
     function visibleBox(value) {
@@ -124,6 +142,23 @@ const AppBar = withRouter(({ history }) => {
     function handleRecoverPassword(e) {
         e.preventDefault();
     };
+
+    const DivPopover = () => (
+        <div className="div-popover">
+            <header>
+                <img className="avatar" src={userData.avatar} alt="Icone Usuário" onClick={() => console.log(true)} />
+                <span>Editar Perfil</span>
+            </header>
+
+            <main>
+                <span>Painel</span>
+                <span>Histórico</span>
+                <span>Meus Livros</span>
+                <span onClick={() => authConfig.auth().signOut()}>Sair</span>
+            </main>
+        </div>
+    )
+
 
     const Access = () => (
         <Modal open={open}>
@@ -297,7 +332,13 @@ const AppBar = withRouter(({ history }) => {
                     </div>
                     <FaChevronCircleRight className="icon-menu" />
                     {logado ?
-                        <button type="button" id="login" onClick={() => authConfig.auth().signOut()}>Deslogar</button>
+                        <div>
+                            <button type="button" className="click" onClick={() => setOpenPopover(!openPopover)}>
+                                <span>{userData.name && `Olá, ${(userData.name).split(" ", 1).join(' ')}`} {openPopover ? <IoMdArrowDropup className="icon" /> : <IoMdArrowDropdown className="icon" />}</span>
+                            </button>
+                            {openPopover &&
+                                <DivPopover />}
+                        </div>
                         :
                         <button type="button" id="login" onClick={() => setOpen(true)}>Entrar no sistema</button>
                     }
