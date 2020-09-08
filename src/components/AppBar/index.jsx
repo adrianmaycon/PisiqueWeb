@@ -13,7 +13,7 @@ import UsersService from '../../services/UsersService';
 import { authConfig } from '../../auth/config';
 import { AuthContext } from '../../auth/AuthContext';
 
-const AppBar = withRouter((props, { history }) => {
+const AppBar = withRouter(({ history }) => {
     const [logado, setLogado] = useState(false);
 
     const [conection, setConection] = useState(true);
@@ -89,7 +89,14 @@ const AppBar = withRouter((props, { history }) => {
                 await authConfig
                     .auth()
                     .signInWithEmailAndPassword(email.value, password.value);
-                history.push('/choice')
+
+                UsersService.GetDataUser(email.value)
+                    .then(user => {
+                        history.push(user ? '/atendimento' : '/choice')
+                    })
+
+                setOpen(false)
+
             } catch (error) {
                 setErrorMessageLogin(true)
 

@@ -24,12 +24,15 @@ function Listagem() {
 
     async function searchTeachers(e) {
         e.preventDefault();
-        
+
     }
 
     return (
         <div id="page-teacher-list" className="container">
-            <PageHeader title="Estes são os profissionais disponíveis" >
+            <PageHeader
+                title="Estes são os profissionais disponíveis"
+                link="/"
+            >
                 <form id="search-professional" onSubmit={searchTeachers}>
                     <Select
                         name="type"

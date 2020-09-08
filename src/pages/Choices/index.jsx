@@ -19,19 +19,19 @@ function Choices() {
             </header>
 
             <main>
-                <section onClick={() => setChoice(1)} className={choice === 1 && "select"}>
+                <section onClick={() => setChoice(1)} className={choice === 1 ? "select" : ""}>
                     <h6>Psicólogo</h6>
                     <img src={psi} alt="Psicólogo homem" />
                     <h6>{choice === 1 && 'Selecionado'}</h6>
                 </section>
 
-                <section onClick={() => setChoice(2)} className={choice === 2 && "select"}>
+                <section onClick={() => setChoice(2)} className={choice === 2 ? "select" : ""}>
                     <h6>Usuário GP</h6>
                     <img src={userGp} alt="Psicólogo homem" />
                     <h6>{choice === 2 && 'Selecionado'}</h6>
                 </section>
 
-                <section onClick={() => setChoice(3)} className={choice === 3 && "select"}>
+                <section onClick={() => setChoice(3)} className={choice === 3 ? "select" : ""}>
                     <h6>Estudante</h6>
                     <img src={study} alt="Psicólogo homem" />
                     <h6>{choice === 3 && 'Selecionado'}</h6>

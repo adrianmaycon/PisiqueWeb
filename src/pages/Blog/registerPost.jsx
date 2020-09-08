@@ -13,8 +13,6 @@ const RegisterPost = withRouter(({ history }) => {
     const [text, setText] = useState("")
 
     const [name, setName] = useState('');
-    const [avatar, setAvatar] = useState('');
-    const [whatsapp, setWhatsapp] = useState('');
     const [bio, setBio] = useState('');
 
     function handleCreateClass(e) {
@@ -52,6 +50,7 @@ const RegisterPost = withRouter(({ history }) => {
                         />
 
                         <Editor
+                            required
                             label="Conteúdo"
                             name="corpo"
                             data={text}
@@ -69,7 +68,7 @@ const RegisterPost = withRouter(({ history }) => {
                         Preencha todos os dados
                     </p>
                         <button type="submit">
-                            Salvar cadastro
+                            Salvar publicação
                     </button>
                     </footer>
                 </form>
