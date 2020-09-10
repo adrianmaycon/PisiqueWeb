@@ -23,6 +23,14 @@
     padding: 0 2.4rem;
 }
 
+#page-teacher-form main fieldset {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
 #page-teacher-form main fieldset + fieldset {
     margin-top: 6.4rem;
 }
@@ -121,9 +129,16 @@
         grid-gap: 1.6rem;
         margin-bottom: 20px;
     }
-
+    #page-teacher-form main .division-row .input-block,
     #page-teacher-form main .schedule-item .input-block {
         margin-top: 0 !important;
+    }
+
+    #page-teacher-form main .division-row {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-gap: 1.6rem;
+        margin-bottom: 20px;
     }
 
     #page-teacher-form main footer {

@@ -47,12 +47,14 @@ const AppBar = withRouter(({ history }) => {
                 .then(user => {
                     console.log(user)
                     setUserData(user)
+                    
+                    history.push(!user && '/choice')
                 })
         } else {
             setLogado(false)
         }
 
-    }, [usuario])
+    }, [usuario, history])
 
     function visibleBox(value) {
         if (value === 1) {
@@ -92,7 +94,7 @@ const AppBar = withRouter(({ history }) => {
 
                 UsersService.GetDataUser(email.value)
                     .then(user => {
-                        history.push(user ? '/atendimento' : '/choice')
+                        history.push(user ? '/dashboard' : '/choice')
                     })
 
                 setOpen(false)

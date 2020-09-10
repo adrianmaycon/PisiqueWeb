@@ -7,6 +7,7 @@ import RegisterUser from './pages/Cadastro/registerUser';
 import RegisterAcad from './pages/Cadastro/registerAcad';
 import RegisterPost from './pages/Blog/registerPost';
 import Choices from './pages/Choices';
+import Dashboard from './pages/Dashboard';
 import { AuthProvider } from './auth/AuthContext';
 import { RotaPrivada } from './auth/RotaPrivada';
 
@@ -19,6 +20,7 @@ function Routes() {
                 <Route exact path="/register-user" component={RegisterUser} />
                 <Route exact path="/register-acad" component={RegisterAcad} />
                 <Route exact path="/register-post" component={RegisterPost} />
+                <RotaPrivada exact path="/dashboard" component={Dashboard} />
                 <RotaPrivada exact path="/atendimento" component={Listagem} />
                 <RotaPrivada exact path="/choice" component={Choices} />
             </BrowserRouter>

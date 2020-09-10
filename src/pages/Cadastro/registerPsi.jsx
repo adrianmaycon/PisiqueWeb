@@ -6,18 +6,12 @@ import Select from '../../components/Select';
 import Input from '../../components/Input';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
-
+import { FaUserMd } from "react-icons/fa";
 import './styles.css';
-
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
-import CKEditor from "@ckeditor/ckeditor5-react"
 
 const RegisterPsi = withRouter(({ hstory }) => {
 
-    const [text, setText] = useState("")
-
     const [name, setName] = useState('');
-    const [avatar, setAvatar] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [bio, setBio] = useState('');
 
@@ -54,24 +48,15 @@ const RegisterPsi = withRouter(({ hstory }) => {
     return (
         <div id="page-teacher-form" className="container">
             <PageHeader
-                title="Que incrível que você quer fazer parte do Grupo Pisiquê!"
-                description="O primeiro passo é preencher esse formulário de inscrição"
+                title="Que incrível que você quer fazer parte da equipe Pisiquê!"
+                description="O primeiro passo é preencher esse formulário de inscrição."
                 link="/choice"
             />
 
             <main>
                 <form onSubmit={handleCreateClass}>
                     <fieldset>
-                        <CKEditor
-                            editor={ClassicEditor}
-                            data={text}
-                            onChange={(event, editor) => {
-                                const data = editor.getData()
-                                setText(data)
-                            }}
-                        />
-
-                        <legend>Seus dados</legend>
+                        <legend>Seus dados <FaUserMd /></legend>
 
                         <Input
                             required
@@ -81,21 +66,21 @@ const RegisterPsi = withRouter(({ hstory }) => {
                             onChange={(e) => { setName(e.target.value) }}
                         />
 
-                        <Input
-                            required
-                            name="avatar"
-                            label="Avatar"
-                            value={avatar}
-                            onChange={(e) => { setAvatar(e.target.value) }}
-                        />
+                        <div className="division-row" style={{marginTop: '2rem'}}>
+                            <Input
+                                required
+                                name="cpf"
+                                label="CPF"
+                            />
+                            <Input
+                                required
+                                name="phone"
+                                label="Telefone - (WhatsApp)"
+                                value={whatsapp}
+                                onChange={(e) => { setWhatsapp(e.target.value) }}
+                            />
+                        </div>
 
-                        <Input
-                            required
-                            name="whatsapp"
-                            label="WhatsApp"
-                            value={whatsapp}
-                            onChange={(e) => { setWhatsapp(e.target.value) }}
-                        />
 
                         <Textarea
                             required
@@ -107,27 +92,29 @@ const RegisterPsi = withRouter(({ hstory }) => {
                     </fieldset>
 
                     <fieldset>
-                        <legend>Sobre a aula</legend>
+                        <legend>Dados profissionais</legend>
 
-                        <Select
-                            name="subject"
-                            label="Matéria"
-                            value={subject}
-                            onChange={(e) => { setSubject(e.target.value) }}
-                            options={[
-                                { value: 'Artes', label: 'Artes' },
-                                { value: 'Biologia', label: 'Biologia' },
-                                { value: 'Ciência', label: 'Ciência' },
-                                { value: 'Educação Física', label: 'Educação Física' },
-                                { value: 'Geografia', label: 'Geografia' },
-                                { value: 'História', label: 'História' },
-                                { value: 'Matamática', label: 'Matamática' },
-                                { value: 'Português', label: 'Português' },
-                                { value: 'Química', label: 'Química' },
-                            ]}
-                        />
+                        <div className="division-row">
+                            <Select
+                                required
+                                name="type"
+                                label="Profissional"
+                                value={subject}
+                                onChange={(e) => { setSubject(e.target.value) }}
+                                options={[
+                                    { value: 'Psicólogo', label: 'Psicólogo' },
+                                    { value: 'Psiquiatra', label: 'Psiquiatra' },
+                                ]}
+                            />
+                            <Input
+                                required
+                                name="crp"
+                                label="CRP"
+                            />
+                        </div>
 
                         <Input
+                            required
                             name="cost"
                             label="Custo da sua hora por aula"
                             value={cost}
