@@ -47,7 +47,7 @@ const AppBar = withRouter(({ history }) => {
                 .then(user => {
                     console.log(user)
                     setUserData(user)
-                    
+
                     history.push(!user && '/choice')
                 })
         } else {
@@ -160,10 +160,10 @@ const AppBar = withRouter(({ history }) => {
             </header>
 
             <main>
-                <span>Painel</span>
-                <span>Histórico</span>
-                <span>Meus Livros</span>
-                <span onClick={() => authConfig.auth().signOut()}>Sair</span>
+                <a href="/dashboard">Painel</a>
+                <a href="/dashboard">Histórico</a>
+                <a href="/dashboard">Meus Livros</a>
+                <a href="/" onClick={() => authConfig.auth().signOut()}>Sair</a>
             </main>
         </div>
     )

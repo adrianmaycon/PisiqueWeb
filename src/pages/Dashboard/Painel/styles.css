@@ -1,0 +1,38 @@
+.container-painel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-painel #sectionPrimary{
+    width: 100%;
+    padding: 30px;
+}
+
+.container-painel #sectionSecundary{
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid #eeeeee;
+    padding: 30px;
+}
+
+.container-painel #sectionPrimary header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-painel #sectionPrimary header #name{
+    font-size: 2.5rem;
+    color: var(--color-text-title);
+}
+
+.container-painel #sectionPrimary header img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin-right: 5px;
+}

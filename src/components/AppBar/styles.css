@@ -222,9 +222,10 @@ nav #login{
 }
 
 .click {
-    border: 1px solid rgba(255, 255, 255, 0);
+    /* border: 1px solid rgba(255, 255, 255, 0); */
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0);
+    border: 0 none;
 }
 
 .click span {
@@ -261,11 +262,16 @@ nav #login{
     margin: 1.5rem 0;
 }
 
-.div-popover span {
+.div-popover a {
+    width: 100%;
+    color: var(--color-text-base);
+    font-size: 1.5rem;
+    text-decoration: none;
     cursor: pointer;
+    font-weight: 400;
 }
 
-.div-popover span:hover {
+.div-popover a:hover {
     text-decoration: underline;
 }
 
@@ -284,7 +290,7 @@ nav #login{
     border-top: 1px solid rgba(68, 68, 68, 0.5);
 }
 
-.div-popover main span + span {
+.div-popover main a + a {
     margin-top: 1rem;
 }
 @media (max-width: 730px) {

@@ -1,27 +1,33 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import logoImg from '../../assets/images/logo.svg';
+import { FaHome, FaUserFriends, FaMoneyBillWave, FaAddressCard } from "react-icons/fa";
 import './styles.css';
+import Painel from './Painel';
 
 function Dashboard() {
+    const [select, setSelect] = useState(1)
+
     return (
         <div className="container-dashboard">
             <nav>
                 <ul>
-                    <div id="header">
-                        <img src={'https://www.muralzinhodeideias.com.br/wp-content/uploads/2020/02/Sonic-1-1.jpg'} alt="" />
-                        <h2>Adrian Maycon</h2>
-                    </div>
-                    <div>
-                        <li><a href="#home">Painel</a></li>
-                        <li><a href="#news">News</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#about">About</a></li>
-                    </div>
-                    <div id="footer">
-                        <input type="checkbox" name="checkbox" className="switch" />
+                    <div className="menu-container">
+                        <img id="logo" src={logoImg} alt="Página inicial" />
+
+                        <div id="container-org">
+                            <li id={select === 1 && "select"} onClick={() => setSelect(1)}><FaHome className="icon" /> Painel</li>
+
+                            <li id={select === 2 && "select"} onClick={() => setSelect(2)}><FaUserFriends className="icon" />Atendimento</li>
+
+                            <li id={select === 3 && "select"} onClick={() => setSelect(3)}><FaMoneyBillWave className="icon" />Financeiro</li>
+
+                            <li id={select === 4 && "select"} onClick={() => setSelect(4)}><FaAddressCard className="icon" />Meus Dados</li>
+                        </div>
                     </div>
                 </ul>
             </nav>
+
+            <Painel />
         </div>
     )
 }
