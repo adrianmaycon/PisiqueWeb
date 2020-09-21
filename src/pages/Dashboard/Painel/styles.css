@@ -9,16 +9,6 @@
     padding: 30px;
 }
 
-.container-painel #sectionSecundary{
-    width: 400px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-left: 1px solid #eeeeee;
-    padding: 30px;
-}
-
 .container-painel #sectionPrimary header{
     width: 100%;
     display: flex;
@@ -35,4 +25,43 @@
     height: 30px;
     border-radius: 5px;
     margin-right: 5px;
+}
+
+.container-painel #sectionSecundary{
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid #eeeeee;
+    padding: 30px;
+}
+
+.container-painel #sectionSecundary header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-painel #sectionSecundary header img{
+    width: 17rem;
+    height: 17rem;
+    border-radius: 50%;
+    margin-top: 2rem;
+    padding: 0.6rem;
+    border: 2px solid #6573ed;
+}
+
+.container-painel #sectionSecundary header h1{
+    font-size: 2.3rem;
+    line-height: 3rem;
+    color: #444;
+    margin-top: 1.5rem;
+}
+
+.container-painel #sectionSecundary header h4{
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    margin-top: 0.5rem;
 }
