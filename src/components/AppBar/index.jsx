@@ -13,7 +13,7 @@ import UsersService from '../../services/UsersService';
 import { authConfig } from '../../auth/config';
 import { AuthContext } from '../../auth/AuthContext';
 
-const AppBar = withRouter(({ history }) => {
+const AppBar = withRouter(({ openProps, close, history }) => {
     const [logado, setLogado] = useState(false);
 
     const [conection, setConection] = useState(true);
@@ -38,6 +38,10 @@ const AppBar = withRouter(({ history }) => {
     useEffect(() => {
         let cookies = new Cookies();
 
+        if (openProps) {
+            setOpen(true)
+        }
+
         if (!!usuario) {
             setLogado(true)
             cookies.set('email', usuario.email, { path: '/' })
@@ -54,7 +58,7 @@ const AppBar = withRouter(({ history }) => {
             setLogado(false)
         }
 
-    }, [usuario, history])
+    }, [usuario, history, openProps])
 
     function visibleBox(value) {
         if (value === 1) {
@@ -173,7 +177,7 @@ const AppBar = withRouter(({ history }) => {
         <Modal open={open}>
             <div className="container-modal">
                 <header>
-                    <FaTimes id="closeIcon" onClick={() => setOpen(false)} />
+                    <FaTimes id="closeIcon" onClick={() => { setOpen(false); close() }} />
                 </header>
 
                 <main>

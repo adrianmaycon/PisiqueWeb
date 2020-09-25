@@ -276,7 +276,9 @@ nav #login{
 }
 
 .div-popover .avatar {
-    width: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: #e9e9e9;
     border-radius: 50%;
     margin-bottom: 10px;
 }
