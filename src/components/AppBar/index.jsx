@@ -333,7 +333,7 @@ const AppBar = withRouter(({ openProps, close, history }) => {
     )
 
     return (
-        <div>
+        <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center'}}>
             <Access />
             <div id="app-bar" >
                 <nav>

@@ -27,6 +27,14 @@
     margin-right: 5px;
 }
 
+.container-painel #sectionPrimary .alert-info{
+    width: 100%;
+    height: 200px; 
+    background: #6d71f9;
+    margin-top: 60px;
+    border-radius: 15px;
+}
+
 .container-painel #sectionSecundary{
     width: 400px;
     height: 100vh;

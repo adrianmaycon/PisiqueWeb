@@ -50,6 +50,10 @@ function Painel() {
                         {openConfig && <DivPopover />}
                     </div>
                 </header>
+
+                <div className="alert-info">
+
+                </div>
             </section>
 
             <section id="sectionSecundary">

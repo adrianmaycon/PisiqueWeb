@@ -13,9 +13,10 @@ function Choices() {
 
     return (
         <div>
-            <div id="app-bar">
-                <FaPowerOff className="icon-close" onClick={() => authConfig.auth().signOut()} />
+            <div id="app-bar-choices">
+                <FaPowerOff title="Sair" className="icon-close" onClick={() => authConfig.auth().signOut()} />
             </div>
+
             <div id="container-choices">
                 <header>
                     <h1>Escolha seu cadastro</h1>

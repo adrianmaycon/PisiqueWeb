@@ -8,7 +8,7 @@
     background: var(--color-secundary-background);
 }
 
-#app-bar {
+#app-bar-choices {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -18,7 +18,7 @@
     z-index: 1000;
 } 
 
-#app-bar .icon-close {
+#app-bar-choices .icon-close {
     color: var(--color-background);
     font-size: 3rem;
     cursor: pointer;
@@ -26,7 +26,7 @@
     transition: 0.2s;
 }
 
-#app-bar .icon-close:hover {
+#app-bar-choices .icon-close:hover {
     font-size: 3.2rem;
     margin-right: 8px;
     color: #ffffff;
