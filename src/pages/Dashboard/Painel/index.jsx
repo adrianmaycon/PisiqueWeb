@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 import UsersService from '../../../services/UsersService';
 import { AuthContext } from '../../../auth/AuthContext';
@@ -28,10 +29,10 @@ function Painel() {
     const DivPopover = () => (
         <div className="div-popover">
             <main>
-                <a href="/dashboard">Painel</a>
-                <a href="/dashboard">Histórico</a>
-                <a href="/dashboard">Meus Livros</a>
-                <a href="/" onClick={() => authConfig.auth().signOut()}>Sair</a>
+                <Link to="/dashboard">Painel</Link>
+                <Link to="/dashboard">Histórico</Link>
+                <Link to="/dashboard">Meus Livros</Link>
+                <Link to="/" onClick={() => authConfig.auth().signOut()}>Sair</Link>
             </main>
         </div>
     )

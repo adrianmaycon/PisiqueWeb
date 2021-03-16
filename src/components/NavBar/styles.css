@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 100%;
+    width: 90%;
     max-width: 1300px;
     height: 10rem;
     z-index: 1000;
@@ -207,7 +207,7 @@ nav #login{
     cursor: pointer;
 }
 
-@media (max-width: 1004px) {
+@media (max-width: 1099px) {
     nav #menu{
         display: none;
     }

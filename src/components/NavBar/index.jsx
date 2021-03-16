@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 
 import { Modal, Input } from "../../assets/styles/components";
 
-import { FaTimes, FaExclamationCircle, FaChevronCircleRight } from "react-icons/fa";
+import { FaTimes, FaExclamationCircle, FaBars } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import './styles.css';
 
@@ -13,7 +13,9 @@ import UsersService from '../../services/UsersService';
 import { authConfig } from '../../auth/config';
 import { AuthContext } from '../../auth/AuthContext';
 
-const AppBar = withRouter(({ openProps, close, history }) => {
+import { Link } from 'react-router-dom';
+
+const NavBar = withRouter(({ openProps, close, history }) => {
     const [logado, setLogado] = useState(false);
 
     const [conection, setConection] = useState(true);
@@ -164,10 +166,10 @@ const AppBar = withRouter(({ openProps, close, history }) => {
             </header>
 
             <main>
-                <a href="/dashboard">Painel</a>
-                <a href="/dashboard">Histórico</a>
-                <a href="/dashboard">Meus Livros</a>
-                <a href="/" onClick={() => authConfig.auth().signOut()}>Sair</a>
+                <Link to="/dashboard">Painel</Link>
+                <Link to="/dashboard">Histórico</Link>
+                <Link to="/dashboard">Meus Livros</Link>
+                <Link to="/" onClick={() => authConfig.auth().signOut()}>Sair</Link>
             </main>
         </div>
     )
@@ -232,7 +234,7 @@ const AppBar = withRouter(({ openProps, close, history }) => {
                                         <p className="description">Ja tem uma conta? Faça login!</p>
 
                                         <button type="button" className="off" onClick={() => visibleBox(1)}>
-                                            Entrar na kickante
+                                            Entrar no Pisiquê
                                         </button>
                                     </div>
                                 }
@@ -333,17 +335,17 @@ const AppBar = withRouter(({ openProps, close, history }) => {
     )
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>
             <Access />
             <div id="app-bar" >
                 <nav>
                     <div id="menu">
-                        <a href="/">Página inicial</a>
-                        <a href="/">Blog</a>
-                        <a href="/">Sobre nós</a>
-                        <a href="/">Contato</a>
+                        <Link to="/">Página inicial</ Link>
+                        <Link to="/">Blog</ Link>
+                        <Link to="/">Sobre nós</ Link>
+                        <Link to="/">Contato</ Link>
                     </div>
-                    <FaChevronCircleRight className="icon-menu" />
+                    <FaBars className="icon-menu" onClick={() => alert('Aloo')} />
                     {logado ?
                         <div>
                             <button type="button" className="click" onClick={() => setOpenPopover(!openPopover)}>
@@ -361,4 +363,4 @@ const AppBar = withRouter(({ openProps, close, history }) => {
     )
 })
 
-export default AppBar;
+export default NavBar;

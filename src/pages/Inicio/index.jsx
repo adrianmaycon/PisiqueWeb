@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/banner.png';
 
-import AppBar from '../../components/AppBar';
+import NavBar from '../../components/NavBar';
+
+import { Container, FadeIn } from './styled';
 
 import { FaUserFriends, FaUserMd, FaSeedling } from "react-icons/fa";
 import { AuthContext } from '../../auth/AuthContext';
-
-import './styles.css';
 
 function Inicio() {
     const [totalConnections, setTotalConnections] = useState(0);
@@ -30,18 +30,20 @@ function Inicio() {
     console.log(open);
 
     return (
-        <div>
-            <AppBar
+        <Container>
+            <NavBar
                 openProps={open}
                 close={() => setOpen(false)}
             />
 
             <div id="page-landing">
                 <div id="page-landing-content" className="container">
-                    <div className="logo-container">
-                        <img src={logoImg} alt="Proffy" />
-                        <h2>Sua plataforma amiga.</h2>
-                    </div>
+                    <FadeIn duration="0.8s" delay="0.2s">
+                        <div className="logo-container">
+                            <img src={logoImg} alt="Pisiquê" />
+                            <h2>Sua plataforma amiga.</h2>
+                        </div>
+                    </FadeIn>
 
                     <img
                         src={landingImg}
@@ -67,7 +69,7 @@ function Inicio() {
                     </span>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

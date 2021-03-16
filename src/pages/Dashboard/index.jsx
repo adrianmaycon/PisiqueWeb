@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import logoImg from '../../assets/images/logo.svg';
 import { FaHome, FaUserFriends, FaMoneyBillWave, FaAddressCard } from "react-icons/fa";
-import './styles.css';
+import { useHistory } from 'react-router-dom';
 import Painel from './Painel';
+import './styles.css';
 
 function Dashboard() {
+    const history = useHistory();
     const [select, setSelect] = useState(1)
 
     return (
@@ -12,7 +14,7 @@ function Dashboard() {
             <nav>
                 <ul>
                     <div className="menu-container">
-                        <img id="logo" src={logoImg} alt="Página inicial" />
+                        <img id="logo" onClick={() => history.push("/")} src={logoImg} alt="Página inicial" />
 
                         <div id="container-org">
                             <li id={select === 1 && "select"} onClick={() => setSelect(1)}><FaHome className="icon" /> Painel</li>

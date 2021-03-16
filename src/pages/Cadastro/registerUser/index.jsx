@@ -10,6 +10,8 @@ import './styles.css';
 
 const RegisterUser = withRouter(({ history }) => {
 
+    const [errorCep, setErrorCep] = useState(false);
+
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
@@ -42,9 +44,19 @@ const RegisterUser = withRouter(({ history }) => {
                     setEnd(response.data.street)
                     setCidade(response.data.city)
                     setUf(response.data.state)
-                });
+                    setErrorCep(false)
+                })
+                .catch((err) => {
+                    if (err.response.status === 404) {
+                        setErrorCep(true)
+                    }
+                })
         }
     };
+
+    function handleNickName() {
+        setAvatar((name).split(" ", 2).join(' '))
+    }
 
     return (
         <div id="register-user-form" className="container">
@@ -64,14 +76,15 @@ const RegisterUser = withRouter(({ history }) => {
                                 required
                                 name="name"
                                 label="Nome Completo"
+                                onBlur={handleNickName}
                                 value={name}
                                 onChange={(e) => { setName(e.target.value) }}
                             />
 
                             <Input
                                 required
-                                name="avatar"
-                                label="Avatar - (Nickname)"
+                                name="apelido"
+                                label="Apelido - (Nickname)"
                                 value={avatar}
                                 onChange={(e) => { setAvatar(e.target.value) }}
                             />
@@ -131,6 +144,8 @@ const RegisterUser = withRouter(({ history }) => {
                             />
                         </div>
 
+                        {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
+
                         <div className="div-end-rua">
                             <Input
                                 disabled
@@ -151,7 +166,6 @@ const RegisterUser = withRouter(({ history }) => {
 
                         <div className="div-end-pais">
                             <Input
-                                disabled
                                 name="complemento"
                                 label="Complemento"
                                 value={complemento}
@@ -175,8 +189,13 @@ const RegisterUser = withRouter(({ history }) => {
                                 onChange={(e) => setPais(e.target.value)}
                             />
                         </div>
+                    </fieldset>
 
-
+                    <fieldset>
+                        <div style={{ display: 'grid', gridTemplateColumns: '0.2fr 3.8fr', gridGap: '5px' }}>
+                            <input id="terms-of-service" style={{ width: 15, height: 15, marginTop: 4 }} type="checkbox" />
+                            <label htmlFor="terms-of-service" style={{fontSize: 16}}>Ao criar uma conta você concorda com nossos <a href="/#">Termos de Uso</a> e nossa <a href="/#">Política de Privacidade</a></label>
+                        </div>
                     </fieldset>
 
                     <footer>
