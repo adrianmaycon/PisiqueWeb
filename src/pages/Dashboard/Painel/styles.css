@@ -29,8 +29,12 @@
 
 .container-painel #sectionPrimary .alert-info{
     width: 100%;
-    height: 200px; 
-    background: #6d71f9;
+    height: 250px; 
+    background: url('https://i.pinimg.com/originals/95/fa/54/95fa543775583cad8944f0fafa9f7d73.gif');
+    /* background: #6d71f9; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     margin-top: 60px;
     border-radius: 15px;
 }

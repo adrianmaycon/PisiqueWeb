@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom';
 import PageHeader from '../../../components/PageHeader';
 import MasksService, { mCPF, mCEP } from '../../../services/masksService';
 import Input from '../../../components/Input';
-import { FaUser } from "react-icons/fa";
+import { FaUserGraduate } from "react-icons/fa";
 import { Container } from './styled';
 
-const RegisterUser = withRouter(({ history }) => {
+const RegisterAcad = withRouter(({ history }) => {
 
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
@@ -89,7 +89,7 @@ const RegisterUser = withRouter(({ history }) => {
             <main>
                 <form onSubmit={handleCreateClass}>
                     <fieldset>
-                        <legend>Seus dados <FaUser /></legend>
+                        <legend>Seus dados <FaUserGraduate /></legend>
 
                         <div className="div-names">
                             <Input
@@ -99,7 +99,7 @@ const RegisterUser = withRouter(({ history }) => {
                                 onBlur={handleNickName}
                                 value={name}
                                 onChange={(e) => { setName(e.target.value) }}
-                                placeholder="Ex.: Joao da Silva"
+                                placeholder="Ex.: Maria do Nascimento"
                             />
 
                             <Input
@@ -108,7 +108,7 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="Apelido - (Nickname) *"
                                 value={nickName}
                                 onChange={(e) => { setNickName(((e.target.value).trim()).toLowerCase()) }}
-                                placeholder="Ex.: joaodasilva"
+                                placeholder="Ex.: mariadonascimento"
                             />
                         </div>
 
@@ -249,4 +249,4 @@ const RegisterUser = withRouter(({ history }) => {
     )
 })
 
-export default RegisterUser;
+export default RegisterAcad;
