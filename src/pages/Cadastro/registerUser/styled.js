@@ -8,6 +8,10 @@ export const Container = styled.div`
         cursor: no-drop;
     }
 
+    .text-termos {
+        font-size: 12px;
+    }
+
     .cont-div {
         display: grid;
         grid-template-columns: 3fr 1fr;
@@ -122,6 +126,10 @@ export const Container = styled.div`
 
     @media (min-width: 700px) {
         max-width: 100vw;
+
+        .text-termos {
+            font-size: 16px;
+        }
 
         .cont-div {
             grid-template-columns: 3fr 1fr;

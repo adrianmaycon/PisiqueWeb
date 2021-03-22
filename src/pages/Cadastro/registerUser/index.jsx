@@ -24,7 +24,7 @@ const RegisterUser = withRouter(({ history }) => {
     const [uf, setUf] = useState('');
     const [cep, setCep] = useState('');
     const [pais, setPais] = useState('Brasil');
-    
+
     const [errorCpf, setErrorCpf] = useState(null);
 
     const { usuario } = useContext(AuthContext);
@@ -65,13 +65,16 @@ const RegisterUser = withRouter(({ history }) => {
     };
 
     function handleNickName() {
-        setNickName((name).split(" ", 2).join(' '))
+
+        if (!nickName) {
+            setNickName((((name).split(" ", 2).join(' ')).replace(/\s/g, '')).toLowerCase())
+        }
     }
 
     function handleValidateCpf() {
         MasksService.validateCpf(cpf)
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 setErrorCpf(response);
             })
     }
@@ -104,7 +107,8 @@ const RegisterUser = withRouter(({ history }) => {
                                 name="apelido"
                                 label="Apelido - (Nickname) *"
                                 value={nickName}
-                                onChange={(e) => { setNickName(e.target.value) }}
+                                onChange={(e) => { setNickName(((e.target.value).trim()).toLowerCase()) }}
+                                placeholder="Ex.: institutopisique"
                             />
                         </div>
 
@@ -120,6 +124,7 @@ const RegisterUser = withRouter(({ history }) => {
                                 maxLength="14"
                                 minLength="14"
                                 onBlur={() => cpf.length === 14 ? handleValidateCpf() : null}
+                                placeholder="000.000.000-00"
                             />
 
                             <Input
@@ -222,7 +227,7 @@ const RegisterUser = withRouter(({ history }) => {
                     <fieldset>
                         <div style={{ display: 'grid', gridTemplateColumns: '0.2fr 3.8fr', gridGap: '5px' }}>
                             <input id="terms-of-service" style={{ width: 15, height: 15, marginTop: 4 }} type="checkbox" />
-                            <label htmlFor="terms-of-service" style={{ fontSize: 16 }}>Ao criar uma conta você concorda com nossos <a href="/#">Termos de Uso</a> e nossa <a href="/#">Política de Privacidade</a></label>
+                            <label htmlFor="terms-of-service" className="text-termos">Ao criar uma conta você concorda com nossos <a href="/#">Termos de Uso</a> e nossa <a href="/#">Política de Privacidade</a></label>
                         </div>
                     </fieldset>
 

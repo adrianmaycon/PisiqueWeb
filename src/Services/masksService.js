@@ -17,18 +17,43 @@ export async function validateCpf(cpf) {
 
     const digitos = cpfValue.split('').map(digito => digito.toString())
 
-    let a = digitos.slice(0, 9).reduce((acumulador, valorAtual, indice) => parseInt(acumulador) + parseInt(valorAtual * (10 - indice)), digitos[0]) - parseInt(cpfValue.split('')[0])
-    let b = digitos.slice(0, 10).reduce((acumulador, valorAtual, indice) => parseInt(acumulador) + parseInt(valorAtual * (11 - indice)), digitos[0]) - parseInt(cpfValue.split('')[0])
+    // console.log(cpfValue);
 
-    let valorA = a % 11 < 2 ? 0 : 11 - (a % 11)
-    let valorB = b % 11 >= 2 ? 11 - (b % 11) : 0
+    switch (cpfValue) {
+        case '00000000000':
+            return false
+        case '11111111111':
+            return false
+        case '22222222222':
+            return false
+        case '33333333333':
+            return false
+        case '44444444444':
+            return false
+        case '55555555555':
+            return false
+        case '66666666666':
+            return false
+        case '77777777777':
+            return false
+        case '88888888888':
+            return false
+        case '99999999999':
+            return false
+        default:
+            let a = digitos.slice(0, 9).reduce((acumulador, valorAtual, indice) => parseInt(acumulador) + parseInt(valorAtual * (10 - indice)), digitos[0]) - parseInt(cpfValue.split('')[0])
+            let b = digitos.slice(0, 10).reduce((acumulador, valorAtual, indice) => parseInt(acumulador) + parseInt(valorAtual * (11 - indice)), digitos[0]) - parseInt(cpfValue.split('')[0])
 
-    let v1 = parseInt(cpfValue.split('')[9])
-    let v2 = parseInt(cpfValue.split('')[10])
+            let valorA = a % 11 < 2 ? 0 : 11 - (a % 11)
+            let valorB = b % 11 >= 2 ? 11 - (b % 11) : 0
 
-    let status = valorA === v1 && valorB === v2 ? true : false
+            let v1 = parseInt(cpfValue.split('')[9])
+            let v2 = parseInt(cpfValue.split('')[10])
 
-    return status
+            let status = valorA === v1 && valorB === v2 ? true : false
+
+            return status
+    }
 }
 
 export async function mTel(tel) {
