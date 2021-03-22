@@ -1,13 +1,13 @@
 import React from 'react';
 
-import './styles.css';
+import { ContainerInput } from './styled'
 
-const Input = ({ label, name, ...rest }) => {
+const Input = ({ label, name, error, success, ...rest }) => {
     return (
-        <div className="input-block">
+        <ContainerInput error={error} success={success}>
             <label htmlFor={name}>{label}</label>
             <input type="text" id={name} {...rest} />
-        </div>
+        </ContainerInput>
     );
 }
 

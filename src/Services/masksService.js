@@ -13,7 +13,7 @@ export async function receiveCep(cep) {
 }
 
 export async function validateCpf(cpf) {
-    let cpfValue = cpf.split("").filter(n => (Number(n) || n === 0)).join("");
+    let cpfValue = cpf.replace(".", "").replace(".", "").replace("-", "");
 
     const digitos = cpfValue.split('').map(digito => digito.toString())
 

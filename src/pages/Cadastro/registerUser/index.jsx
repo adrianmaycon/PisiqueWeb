@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
+import warningIcon from '../../../assets/images/icons/warning.svg';
 import { AuthContext } from '../../../auth/AuthContext';
 import { withRouter } from 'react-router-dom';
 import PageHeader from '../../../components/PageHeader';
+import MasksService, { mCPF } from '../../../services/masksService';
 import Input from '../../../components/Input';
-import warningIcon from '../../../assets/images/icons/warning.svg';
 import { FaUser } from "react-icons/fa";
-import MasksService from '../../../services/masksService';
-import './styles.css';
+import { Container } from './styled';
 
 const RegisterUser = withRouter(({ history }) => {
 
@@ -15,7 +15,7 @@ const RegisterUser = withRouter(({ history }) => {
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
-    const [avatar, setAvatar] = useState('');
+    const [nickName, setNickName] = useState('');
     const [end, setEnd] = useState('');
     const [num, setNum] = useState('');
     const [complemento, setComplemento] = useState('');
@@ -24,6 +24,8 @@ const RegisterUser = withRouter(({ history }) => {
     const [uf, setUf] = useState('');
     const [cep, setCep] = useState('');
     const [pais, setPais] = useState('Brasil');
+    
+    const [errorCpf, setErrorCpf] = useState(null);
 
     const { usuario } = useContext(AuthContext);
 
@@ -34,6 +36,14 @@ const RegisterUser = withRouter(({ history }) => {
     function handleCreateClass(e) {
         e.preventDefault();
 
+        let data = {
+            name: name,
+            nickName: nickName,
+            cpf: cpf,
+            email: email
+        }
+
+        console.log(data);
     }
 
     function handleCep() {
@@ -55,11 +65,19 @@ const RegisterUser = withRouter(({ history }) => {
     };
 
     function handleNickName() {
-        setAvatar((name).split(" ", 2).join(' '))
+        setNickName((name).split(" ", 2).join(' '))
+    }
+
+    function handleValidateCpf() {
+        MasksService.validateCpf(cpf)
+            .then((response) => {
+                console.log(response);
+                setErrorCpf(response);
+            })
     }
 
     return (
-        <div id="register-user-form" className="container">
+        <Container id="register-user-form">
             <PageHeader
                 title="Que incrível que você quer fazer parte do Pisiquê!"
                 description="O primeiro passo é preencher esse formulário de inscrição"
@@ -75,7 +93,7 @@ const RegisterUser = withRouter(({ history }) => {
                             <Input
                                 required
                                 name="name"
-                                label="Nome Completo"
+                                label="Nome Completo *"
                                 onBlur={handleNickName}
                                 value={name}
                                 onChange={(e) => { setName(e.target.value) }}
@@ -84,27 +102,30 @@ const RegisterUser = withRouter(({ history }) => {
                             <Input
                                 required
                                 name="apelido"
-                                label="Apelido - (Nickname)"
-                                value={avatar}
-                                onChange={(e) => { setAvatar(e.target.value) }}
+                                label="Apelido - (Nickname) *"
+                                value={nickName}
+                                onChange={(e) => { setNickName(e.target.value) }}
                             />
                         </div>
 
                         <div className="div-dados">
                             <Input
                                 required
+                                error={errorCpf === false}
+                                success={errorCpf === true}
                                 name="cpf"
-                                label="CPF"
+                                label="CPF *"
                                 value={cpf}
-                                onChange={(e) => { setCpf(e.target.value) }}
+                                onChange={(e) => mCPF(e.target.value).then((v) => setCpf(v))}
                                 maxLength="14"
                                 minLength="14"
+                                onBlur={() => cpf.length === 14 ? handleValidateCpf() : null}
                             />
 
                             <Input
                                 disabled
                                 name="email"
-                                label="Email"
+                                label="Email *"
                                 value={email}
                                 onChange={(e) => { setEmail(e.target.value) }}
                             />
@@ -118,7 +139,7 @@ const RegisterUser = withRouter(({ history }) => {
                             <Input
                                 required
                                 name="cep"
-                                label="Digite seu Cep"
+                                label="Digite seu Cep *"
                                 value={cep}
                                 onBlur={handleCep}
                                 onChange={(e) => setCep((e.target.value).match(/[0-9]*/))}
@@ -127,21 +148,25 @@ const RegisterUser = withRouter(({ history }) => {
                                 placeholder='00.000-00'
                             />
 
-                            <Input
-                                disabled
-                                name="cidade"
-                                label="Cidade"
-                                value={cidade}
-                                placeholder='Cidade'
-                            />
+                            <div className="cont-div">
+                                <Input
+                                    disabled
+                                    name="cidade"
+                                    label="Cidade"
+                                    value={cidade}
+                                    placeholder='Cidade'
+                                    className="off-mouse"
+                                />
 
-                            <Input
-                                disabled
-                                name="uf"
-                                label="UF"
-                                value={uf}
-                                placeholder='UF'
-                            />
+                                <Input
+                                    disabled
+                                    name="uf"
+                                    label="UF"
+                                    value={uf}
+                                    placeholder='UF'
+                                    className="off-mouse"
+                                />
+                            </div>
                         </div>
 
                         {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
@@ -153,11 +178,12 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="Endereço"
                                 value={end}
                                 placeholder='Rua, Avenida, etc'
+                                className="off-mouse"
                             />
 
                             <Input
                                 required
-                                label="Numero"
+                                label="Numero *"
                                 value={num}
                                 onChange={(e) => setNum(e.target.value)}
                                 placeholder='123'
@@ -170,7 +196,7 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="Complemento"
                                 value={complemento}
                                 onChange={(e) => setComplemento(e.target.value)}
-                                placeholder='Apto, Sala'
+                                placeholder='Apto, Bloco'
                             />
 
                             <Input
@@ -179,6 +205,7 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="Bairro"
                                 value={bairro}
                                 placeholder='Nome do Bairro'
+                                className="off-mouse"
                             />
 
                             <Input
@@ -187,6 +214,7 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="País"
                                 value={pais}
                                 onChange={(e) => setPais(e.target.value)}
+                                className="off-mouse"
                             />
                         </div>
                     </fieldset>
@@ -194,7 +222,7 @@ const RegisterUser = withRouter(({ history }) => {
                     <fieldset>
                         <div style={{ display: 'grid', gridTemplateColumns: '0.2fr 3.8fr', gridGap: '5px' }}>
                             <input id="terms-of-service" style={{ width: 15, height: 15, marginTop: 4 }} type="checkbox" />
-                            <label htmlFor="terms-of-service" style={{fontSize: 16}}>Ao criar uma conta você concorda com nossos <a href="/#">Termos de Uso</a> e nossa <a href="/#">Política de Privacidade</a></label>
+                            <label htmlFor="terms-of-service" style={{ fontSize: 16 }}>Ao criar uma conta você concorda com nossos <a href="/#">Termos de Uso</a> e nossa <a href="/#">Política de Privacidade</a></label>
                         </div>
                     </fieldset>
 
@@ -210,7 +238,7 @@ const RegisterUser = withRouter(({ history }) => {
                     </footer>
                 </form>
             </main>
-        </div >
+        </Container >
     )
 })
 

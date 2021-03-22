@@ -17,7 +17,7 @@ function Inicio() {
     const { usuario } = useContext(AuthContext);
 
     useEffect(() => {
-        setTotalConnections(1000)
+        setTotalConnections(50)
 
         // if (!usuario) {
         //     console.log("Entrou");
@@ -27,7 +27,7 @@ function Inicio() {
 
     }, [])
 
-    console.log(open);
+    // console.log(open);
 
     return (
         <Container>
@@ -57,15 +57,15 @@ function Inicio() {
                             <Link to="/atendimento" className="profissional"><FaUserMd className="icon" />Profissionais</Link>}
 
                         {!usuario ?
-                            <a href="/#" className="apoio" onClick={() => setOpen(true)}><FaUserFriends className="icon" />Grupo Pisiquê</a>
+                            <a href="/#" className="apoio" onClick={() => setOpen(true)}><FaUserFriends className="icon" />Comunidade</a>
                             :
-                            <Link to="/atendimento" className="apoio"><FaUserFriends className="icon" />Grupo Pisiquê</Link>}
+                            <Link to="/atendimento" className="apoio"><FaUserFriends className="icon" />Comunidade</Link>}
 
 
                     </div>
 
                     <span className="total-connections">
-                        Total de +{totalConnections} membros cadastrados <FaSeedling id="img" />
+                        + de {totalConnections} profissionais cadastrados <FaSeedling id="img" />
                     </span>
                 </div>
             </div>

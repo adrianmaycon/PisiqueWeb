@@ -17,10 +17,10 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Route exact path="/" component={Inicio} />
-        <Route exact path="/register-psi" component={RegisterPsi} />
-        <Route exact path="/register-user" component={RegisterUser} />
-        <Route exact path="/register-acad" component={RegisterAcad} />
-        <Route exact path="/register-post" component={RegisterPost} />
+        <RotaPrivada exact path="/register-psi" component={RegisterPsi} />
+        <RotaPrivada exact path="/register-user" component={RegisterUser} />
+        <RotaPrivada exact path="/register-acad" component={RegisterAcad} />
+        <RotaPrivada exact path="/register-post" component={RegisterPost} />
         <RotaPrivada exact path="/dashboard" component={Dashboard} />
         <RotaPrivada exact path="/atendimento" component={Listagem} />
         <RotaPrivada exact path="/choice" component={Choices} />

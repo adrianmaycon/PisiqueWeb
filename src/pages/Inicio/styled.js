@@ -124,6 +124,7 @@ export const Container = styled.div`
 
     .total-connections #img {
         margin-left: 0.5rem;
+        height: 15px;
     }
 
     @media (min-width: 380px){
