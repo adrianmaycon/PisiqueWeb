@@ -17,8 +17,6 @@ export async function validateCpf(cpf) {
 
     const digitos = cpfValue.split('').map(digito => digito.toString())
 
-    // console.log(cpfValue);
-
     switch (cpfValue) {
         case '00000000000':
             return false
@@ -118,12 +116,12 @@ export async function mNcc(num) {
 //     return cnpj
 // }
 
-// const mCEP = (cep) => {
-//     cep = cep.replace(/\D/g, "")
-//     cep = cep.replace(/^(\d{2})(\d)/, "$1.$2")
-//     cep = cep.replace(/\.(\d{3})(\d)/, ".$1-$2")
-//     return cep
-// }
+export async function mCEP(cep) {
+    cep = cep.replace(/\D/g, "")
+    cep = cep.replace(/^(\d{2})(\d)/, "$1.$2")
+    cep = cep.replace(/\.(\d{3})(\d)/, ".$1-$2")
+    return cep
+}
 
 // const mNum = (num) => {
 //     num = num.replace(/\D/g, "")
@@ -142,4 +140,4 @@ export async function mNcc(num) {
 //     return text;                 
 // }
 
-export default { receiveCep, validateCpf, mTel, mCPF, mNcc }
+export default { receiveCep, validateCpf, mTel, mCPF, mCEP, mNcc }

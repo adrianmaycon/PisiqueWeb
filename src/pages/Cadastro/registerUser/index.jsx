@@ -3,7 +3,7 @@ import warningIcon from '../../../assets/images/icons/warning.svg';
 import { AuthContext } from '../../../auth/AuthContext';
 import { withRouter } from 'react-router-dom';
 import PageHeader from '../../../components/PageHeader';
-import MasksService, { mCPF } from '../../../services/masksService';
+import MasksService, { mCPF, mCEP } from '../../../services/masksService';
 import Input from '../../../components/Input';
 import { FaUser } from "react-icons/fa";
 import { Container } from './styled';
@@ -47,7 +47,7 @@ const RegisterUser = withRouter(({ history }) => {
     }
 
     function handleCep() {
-        if (String(cep).length === 8) {
+        if (String(cep).length === 10) {
             MasksService.receiveCep(cep)
                 .then((response) => {
                     setBairro(response.data.neighborhood)
@@ -133,12 +133,15 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="Email *"
                                 value={email}
                                 onChange={(e) => { setEmail(e.target.value) }}
+                                className="off-mouse"
                             />
                         </div>
                     </fieldset>
 
                     <fieldset>
                         <legend>Localização</legend>
+
+                        {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
 
                         <div className="div-end">
                             <Input
@@ -147,10 +150,11 @@ const RegisterUser = withRouter(({ history }) => {
                                 label="Digite seu Cep *"
                                 value={cep}
                                 onBlur={handleCep}
-                                onChange={(e) => setCep((e.target.value).match(/[0-9]*/))}
-                                maxLength={8}
-                                minLength={8}
-                                placeholder='00.000-00'
+                                onChange={(e) => mCEP(e.target.value).then((v) => setCep(v))}
+                                // onChange={(e) => setCep()}
+                                maxLength={10}
+                                minLength={10}
+                                placeholder='00.000-000'
                             />
 
                             <div className="cont-div">
@@ -173,8 +177,6 @@ const RegisterUser = withRouter(({ history }) => {
                                 />
                             </div>
                         </div>
-
-                        {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
 
                         <div className="div-end-rua">
                             <Input
@@ -226,7 +228,7 @@ const RegisterUser = withRouter(({ history }) => {
 
                     <fieldset>
                         <div style={{ display: 'grid', gridTemplateColumns: '0.2fr 3.8fr', gridGap: '5px' }}>
-                            <input id="terms-of-service" style={{ width: 15, height: 15, marginTop: 4 }} type="checkbox" />
+                            <input id="terms-of-service" required style={{ width: 15, height: 15, marginTop: 4 }} type="checkbox" />
                             <label htmlFor="terms-of-service" className="text-termos">Ao criar uma conta você concorda com nossos <a href="/#">Termos de Uso</a> e nossa <a href="/#">Política de Privacidade</a></label>
                         </div>
                     </fieldset>
