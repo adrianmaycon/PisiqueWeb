@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import PageHeader from '../../components/PageHeader';
-import Textarea from '../../components/Textarea';
-import Select from '../../components/Select';
-import Input from '../../components/Input';
+import PageHeader from '../../components/common/PageHeader';
+import Textarea from '../../components/common/Textarea';
+import Select from '../../components/common/Select';
+import Input from '../../components/common/Input';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 import { FaUserMd } from "react-icons/fa";

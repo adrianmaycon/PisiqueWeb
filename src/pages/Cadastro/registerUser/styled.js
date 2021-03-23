@@ -14,8 +14,15 @@ export const Container = styled.div`
 
     .cont-div {
         display: grid;
+        grid-template-columns: 2.5fr 1.5fr;
+        grid-gap: 1.6rem;
+    }
+
+    .div-end-rua {
+        display: grid;
         grid-template-columns: 3fr 1fr;
         grid-gap: 1.6rem;
+        align-items: center;
     }
 
     .page-header .header-content {
@@ -145,7 +152,7 @@ export const Container = styled.div`
 
         main .div-dados {
             display: grid;
-            grid-template-columns: 2fr 2fr;
+            grid-template-columns: 1.3fr 2.7fr;
             grid-gap: 1.6rem;
             align-items: center;
         }
@@ -157,16 +164,16 @@ export const Container = styled.div`
             align-items: center;
         }
 
-        main .div-end-rua {
+        main .div-end-pais {
             display: grid;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: 1.5fr 1.5fr 1fr;
             grid-gap: 1.6rem;
             align-items: center;
         }
 
-        main .div-end-pais {
+        main .div-date {
             display: grid;
-            grid-template-columns: 1.5fr 1.5fr 1fr;
+            grid-template-columns: 2fr 2fr ;
             grid-gap: 1.6rem;
             align-items: center;
         }

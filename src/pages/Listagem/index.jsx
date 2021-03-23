@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import PageHeader from '../../components/PageHeader';
+import PageHeader from '../../components/common/PageHeader';
 import PsiItem from '../../components/PsiItem';
-import Select from '../../components/Select';
-import Input from '../../components/Input';
+import Select from '../../components/common/Select';
+import Input from '../../components/common/Input';
 
 import ProfsService from '../../services/ProfsService';
 

@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import warningIcon from '../../../assets/images/icons/warning.svg';
 import { AuthContext } from '../../../auth/AuthContext';
 import { withRouter } from 'react-router-dom';
-import PageHeader from '../../../components/PageHeader';
+import PageHeader from '../../../components/common/PageHeader';
 import MasksService, { mCPF, mCEP } from '../../../services/masksService';
-import Input from '../../../components/Input';
+import Input from '../../../components/common/Input';
+import Select from '../../../components/common/Select';
+import InputDate from '../../../components/common/InputDate';
 import { FaUser } from "react-icons/fa";
 import { Container } from './styled';
 
@@ -24,7 +26,7 @@ const RegisterUser = withRouter(({ history }) => {
     const [pais, setPais] = useState('Brasil');
 
     const [errorCep, setErrorCep] = useState(false);
-    const [errorCpf, setErrorCpf] = useState(null);
+    const [successCpf, setSuccessCpf] = useState(null);
 
     const { usuario } = useContext(AuthContext);
 
@@ -35,14 +37,29 @@ const RegisterUser = withRouter(({ history }) => {
     function handleCreateClass(e) {
         e.preventDefault();
 
-        let data = {
-            name: name,
-            nickName: nickName,
-            cpf: cpf,
-            email: email
-        }
+        if (successCpf) {
+            let data = {
+                avatar: null,
+                fullName: name,
+                nickName: nickName,
+                cpf: cpf,
+                email: email,
+                genre: " ",
+                birth: " ",
+                address: {
+                    cep: cep,
+                    city: cidade,
+                    uf: uf,
+                    logradouro: end,
+                    number: num,
+                    complement: complemento,
+                    district: bairro,
+                    country: pais
+                }
+            }
 
-        console.log(data);
+            console.log(data);
+        }
     }
 
     function handleCep() {
@@ -74,7 +91,7 @@ const RegisterUser = withRouter(({ history }) => {
         MasksService.validateCpf(cpf)
             .then((response) => {
                 // console.log(response);
-                setErrorCpf(response);
+                setSuccessCpf(response);
             })
     }
 
@@ -112,11 +129,33 @@ const RegisterUser = withRouter(({ history }) => {
                             />
                         </div>
 
+                        <div className="div-date">
+                            <Select
+                                required
+                                name="genre"
+                                label="Gênero *"
+                                onChange={(e) => { console.log(e.target.value) }}
+                                options={[
+                                    { value: 'homem', label: 'Homem' },
+                                    { value: 'mulher', label: 'Mulher' },
+                                    { value: 'nao-binario', label: 'Não binário' },
+                                ]}
+                            />
+
+                            <InputDate
+                                name="birth"
+                                label="Data de Nasc.: *"
+                                onChange={(e) => { console.log(e.target.value) }}
+                            />
+                        </div>
+
+                        {successCpf === false && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 5, marginTop: 10 }}>CPF Inválido</h4>}
+
                         <div className="div-dados">
                             <Input
                                 required
-                                error={errorCpf === false}
-                                success={errorCpf === true}
+                                error={successCpf === false}
+                                success={successCpf === true}
                                 name="cpf"
                                 label="CPF *"
                                 value={cpf}
@@ -151,7 +190,6 @@ const RegisterUser = withRouter(({ history }) => {
                                 value={cep}
                                 onBlur={handleCep}
                                 onChange={(e) => mCEP(e.target.value).then((v) => setCep(v))}
-                                // onChange={(e) => setCep()}
                                 maxLength={10}
                                 minLength={10}
                                 placeholder='00.000-000'
