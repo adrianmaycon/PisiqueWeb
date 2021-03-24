@@ -66,7 +66,6 @@ const RegisterUser = withRouter(({ history }) => {
                     console.log(response);
 
                     let dataDoc = {
-                        avatar: null,
                         fullName: name,
                         nickName: nickName,
                         cpf: cpf,
