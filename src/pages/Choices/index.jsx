@@ -4,7 +4,7 @@ import psi from '../../assets/images/icons/psi.svg';
 import study from '../../assets/images/icons/estudante.svg';
 import userGp from '../../assets/images/icons/userGp.svg';
 import { authConfig } from '../../auth/config';
-import './styles.css';
+import { Container } from './styled';
 
 import { FaArrowRight, FaPowerOff } from "react-icons/fa";
 
@@ -12,7 +12,7 @@ function Choices() {
     const [choice, setChoice] = useState(2);
 
     return (
-        <div>
+        <Container>
             <div id="app-bar-choices">
                 <FaPowerOff title="Sair" className="icon-close" onClick={() => authConfig.auth().signOut()} />
             </div>
@@ -52,7 +52,7 @@ function Choices() {
                     </div>
                 </footer>
             </div>
-        </div>
+        </Container>
     )
 }
 

@@ -22,4 +22,16 @@ export async function GetDataUser(id) {
 
 }
 
-export default { GetDataUser }
+export async function RegisterUser(data) {
+    try {
+        firebase.firestore()
+            .collection('PisiqueUsers').add(data)
+
+        return 'Sucesso ao cadastrar'
+    } catch (error) {
+        console.log("Error Register Usuario: ", error);
+        throw error
+    }
+}
+
+export default { GetDataUser, RegisterUser }

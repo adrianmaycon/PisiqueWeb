@@ -29,6 +29,7 @@ export const Container = styled.div`
         margin-bottom: 6.4rem;
     }
 
+
     main {
         background: var(--color-box-base);
         width: 90%;
@@ -131,6 +132,15 @@ export const Container = styled.div`
         background: var(--color-secundary-dark);
     }
 
+    @media (min-width: 500px) {
+        main .div-dados {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+            grid-gap: 1.6rem;
+            align-items: center;
+        }
+    }
+
     @media (min-width: 700px) {
         max-width: 100vw;
 
@@ -151,10 +161,7 @@ export const Container = styled.div`
         }
 
         main .div-dados {
-            display: grid;
             grid-template-columns: 1.3fr 2.7fr;
-            grid-gap: 1.6rem;
-            align-items: center;
         }
 
         main .div-end {

@@ -7,6 +7,7 @@ import MasksService, { mCPF, mCEP } from '../../../services/masksService';
 import Input from '../../../components/common/Input';
 import Select from '../../../components/common/Select';
 import InputDate from '../../../components/common/InputDate';
+import UsersService from '../../../services/UsersService';
 import { FaUser } from "react-icons/fa";
 import { Container } from './styled';
 
@@ -16,6 +17,8 @@ const RegisterUser = withRouter(({ history }) => {
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
     const [nickName, setNickName] = useState('');
+    const [genre, setGenre] = useState('');
+    const [birth, setBirth] = useState('');
     const [end, setEnd] = useState('');
     const [num, setNum] = useState('');
     const [complemento, setComplemento] = useState('');
@@ -44,8 +47,8 @@ const RegisterUser = withRouter(({ history }) => {
                 nickName: nickName,
                 cpf: cpf,
                 email: email,
-                genre: " ",
-                birth: " ",
+                genre: genre,
+                birth: birth,
                 address: {
                     cep: cep,
                     city: cidade,
@@ -57,6 +60,11 @@ const RegisterUser = withRouter(({ history }) => {
                     country: pais
                 }
             }
+
+            UsersService.RegisterUser(data)
+                .then((response) => {
+                    console.log(response);
+                })
 
             console.log(data);
         }
@@ -132,9 +140,10 @@ const RegisterUser = withRouter(({ history }) => {
                         <div className="div-date">
                             <Select
                                 required
+                                value={genre}
                                 name="genre"
-                                label="Gênero *"
-                                onChange={(e) => { console.log(e.target.value) }}
+                                label="Identidade de Gênero *"
+                                onChange={(e) => { setGenre(e.target.value) }}
                                 options={[
                                     { value: 'homem', label: 'Homem' },
                                     { value: 'mulher', label: 'Mulher' },
@@ -144,8 +153,9 @@ const RegisterUser = withRouter(({ history }) => {
 
                             <InputDate
                                 name="birth"
-                                label="Data de Nasc.: *"
-                                onChange={(e) => { console.log(e.target.value) }}
+                                value={birth}
+                                label="Data de Nascimento: *"
+                                onChange={(e) => { setBirth(e.target.value) }}
                             />
                         </div>
 
@@ -168,6 +178,7 @@ const RegisterUser = withRouter(({ history }) => {
 
                             <Input
                                 disabled
+                                title={email}
                                 name="email"
                                 label="Email *"
                                 value={email}
@@ -181,6 +192,8 @@ const RegisterUser = withRouter(({ history }) => {
                         <legend>Localização</legend>
 
                         {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
+
+                        <p style={{ marginBottom: 20 }}>Obs.: Após digitar o CEP, os outros dados irá preencher automaticamente. <br />Não sabe seu CEP? <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="blank">Aperte aqui</a></p>
 
                         <div className="div-end">
                             <Input
