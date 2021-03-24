@@ -61,9 +61,22 @@ const RegisterUser = withRouter(({ history }) => {
                 }
             }
 
-            UsersService.RegisterUser(data)
+            UsersService.RegisterUserPisique(data)
                 .then((response) => {
                     console.log(response);
+
+                    let dataDoc = {
+                        avatar: null,
+                        fullName: name,
+                        nickName: nickName,
+                        cpf: cpf,
+                        email: email,
+                        genre: genre,
+                        birth: birth,
+                        type: 1
+                    }
+
+                    UsersService.RegisterUser(dataDoc)
                 })
 
             console.log(data);
@@ -152,6 +165,7 @@ const RegisterUser = withRouter(({ history }) => {
                             />
 
                             <InputDate
+                                required
                                 name="birth"
                                 value={birth}
                                 label="Data de Nascimento: *"

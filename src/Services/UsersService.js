@@ -23,9 +23,10 @@ export async function GetDataUser(id) {
 }
 
 export async function RegisterUser(data) {
+
     try {
         firebase.firestore()
-            .collection('PisiqueUsers').add(data)
+            .collection('Users').doc(data.email).set(data)
 
         return 'Sucesso ao cadastrar'
     } catch (error) {
@@ -34,4 +35,17 @@ export async function RegisterUser(data) {
     }
 }
 
-export default { GetDataUser, RegisterUser }
+export async function RegisterUserPisique(data) {
+    try {
+        firebase.firestore()
+            .collection('PisiqueUsers').doc(data.email).set(data)
+        // .collection('PisiqueUsers').add(data)
+
+        return 'Sucesso ao cadastrar'
+    } catch (error) {
+        console.log("Error Register Usuario Pisique: ", error);
+        throw error
+    }
+}
+
+export default { GetDataUser, RegisterUserPisique, RegisterUser }
