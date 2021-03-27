@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import UsersService from '../../../services/UsersService';
 import { AuthContext } from '../../../auth/AuthContext';
 import { authConfig } from '../../../auth/config';
-import './styles.css';
+import { Container } from './styled';
+
+import ModalAvatars from '../../../components/common/ModalAvatars'
 
 function Painel() {
 
@@ -19,7 +21,7 @@ function Painel() {
         if (!!usuario) {
             UsersService.GetDataUser(usuario.email)
                 .then(user => {
-                    console.log(user)
+                    // console.log(user)
                     setDataUser(user)
                 })
         }
@@ -38,34 +40,38 @@ function Painel() {
     )
 
     return (
-        <div className="container-painel">
-            <section id="sectionPrimary">
-                <header>
-                    <h1 id="name">Olá {String(dataUser.name).split(" ", 1).join(' ')}, seja bem vindo! </h1>
+        <>
+            <ModalAvatars />
+            <Container>
+                <section id="sectionPrimary">
+                    <header>
+                        <h1 id="name">Olá {String(dataUser.fullName).split(" ", 2).join(' ')}, seja bem vindo! </h1>
 
-                    <div>
-                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setOpenConfig(!openConfig)}>
-                            <img src={dataUser.avatar} alt="Abrir configuração de perfil" />
-                            {openConfig ? <FaCaretUp /> : <FaCaretDown />}
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setOpenConfig(!openConfig)}>
+                                <img src={dataUser.avatar || 'https://firebasestorage.googleapis.com/v0/b/pisiqueapp.appspot.com/o/avatars%2Fuser.png?alt=media&token=120e160a-29e9-4fe4-82ad-830598d37e75'} alt="Abrir configuração de perfil" />
+                                {openConfig ? <FaCaretUp /> : <FaCaretDown />}
+                            </div>
+                            {openConfig && <DivPopover />}
                         </div>
-                        {openConfig && <DivPopover />}
+                    </header>
+
+                    <div className="alert-info">
+
                     </div>
-                </header>
+                </section>
 
-                <div className="alert-info">
+                <section id="sectionSecundary">
+                    <header>
+                        <img src={dataUser.avatar || 'https://firebasestorage.googleapis.com/v0/b/pisiqueapp.appspot.com/o/avatars%2Fuser.png?alt=media&token=120e160a-29e9-4fe4-82ad-830598d37e75'} alt="Foto de perfil do usuario" />
 
-                </div>
-            </section>
+                        <h1>{String(dataUser.fullName).split(" ", 2).join(' ')}</h1>
+                        <h4>{dataUser.email}</h4>
 
-            <section id="sectionSecundary">
-                <header>
-                    <img src={dataUser.avatar} alt="Foto de perfil do usuario" />
-
-                    <h1>{String(dataUser.name).split(" ", 2).join(' ')}</h1>
-                    <h4>{dataUser.email}</h4>
-                </header>
-            </section>
-        </div>
+                    </header>
+                </section>
+            </Container>
+        </>
     )
 }
 

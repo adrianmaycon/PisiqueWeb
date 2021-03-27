@@ -161,7 +161,7 @@ const NavBar = withRouter(({ openProps, close, history }) => {
     const DivPopover = () => (
         <div className="div-popover">
             <header>
-                <img className="avatar" src={userData.avatar} alt="Icone Usuário" onClick={() => console.log(true)} />
+                <img className="avatar" src={userData.avatar || 'https://firebasestorage.googleapis.com/v0/b/pisiqueapp.appspot.com/o/avatars%2Fuser.png?alt=media&token=120e160a-29e9-4fe4-82ad-830598d37e75'} alt="Icone Usuário" onClick={() => console.log(true)} />
                 <span>Editar Perfil</span>
             </header>
 
@@ -349,7 +349,7 @@ const NavBar = withRouter(({ openProps, close, history }) => {
                     {logado ?
                         <div>
                             <button type="button" className="click" onClick={() => setOpenPopover(!openPopover)}>
-                                <span>{userData.name && `Olá, ${(userData.name).split(" ", 1).join(' ')}`} {openPopover ? <IoMdArrowDropup className="icon" /> : <IoMdArrowDropdown className="icon" />}</span>
+                                <span>{userData.fullName && `Olá, ${(userData.fullName).split(" ", 1).join(' ')}`} {openPopover ? <IoMdArrowDropup className="icon" /> : <IoMdArrowDropdown className="icon" />}</span>
                             </button>
                             {openPopover &&
                                 <DivPopover />}

@@ -48,4 +48,17 @@ export async function RegisterUserPisique(data) {
     }
 }
 
-export default { GetDataUser, RegisterUserPisique, RegisterUser }
+export async function getAvatars() {
+    let avatars = await firebase.firestore().collection('MidiaProjeto').get()
+
+    let listAvatars = []
+
+    avatars.forEach(book => {
+        listAvatars.push({...book.data() })
+    })
+
+    return listAvatars[0]
+
+}
+
+export default { GetDataUser, RegisterUserPisique, RegisterUser, getAvatars }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './assets/styles/global.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Listagem from './pages/Listagem';
 import RegisterPsi from './pages/Cadastro/registerPsi';
@@ -11,19 +11,23 @@ import Choices from './pages/Choices';
 import Dashboard from './pages/Dashboard';
 import { AuthProvider } from './auth/AuthContext';
 import { RotaPrivada } from './auth/RotaPrivada';
+import NotFound from './pages/404';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Route exact path="/" component={Inicio} />
-        <RotaPrivada exact path="/register-psi" component={RegisterPsi} />
-        <RotaPrivada exact path="/register-user" component={RegisterUser} />
-        <RotaPrivada exact path="/register-acad" component={RegisterAcad} />
-        <RotaPrivada exact path="/register-post" component={RegisterPost} />
-        <RotaPrivada exact path="/dashboard" component={Dashboard} />
-        <RotaPrivada exact path="/atendimento" component={Listagem} />
-        <RotaPrivada exact path="/choice" component={Choices} />
+        <Switch>
+          <Route exact path="/" component={Inicio} />
+          <RotaPrivada exact path="/register-psi" component={RegisterPsi} />
+          <RotaPrivada exact path="/register-user" component={RegisterUser} />
+          <RotaPrivada exact path="/register-acad" component={RegisterAcad} />
+          <RotaPrivada exact path="/register-post" component={RegisterPost} />
+          <RotaPrivada exact path="/dashboard" component={Dashboard} />
+          <RotaPrivada exact path="/atendimento" component={Listagem} />
+          <RotaPrivada exact path="/choice" component={Choices} />
+          <Route component={NotFound} />
+        </Switch>
       </BrowserRouter>
     </AuthProvider>
   )
