@@ -44,6 +44,13 @@
     width: 80%;
 }
 
+.container-dashboard nav ul #container-org .link{
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
 .container-dashboard nav ul li {
     display: flex;
     color: #a9aff0;

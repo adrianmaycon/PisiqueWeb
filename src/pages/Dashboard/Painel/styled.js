@@ -4,6 +4,7 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background-color: #f5f8fb;
 
     #sectionPrimary{
         width: 100%;

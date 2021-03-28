@@ -23,7 +23,7 @@ function App() {
           <RotaPrivada exact path="/register-user" component={RegisterUser} />
           <RotaPrivada exact path="/register-acad" component={RegisterAcad} />
           <RotaPrivada exact path="/register-post" component={RegisterPost} />
-          <RotaPrivada exact path="/dashboard" component={Dashboard} />
+          <RotaPrivada exact path="/dashboard*" component={Dashboard} />
           <RotaPrivada exact path="/atendimento" component={Listagem} />
           <RotaPrivada exact path="/choice" component={Choices} />
           <Route component={NotFound} />

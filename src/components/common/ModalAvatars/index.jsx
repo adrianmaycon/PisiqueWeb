@@ -35,8 +35,8 @@ function ModalAvatars() {
                     <label htmlFor="m">Masculino</label>
                     <input checked={type === "f" ? true : false} type="radio" id="f" name="gender" value="f" onChange={(e) => setType(e.target.value)} />
                     <label htmlFor="f">Feminino</label>
-                    <input checked={type === "o" ? true : false} type="radio" id="o" name="gender" value="o" onChange={(e) => setType(e.target.value)} />
-                    <label htmlFor="o">Outro</label>
+                    {/* <input checked={type === "o" ? true : false} type="radio" id="o" name="gender" value="o" onChange={(e) => setType(e.target.value)} />
+                    <label htmlFor="o">Outro</label> */}
                 </form>
 
                 <main>
