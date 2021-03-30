@@ -4,9 +4,8 @@ import Cookies from 'universal-cookie';
 
 import { Modal, Input } from "../../assets/styles/components";
 
-import { FaTimes, FaExclamationCircle, FaBars } from "react-icons/fa";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import './styles.css';
+import { FaTimes, FaExclamationCircle } from "react-icons/fa";
+import { IoMdArrowDropdown, IoMdArrowDropup, IoIosMenu } from "react-icons/io";
 
 import UsersService from '../../services/UsersService';
 
@@ -14,6 +13,9 @@ import { authConfig } from '../../auth/config';
 import { AuthContext } from '../../auth/AuthContext';
 
 import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.svg';
+
+import { Container, ButtonsContainer, LinksContainer, MenuContainer, Logo } from './styled';
 
 const NavBar = withRouter(({ openProps, close, history }) => {
     const [logado, setLogado] = useState(false);
@@ -32,6 +34,8 @@ const NavBar = withRouter(({ openProps, close, history }) => {
     const [erroConfirmPassword, setErroConfirmPassword] = useState(false);
     const [errorMessageLogin, setErrorMessageLogin] = useState(false);
     const [errorMessageCreate, setErrorMessageCreate] = useState(false);
+
+    const [activeShadow, setActiveShadow] = useState(false);
 
     const [message, setMessage] = useState(false);
 
@@ -61,6 +65,19 @@ const NavBar = withRouter(({ openProps, close, history }) => {
         }
 
     }, [usuario, history, openProps])
+
+    let doc = document.documentElement
+
+    window.addEventListener('scroll', function () {
+        let value = parseInt(100 * doc.scrollTop / (doc.scrollHeight - doc.clientHeight))
+
+        if (value === 0) {
+            setActiveShadow(false)
+        } else {
+            setActiveShadow(true)
+        }
+        // console.log(value);
+    })
 
     function visibleBox(value) {
         if (value === 1) {
@@ -335,31 +352,44 @@ const NavBar = withRouter(({ openProps, close, history }) => {
     )
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>
+        <Container shadowOn={activeShadow}>
             <Access />
             <div id="app-bar" >
-                <nav>
-                    <div id="menu">
-                        <Link to="/">Página inicial</ Link>
-                        <Link to="/">Blog</ Link>
-                        <Link to="/">Sobre nós</ Link>
-                        <Link to="/">Contato</ Link>
+                <nav className="box-container">
+                    <IoIosMenu className="icon-menu" onClick={() => alert('Aloo')} />
+
+                    <div style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>
+                        <Logo src={logo} alt="" />
                     </div>
-                    <FaBars className="icon-menu" onClick={() => alert('Aloo')} />
+
+                    <MenuContainer>
+                        <Link to="/" className="link">Inicial</ Link>
+                        <Link to="/" className="link">Sobre nós</ Link>
+                        <Link to="/" className="link">Blog</ Link>
+                        <Link to="/" className="link">Tutoriais</ Link>
+                        <Link to="/" className="link" style={{ marginRight: 0 }}>Contato</ Link>
+                    </MenuContainer>
+
+
                     {logado ?
                         <div>
-                            <button type="button" className="click" onClick={() => setOpenPopover(!openPopover)}>
-                                <span>{userData.fullName && `Olá, ${(userData.fullName).split(" ", 1).join(' ')}`} {openPopover ? <IoMdArrowDropup className="icon" /> : <IoMdArrowDropdown className="icon" />}</span>
-                            </button>
+                            <LinksContainer onClick={() => setOpenPopover(!openPopover)}>
+                                <img className="icon-avatar" src={userData.avatar || 'https://firebasestorage.googleapis.com/v0/b/pisiqueapp.appspot.com/o/avatars%2Fuser.png?alt=media&token=120e160a-29e9-4fe4-82ad-830598d37e75'} alt="" />
+                                <span className="nome">{userData.fullName && `${(userData.fullName).split(" ", 2).join(' ')}`}</span>
+                                {openPopover ? <IoMdArrowDropup className="icon" /> : <IoMdArrowDropdown className="icon" />}
+                            </LinksContainer>
                             {openPopover &&
                                 <DivPopover />}
                         </div>
                         :
-                        <button type="button" id="login" onClick={() => setOpen(true)}>Entrar no sistema</button>
+                        <ButtonsContainer>
+                            <h1 className="signIn" onClick={() => { setOpen(true); visibleBox(1) }}>Entrar</h1>
+                            <button type="button" className="signUp" onClick={() => { setOpen(true); visibleBox(2) }}>Inscrever-se</button>
+                        </ButtonsContainer>
                     }
                 </nav>
             </div>
-        </div>
+        </Container>
     )
 })
 
