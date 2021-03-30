@@ -8,6 +8,57 @@ export const Container = styled.div`
     background-color: #29348e;
 `;
 
+export const Divider = styled.div`
+    width: 2px;
+    height: 100px;
+    background-color: #eaeaea;
+    margin-top: -50px;
+    z-index: 1;
+`;
+
+export const Title = styled.h1`
+    font-family: 'Lato';
+    font-size: 5rem;
+    line-height: 6rem;
+    font-weight: 600;
+    color: ${p => p.color ? p.color : ' #191919'};
+    text-align: center;
+
+    @media (max-width: 1000px) {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+
+    @media (max-width: 580px) {
+        font-size: 3rem;
+        line-height: 3.5rem;
+    }
+
+    @media (max-width: 430px) {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+`;
+
+export const Description = styled.p`
+    color: ${p => p.color ? p.color : ' #fff'};
+    margin-top: 40px;
+    font-weight: 300;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    font-size: 2.2rem;
+
+    @media (max-width: 1000px) {
+        margin-top: 30px;
+        font-size: 1.8rem;
+    }
+
+    @media (max-width: 450px) {
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
+`;
+
 export const BoxContainer = styled.div`
     width: 100%;
     min-height: 600px;
@@ -24,6 +75,7 @@ export const BoxContainer = styled.div`
         max-width: 860px;
         min-height: 400px;
         padding: 60px 0;
+        padding-bottom: 100px;
         text-align: center;
 
         span,
@@ -47,14 +99,6 @@ export const BoxContainer = styled.div`
             -webkit-text-fill-color: transparent;
         }
 
-        p {
-            color: #fff;
-            margin-top: 40px;
-            font-weight: 300;
-            font-family: 'Inter', sans-serif;
-            font-size: 2.2rem;
-        }
-
         .container-video {
             width: 90%;
             display: flex;
@@ -66,6 +110,7 @@ export const BoxContainer = styled.div`
                 width: 100%;
                 border-radius: 0.6rem;
                 box-shadow: 0 0 0.6em rgb(51, 51, 51, 0.5);
+                pointer-events: none;
                 user-select: none;
                 -moz-user-select: none;
                 -webkit-user-drag: none;
@@ -113,10 +158,6 @@ export const BoxContainer = styled.div`
             span {
                 font-size: 5.5rem;
             }
-            p {
-                margin-top: 30px;
-                font-size: 1.8rem;
-            }
         }
     }
 
@@ -153,10 +194,6 @@ export const BoxContainer = styled.div`
             span {
                 font-size: 2.2rem;
                 line-height: 3.2rem;
-            }
-            p {
-                margin-top: 20px;
-                font-size: 1.5rem;
             }
 
             .container-video {
