@@ -76,7 +76,7 @@ export const BoxContainer = styled.div`
             .button-video {
                 display: flex;
                 align-items: center;
-                min-width: 278px;
+                min-width: 265px;
                 height: 56px;
                 cursor: pointer;
                 background-color: #fff;
@@ -99,6 +99,79 @@ export const BoxContainer = styled.div`
                 :hover {
                     #icon-play {
                         color: #0064f3;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        header {
+            h1 {
+                font-size: 5rem;
+            }
+            span {
+                font-size: 5.5rem;
+            }
+            p {
+                margin-top: 30px;
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    @media (max-width: 750px) {
+        header {
+            h1 {
+                font-size: 4rem;
+            }
+            span {
+                font-size: 4.5rem;
+            }
+        }
+    }
+
+    @media (max-width: 560px) {
+        header {
+            h1 {
+                font-size: 3rem;
+                line-height: 4rem;
+            }
+            span {
+                font-size: 3.5rem;
+                line-height: 4.5rem;
+            }
+        }
+    }
+
+    @media (max-width: 450px) {
+        header {
+            h1 {
+                font-size: 2rem;
+                line-height: 3rem;
+            }
+            span {
+                font-size: 2.2rem;
+                line-height: 3.2rem;
+            }
+            p {
+                margin-top: 20px;
+                font-size: 1.5rem;
+            }
+
+            .container-video {
+                .button-video {
+                    min-width: 225px;
+                    height: 44px;
+                    margin-top: -22px;
+                    padding: 5px 15px;
+
+                    #icon-play {
+                        font-size: 2rem;
+                    }
+
+                    h4 {
+                        font-size: 1.4rem;
                     }
                 }
             }

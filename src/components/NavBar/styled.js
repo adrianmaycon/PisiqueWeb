@@ -449,7 +449,6 @@ export const ButtonsContainer = styled.div`
             align-items: center;
             justify-content: center;
             border: 2px solid #26c0fe;
-            padding: 5px;
             background-color: #26c0fe;
             border-radius: 3px;
             font-weight: 500;
@@ -460,6 +459,7 @@ export const ButtonsContainer = styled.div`
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             box-shadow: 0 0 0.2em rgb(51, 51, 51, 0.5);
+            margin-right: 0;
         }
 
         .signUp{

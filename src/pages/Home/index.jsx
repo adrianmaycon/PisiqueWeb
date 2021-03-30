@@ -24,7 +24,7 @@ function Home() {
 
                         <div className="button-video">
                             <IoPlayCircleOutline id="icon-play"/>
-                            <h4>Conheça mais sobre nós</h4>
+                            <h4>Saiba mais sobre a gente</h4>
                         </div>
                     </div>
                 </header>
