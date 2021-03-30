@@ -1,4 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import BaseAnimation from '../../components/BaseAnimation';
+
+const FadeInAnimation = keyframes`  
+    from { 
+        opacity: 0;
+    }
+    to { 
+        opacity: 1;
+    }
+`;
+
+export const FadeIn = styled(BaseAnimation)`
+  animation-name: ${FadeInAnimation};
+`;
 
 export const Container = styled.div`
     max-width: 100vw;
