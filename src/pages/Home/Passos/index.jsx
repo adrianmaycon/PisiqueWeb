@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styled';
 import { Divider, Title, Description } from '../styled';
-import banner from '../../../assets/images/banner-passos.png';
+import banner from '../../../assets/images/banner-passos2.png';
 
 function Passos() {
 

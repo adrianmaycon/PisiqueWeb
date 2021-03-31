@@ -5,13 +5,16 @@ import { IoPlayCircleOutline } from "react-icons/io5";
 import { Container, BoxContainer, Description, FadeIn } from './styled';
 import videobanner from '../../assets/images/back-video.jpg';
 import Passos from './Passos';
+import ModalVideo from './ModalVideo';
 
 
 function Home() {
     const [open, setOpen] = useState(false);
+    const [openVideo, setOpenVideo] = useState(false)
 
     return (
         <Container>
+            {openVideo && <ModalVideo close={() => setOpenVideo(false)} />}
             <NavBar openProps={open} close={() => setOpen(false)} />
 
             <BoxContainer>
@@ -30,7 +33,7 @@ function Home() {
                         </FadeIn>
 
                         <FadeIn duration="1s" delay="0.8s">
-                            <div className="button-video">
+                            <div className="button-video" onClick={() => setOpenVideo(true)}>
                                 <IoPlayCircleOutline id="icon-play" />
                                 <h4>Saiba mais sobre a gente</h4>
                             </div>
