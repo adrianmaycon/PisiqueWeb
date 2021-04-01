@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import PageHeader from '../../components/common/PageHeader';
-import Textarea from '../../components/common/Textarea';
-import Input from '../../components/common/Input';
-import Editor from '../../components/common/EditorText';
-import warningIcon from '../../assets/images/icons/warning.svg';
+import PageHeader from '../../../components/common/PageHeader';
+import Textarea from '../../../components/common/Textarea';
+import Input from '../../../components/common/Input';
+import Editor from '../../../components/common/EditorText';
+import warningIcon from '../../../assets/images/icons/warning.svg';
 
 import './styles.css';
 

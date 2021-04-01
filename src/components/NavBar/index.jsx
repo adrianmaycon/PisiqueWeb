@@ -365,7 +365,7 @@ const NavBar = withRouter(({ openProps, close, history }) => {
                     <MenuContainer>
                         <Link to="/" className="link">Inicial</ Link>
                         <Link to="/" className="link">Sobre nós</ Link>
-                        <Link to="/" className="link">Blog</ Link>
+                        <Link to="/blog" className="link">Blog</ Link>
                         <Link to="/" className="link">Tutoriais</ Link>
                         <Link to="/" className="link" style={{ marginRight: 0 }}>Contato</ Link>
                     </MenuContainer>

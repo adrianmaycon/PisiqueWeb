@@ -22,8 +22,21 @@ export const Container = styled.div`
     background-color: #29348e;
 `;
 
+export const Button = styled.button`
+    padding: 10px 30px;
+    margin: 0px 5px;
+    border-radius: 0.5rem;
+    background-color: #123;
+    border: 1px solid #123;
+`;
+
+export const Row = styled.div`
+    display: flex;
+    margin-top: ${p => p.marginTop};
+`;
+
 export const Divider = styled.div`
-    width: 2px;
+    width: 3px;
     height: 100px;
     background-color: #eaeaea;
     margin-top: -50px;
@@ -107,10 +120,11 @@ export const BoxContainer = styled.div`
             font-family: 'Kiwi Maru', serif;
             font-weight: 900;
             letter-spacing: 0.8rem;
-            background: -webkit-linear-gradient(left, #26c0fe 0%, #fff 100%);
+            color: #c4c7ff;
+            /* background: -webkit-linear-gradient(left, #26c0fe 0%, #fff 100%);
             background: linear-gradient(left, #26c0fe 0%, #fff 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent; */
         }
 
         .container-video {
@@ -140,7 +154,7 @@ export const BoxContainer = styled.div`
                 cursor: pointer;
                 background-color: #fff;
                 border-radius: 5rem;
-                margin-top: -28px;
+                margin-top: -35px;
                 padding: 15px;
 
                 #icon-play {

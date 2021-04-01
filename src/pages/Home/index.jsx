@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import NavBar from '../../components/NavBar';
 
 import { IoPlayCircleOutline } from "react-icons/io5";
-import { Container, BoxContainer, Description, FadeIn } from './styled';
+import { Container, BoxContainer, Description, FadeIn, /**Button, Row */ } from './styled';
 import videobanner from '../../assets/images/back-video.jpg';
-import Passos from './Passos';
+// import Passos from './Passos';
 import ModalVideo from './ModalVideo';
 
 
@@ -24,8 +24,13 @@ function Home() {
                     </FadeIn>
 
                     <FadeIn duration="0.6s" delay="0.4s">
-                        <Description>Todos unidos em um só lugar, onde possa aprender, ensinar e assima de tudo ter uma relação saudável.</Description>
+                        <Description>Todos unidos em um só lugar, para aprender, ensinar e assima de tudo ter uma relação saudável.</Description>
                     </FadeIn>
+
+                    {/* <Row marginTop="30px">
+                        <Button type="button">Botão 01</Button>
+                        <Button type="button">Botão 01</Button>
+                    </Row> */}
 
                     <div className="container-video">
                         <FadeIn duration="0.8s" delay="0.6s">
@@ -41,7 +46,7 @@ function Home() {
                     </div>
                 </header>
 
-                <Passos />
+                {/* <Passos /> */}
 
             </BoxContainer>
         </Container>
