@@ -136,6 +136,7 @@ export const BoxContainer = styled.div`
             .video {
                 margin-top: 60px;
                 width: 100%;
+                height: auto;
                 border-radius: 0.6rem;
                 box-shadow: 0 0 0.6em rgb(51, 51, 51, 0.5);
                 pointer-events: none;

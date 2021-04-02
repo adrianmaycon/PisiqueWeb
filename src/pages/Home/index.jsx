@@ -38,7 +38,7 @@ function Home() {
                         </FadeIn>
 
                         <FadeIn duration="1s" delay="0.8s">
-                            <div className="button-video" onClick={() => setOpenVideo(true)}>
+                            <div className="button-video" onClick={() => setOpenVideo(true)} title="Saiba mais sobre a gente">
                                 <IoPlayCircleOutline id="icon-play" />
                                 <h4>Saiba mais sobre a gente</h4>
                             </div>

@@ -340,6 +340,7 @@ export const Container = styled.div`
 
 export const Logo = styled.img`
     height: 30px;
+    width: auto;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
