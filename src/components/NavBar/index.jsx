@@ -14,10 +14,11 @@ import { AuthContext } from '../../auth/AuthContext';
 
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
+import logoCor from '../../assets/images/logo-cor.svg';
 
 import { Container, ButtonsContainer, LinksContainer, MenuContainer, Logo } from './styled';
 
-const NavBar = withRouter(({ openProps, close, history }) => {
+const NavBar = withRouter(({ openProps, close, history, simple }) => {
     const [logado, setLogado] = useState(false);
 
     const [conection, setConection] = useState(true);
@@ -67,6 +68,8 @@ const NavBar = withRouter(({ openProps, close, history }) => {
     }, [usuario, history, openProps])
 
     let doc = document.documentElement
+
+    console.log(simple);
 
     window.addEventListener('scroll', function () {
         let value = parseInt(100 * doc.scrollTop / (doc.scrollHeight - doc.clientHeight))
@@ -352,17 +355,17 @@ const NavBar = withRouter(({ openProps, close, history }) => {
     )
 
     return (
-        <Container shadowOn={activeShadow}>
+        <Container shadowOn={activeShadow} simple={simple}>
             <Access />
             <div id="app-bar" >
                 <nav className="box-container">
                     <IoIosMenu className="icon-menu" onClick={() => alert('Aloo')} />
 
                     <div style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>
-                        <Logo src={logo} alt="" />
+                        <Logo src={simple ? logoCor : logo} alt="" />
                     </div>
 
-                    <MenuContainer>
+                    <MenuContainer simple={simple}>
                         <Link to="/" className="link">Inicial</ Link>
                         <Link to="/" className="link">Sobre nós</ Link>
                         <Link to="/blog" className="link">Blog</ Link>
@@ -382,7 +385,7 @@ const NavBar = withRouter(({ openProps, close, history }) => {
                                 <DivPopover />}
                         </div>
                         :
-                        <ButtonsContainer>
+                        <ButtonsContainer simple={simple}>
                             <h1 className="signIn" onClick={() => { setOpen(true); visibleBox(1) }}>Entrar</h1>
                             <button type="button" className="signUp" onClick={() => { setOpen(true); visibleBox(2) }}>Inscrever-se</button>
                         </ButtonsContainer>

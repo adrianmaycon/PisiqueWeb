@@ -8,6 +8,7 @@ function Blog() {
     return (
         <div>
             <NavBar
+                simple
                 openProps={open}
                 close={() => setOpen(false)}
             />

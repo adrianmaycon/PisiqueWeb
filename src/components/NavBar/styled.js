@@ -14,7 +14,7 @@ export const Container = styled.div`
         position: fixed;
         width: 100vw;
         z-index: 1000;
-        background-color: #29348e;
+        background-color: ${p => p.simple ? '#fff' : '#29348e'};
         transition: 0.5s;
         box-shadow: ${p => p.shadowOn ? '0 0 0.8em rgb(51, 51, 51, 0.5)' : 'none'};
         opacity: ${p => p.shadowOn ? '0.95' : '1'};
@@ -356,7 +356,7 @@ export const MenuContainer = styled.div`
     /* background-color: #eee; */
 
     .link {
-        color: #fff;
+        color: ${p => p.simple ? '#666' : '#fff'};
         margin-right: 40px;
         font-family: 'Inter', sans-serif;
         letter-spacing: 0.2rem;
@@ -418,7 +418,7 @@ export const ButtonsContainer = styled.div`
     align-items: center;
 
     .signIn {
-        color: #fff;
+        color: ${p => p.simple ? '#666' : '#fff'};
         font-family: 'Inter', sans-serif;
         font-weight: 400;
         font-size: 2rem;
@@ -430,12 +430,12 @@ export const ButtonsContainer = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid #26c0fe;
+        border: 2px solid ${p => p.simple ? '#191919' : '#26c0fe'};
         padding: 5px;
-        background-color: #26c0fe;
+        background-color: ${p => p.simple ? '#191919' : '#26c0fe'};
         border-radius: 3px;
         padding: 0.5rem 1.2rem;
-        color: #000;
+        color: ${p => p.simple ? '#eaeaea' : '#000'};
         font-size: 1.8rem;
         line-height: 26px;
         font-family: 'Inter', sans-serif;
@@ -448,12 +448,12 @@ export const ButtonsContainer = styled.div`
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #26c0fe;
-            background-color: #26c0fe;
+            border: 2px solid ${p => p.simple ? '#191919' : '#26c0fe'};
+            background-color: ${p => p.simple ? '#191919' : '#26c0fe'};
             border-radius: 3px;
             font-weight: 500;
             padding: 0.5rem 1.2rem;
-            color: #000;
+            color: ${p => p.simple ? '#eaeaea' : '#000'};
             font-size: 1.8rem;
             line-height: 26px;
             font-family: 'Inter', sans-serif;
