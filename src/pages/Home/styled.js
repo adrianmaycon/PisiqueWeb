@@ -15,11 +15,31 @@ export const FadeIn = styled(BaseAnimation)`
 `;
 
 export const Container = styled.div`
-    max-width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
     background-color: #29348e;
+
+    .container-box {
+        /* position: absolute; */
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        /* overflow: auto; */
+        /* z-index: 1; */
+        /* background-color: transparent; */
+    }
+
+    .background-lib {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+    }
 `;
 
 export const Button = styled.button`
@@ -88,11 +108,9 @@ export const Description = styled.p`
 
 export const BoxContainer = styled.div`
     width: 100%;
-    min-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #29348e;
 
     header {
         display: flex;
@@ -101,8 +119,7 @@ export const BoxContainer = styled.div`
         width: 90%;
         max-width: 860px;
         min-height: 400px;
-        padding: 60px 0;
-        padding-bottom: 100px;
+        padding: 20px 0;
         text-align: center;
 
         span,
@@ -177,10 +194,6 @@ export const BoxContainer = styled.div`
                 }
             }
         }
-    }
-
-    @media (min-width: 900px) {
-        min-height: 100vh;
     }
 
     @media (max-width: 1000px) {

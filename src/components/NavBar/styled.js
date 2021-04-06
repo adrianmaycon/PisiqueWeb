@@ -14,7 +14,7 @@ export const Container = styled.div`
         position: fixed;
         width: 100vw;
         z-index: 1000;
-        background-color: ${p => p.simple ? '#fff' : '#29348e'};
+        background-color: ${p =>  !p.shadowOn ? 'transparent' : p.simple ? '#fff' : '#29348e'};
         transition: 0.5s;
         box-shadow: ${p => p.shadowOn ? '0 0 0.8em rgb(51, 51, 51, 0.5)' : 'none'};
         opacity: ${p => p.shadowOn ? '0.95' : '1'};
