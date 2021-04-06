@@ -26,6 +26,9 @@
     --color-button-hover: #FF8E40;
     --color-text-error: #d21a07;
     --color-text-success: #00bc22;
+
+    --font-publi-kiwi: 'Kiwi Maru', serif;
+    --font-text-inter: 'Inter', sans-serif;
 }
 
 * {

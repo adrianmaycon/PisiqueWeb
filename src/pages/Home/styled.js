@@ -71,7 +71,7 @@ export const Description = styled.p`
     color: ${p => p.color ? p.color : ' #fff'};
     margin-top: 40px;
     font-weight: 300;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-text-inter);
     text-align: center;
     font-size: 2.2rem;
 
@@ -110,14 +110,14 @@ export const BoxContainer = styled.div`
             font-size: 7rem;
             font-weight: 600;
             letter-spacing: 0.5rem;
-            font-family: 'Kiwi Maru', serif;
+            font-family: var(--font-publi-kiwi);
             color: #fff;
         }
 
         span {
             font-size: 7rem;
             line-height: 10rem;
-            font-family: 'Kiwi Maru', serif;
+            font-family: var(--font-publi-kiwi);
             font-weight: 900;
             letter-spacing: 0.8rem;
             color: #c4c7ff;
@@ -165,7 +165,7 @@ export const BoxContainer = styled.div`
 
                 h4 {
                     margin-left: 8px;
-                    font-family: 'Inter', sans-serif;
+                    font-family: var(--font-text-inter);
                     font-weight: 500;
                     color: #161616;
                 }
@@ -177,6 +177,10 @@ export const BoxContainer = styled.div`
                 }
             }
         }
+    }
+
+    @media (min-width: 900px) {
+        min-height: 100vh;
     }
 
     @media (max-width: 1000px) {

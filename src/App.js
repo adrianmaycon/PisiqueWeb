@@ -9,6 +9,7 @@ import RegisterAcad from './pages/Cadastro/registerAcad';
 import RegisterPost from './pages/Cadastro/registerPost';
 import Blog from './pages/Blog';
 import Choices from './pages/Choices';
+import Sobre from './pages/Sobre';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import { AuthProvider } from './auth/AuthContext';
@@ -22,7 +23,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/blog" component={Blog} />
-          {/* <Route exact path="/home" component={Home} /> */}
+          <Route exact path="/sobre" component={Sobre} />
           <RotaPrivada exact path="/register-psi" component={RegisterPsi} />
           <RotaPrivada exact path="/register-user" component={RegisterUser} />
           <RotaPrivada exact path="/register-acad" component={RegisterAcad} />

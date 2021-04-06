@@ -43,10 +43,6 @@ export const Container = styled.div`
         width: 100%;
     }
 
-    nav .icon-menu{
-        display: none;
-    }
-
     nav a {
         font-size: 2rem;
         text-decoration:none;
@@ -221,13 +217,6 @@ export const Container = styled.div`
         .box-container {
             height: 60px;
         }
-
-        nav .icon-menu {
-            display: flex;
-            color: #fff;
-            font-size: 4rem;
-            cursor: pointer;
-        }
         
     }
 
@@ -359,7 +348,7 @@ export const MenuContainer = styled.div`
     .link {
         color: ${p => p.simple ? '#666' : '#fff'};
         margin-right: 40px;
-        font-family: 'Inter', sans-serif;
+        font-family: var(--font-text-inter);
         letter-spacing: 0.2rem;
         font-size: 1.6rem;
         line-height: 1.8rem;
@@ -414,13 +403,27 @@ export const LinksContainer = styled.div`
     }
 `;
 
+export const MenuIcon = styled.div`
+    display: none;
+
+    @media (max-width: 850px) {
+        display: flex;
+
+        .icon-menu {
+            color: ${p => p.simple ? '#191919' : '#fff'};
+            font-size: 4rem;
+            cursor: pointer;
+        }
+    }
+`;
+
 export const ButtonsContainer = styled.div`
     display: flex;
     align-items: center;
 
     .signIn {
         color: ${p => p.simple ? '#666' : '#fff'};
-        font-family: 'Inter', sans-serif;
+        font-family: var(--font-text-inter);
         font-weight: 400;
         font-size: 2rem;
         margin-right: 20px;
@@ -439,7 +442,7 @@ export const ButtonsContainer = styled.div`
         color: ${p => p.simple ? '#eaeaea' : '#000'};
         font-size: 1.8rem;
         line-height: 26px;
-        font-family: 'Inter', sans-serif;
+        font-family: var(--font-text-inter);
         cursor: pointer;
         box-shadow: 0 0 0.2em rgb(51, 51, 51, 0.5);
     }
@@ -457,7 +460,7 @@ export const ButtonsContainer = styled.div`
             color: ${p => p.simple ? '#eaeaea' : '#000'};
             font-size: 1.8rem;
             line-height: 26px;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-text-inter);
             cursor: pointer;
             box-shadow: 0 0 0.2em rgb(51, 51, 51, 0.5);
             margin-right: 0;
