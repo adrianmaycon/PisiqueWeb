@@ -20,7 +20,7 @@ function Sobre() {
                     <img className="image-banner" src={videobanner} alt="" />
 
                     <div className="cont-text" >
-                        <h4>A Plataforma Pisiquê nasceu junto com o Instituto Pisique, vimos a real necessidade de criar algo que seje viável para todos aqueles que necessitam de apoio pisicologico e emocional, sendo um meio entre o paciente e o profissional.</h4>
+                        <h4>A Plataforma Pisiquê nasceu com o Instituto Pisique, vimos a real necessidade de criar algo que seje viável para todos que necessitam de apoio pisicologico e emocional.</h4>
                         <p>A Plataforma Pisiquê nasceu junto com o Instituto Pisique, vimos a real necessidade de criar algo que seje viável para todos aqueles que necessitam de apoio pisicologico e emocional, sendo um meio entre o paciente e o profissional. A Plataforma Pisiquê nasceu junto com o Instituto Pisique, vimos a real necessidade de criar algo que seje viável para todos aqueles que necessitam de apoio pisicologico e emocional, sendo um meio entre o paciente e o profissional. A Plataforma Pisiquê nasceu junto com o Instituto Pisique, vimos a real necessidade de criar algo que seje viável para todos aqueles que necessitam de apoio pisicologico e emocional, sendo um meio entre o paciente e o profissional.</p>
                     </div>
                 </div>

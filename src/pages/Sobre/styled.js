@@ -34,14 +34,15 @@ export const Container = styled.div`
                 width: 100%;
 
                 h4 {
-                    font-size: 1.7rem;
-                    /* font-family: var(--font-publi-kiwi); */
+                    font-size: 2rem;
+                    font-family: var(--font-text-inter);
                     color: #212121;
                     margin-bottom: 20px;
                 }
-
+                
                 p {
-                    font-size: 1.6rem;
+                    font-family: var(--font-text-inter);
+                    font-size: 1.7rem;
                     color: #9e9e9e;
                 }
             }
