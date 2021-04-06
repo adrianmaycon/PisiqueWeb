@@ -13,7 +13,6 @@ function Home() {
     const [open, setOpen] = useState(false);
     const [openVideo, setOpenVideo] = useState(false)
 
-    console.log(window.innerWidth);
     return (
         <Container>
             {openVideo && <ModalVideo close={() => setOpenVideo(false)} />}
