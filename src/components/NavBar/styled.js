@@ -348,7 +348,7 @@ export const MenuContainer = styled.div`
     .link {
         color: ${p => p.simple ? '#666' : '#fff'};
         margin-right: 40px;
-        font-family: var(--font-text-inter);
+        font-family: var(--font-text);
         letter-spacing: 0.2rem;
         font-size: 1.6rem;
         line-height: 1.8rem;
@@ -423,7 +423,7 @@ export const ButtonsContainer = styled.div`
 
     .signIn {
         color: ${p => p.simple ? '#666' : '#fff'};
-        font-family: var(--font-text-inter);
+        font-family: var(--font-text);
         font-weight: 400;
         font-size: 2rem;
         margin-right: 20px;
@@ -442,7 +442,7 @@ export const ButtonsContainer = styled.div`
         color: ${p => p.simple ? '#eaeaea' : '#000'};
         font-size: 1.8rem;
         line-height: 26px;
-        font-family: var(--font-text-inter);
+        font-family: var(--font-text);
         cursor: pointer;
         box-shadow: 0 0 0.2em rgb(51, 51, 51, 0.5);
     }
@@ -460,7 +460,6 @@ export const ButtonsContainer = styled.div`
             color: ${p => p.simple ? '#eaeaea' : '#000'};
             font-size: 1.8rem;
             line-height: 26px;
-            font-family: var(--font-text-inter);
             cursor: pointer;
             box-shadow: 0 0 0.2em rgb(51, 51, 51, 0.5);
             margin-right: 0;

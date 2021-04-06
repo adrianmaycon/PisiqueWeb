@@ -15,11 +15,11 @@ export const Container = styled.div`
     header {
         width: 90%;
         min-height: 300px;
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 60px 0px;
 
         .title {
-            font-family: var(--font-text-inter);
+            font-family: var(--font-text);
             margin-bottom: 30px;
             font-size: 3rem;
             color: #333;
