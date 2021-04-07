@@ -8,6 +8,7 @@ import videobanner from '../../assets/images/back-video.jpg';
 import ModalVideo from './ModalVideo';
 // import ParticleComponent from '../../components/backgrounds/ParticleComponent';
 import Particles from "react-particles-js";
+import CookiesPage from '../../components/Cookies';
 
 function Home() {
     const [open, setOpen] = useState(false);
@@ -16,7 +17,8 @@ function Home() {
     return (
         <Container>
             {openVideo && <ModalVideo close={() => setOpenVideo(false)} />}
-
+            <CookiesPage />
+            
             <Particles
                 className="background-lib"
                 params={{
@@ -53,7 +55,7 @@ function Home() {
                         </FadeIn>
 
                         <FadeIn duration="0.6s" delay="0.4s">
-                            <Description>Todos unidos em um só lugar, para aprender, ensinar e assima de tudo ter uma relação saudável.</Description>
+                            <Description>Quem olha para fora sonha, quem olha para dentro desperta.</Description>
                         </FadeIn>
 
                         {/* <Row marginTop="30px">

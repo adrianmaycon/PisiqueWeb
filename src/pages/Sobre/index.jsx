@@ -35,6 +35,7 @@ function Sobre() {
                         </FadeIn>
                     </div>
                 </div>
+
             </header>
         </Container>
     );
