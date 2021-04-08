@@ -104,6 +104,11 @@ export const Description = styled.p`
         margin-top: 20px;
         font-size: 1.5rem;
     }
+
+    @media (max-height: 900px) {
+        font-size: 1.8rem;
+        margin-top: 20px;
+    }
 `;
 
 export const BoxContainer = styled.div`
@@ -111,7 +116,7 @@ export const BoxContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-        overflow: auto;
+    overflow: auto;
 
     header {
         display: flex;
@@ -193,6 +198,41 @@ export const BoxContainer = styled.div`
                         color: #0064f3;
                     }
                 }
+            }
+        }
+    }
+
+    @media (max-height: 810px) {
+        header {
+            .container-video {
+                .video {
+                    margin-top: 40px;
+                    width: 90%;
+                }
+            }
+        }
+    }
+
+    @media (max-height: 770px) {
+        header {
+            .container-video {
+                .video {
+                    margin-top: 20px;
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+    @media (max-height: 900px) {
+        header {
+            h1 {
+                font-size: 4rem;
+                line-height: 6rem;
+            }
+            span {
+                font-size: 4.5rem;
+                line-height: 6.5rem;
             }
         }
     }

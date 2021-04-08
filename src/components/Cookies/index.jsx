@@ -9,15 +9,15 @@ function CookiesPage() {
     const [open, setOpen] = useState(true);
 
     useEffect(() => {
-        // if(cookies.get('acceptTerms')) {
-        //     setOpen(false)
-        // } else {
-        //     setOpen(true)
-        // }
+        if(cookies.get('acceptTerms')) {
+            setOpen(false)
+        } else {
+            setOpen(true)
+        }
     }, [cookies])
 
     const acceptTerms = () => {
-        // cookies.set('acceptTerms', true, { path: '/' });
+        cookies.set('acceptTerms', true, { path: '/' });
         setOpen(false)
     }
 

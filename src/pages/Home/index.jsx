@@ -6,7 +6,6 @@ import { Container, BoxContainer, Description, FadeIn, /**Button, Row */ } from 
 import videobanner from '../../assets/images/back-video.jpg';
 // import Passos from './Passos';
 import ModalVideo from './ModalVideo';
-// import ParticleComponent from '../../components/backgrounds/ParticleComponent';
 import Particles from "react-particles-js";
 import CookiesPage from '../../components/Cookies';
 
@@ -18,7 +17,61 @@ function Home() {
         <Container>
             {openVideo && <ModalVideo close={() => setOpenVideo(false)} />}
             <CookiesPage />
-            
+
+            {/* <Particles
+                className="background-lib"
+                params={{
+                    "particles": {
+                        "number": {
+                            "value": 1000,
+                            "density": {
+                                "enable": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "speed": 4,
+                                "size_min": 0.3
+                            }
+                        },
+                        "line_linked": {
+                            "enable": false
+                        },
+                        "move": {
+                            "random": true,
+                            "speed": 1,
+                            "direction": "top",
+                            "out_mode": "out"
+                        }
+                    },
+                    "interactivity": {
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "bubble"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "repulse"
+                            }
+                        },
+                        "modes": {
+                            "bubble": {
+                                "distance": 250,
+                                "duration": 2,
+                                "size": 0,
+                                "opacity": 0
+                            },
+                            "repulse": {
+                                "distance": 400,
+                                "duration": 4
+                            }
+                        }
+                    }
+                }} /> */}
+
             <Particles
                 className="background-lib"
                 params={{
@@ -51,7 +104,7 @@ function Home() {
                 <BoxContainer>
                     <header>
                         <FadeIn duration="0.4s" delay="0.2s">
-                            <h1>Venha fazer parte da <span>Família Pisiquê</span></h1>
+                            <h1>Venha fazer parte da <br/><span>Família Pisiquê</span></h1>
                         </FadeIn>
 
                         <FadeIn duration="0.6s" delay="0.4s">
