@@ -56,7 +56,7 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
 
             UsersService.GetDataUser(usuario.email)
                 .then(user => {
-                    console.log(user)
+                    // console.log(user)
                     setUserData(user)
 
                     history.push(!user && '/choice')
