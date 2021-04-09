@@ -195,7 +195,7 @@ function Perfil() {
                             <header>
                                 <input style={{ display: 'none' }} accept="file_extension|e.g: .gif, .jpg, .jpeg, .png" id='image-avatar' type='file' onChange={(e) => onChangeImage(e)} />
                                 <div>
-                                    <IoColorPaletteOutline onClick={() => handleClick()} className="av-icon" />
+                                    <IoColorPaletteOutline onClick={() => handleClick()} className="av-icon" title="Selecionar cor de fundo" />
                                     {displayColorPicker ? <div style={popover}>
                                         <div style={cover} onClick={() => handleClose()} />
                                         <GithubPicker
