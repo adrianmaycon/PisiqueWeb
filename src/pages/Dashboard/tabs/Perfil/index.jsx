@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { SketchPicker } from 'react-color';
+import { GithubPicker } from 'react-color';
 import { IoCloudUploadOutline, IoColorPaletteOutline } from "react-icons/io5";
 import MasksService, { mCEP } from '../../../../services/masksService';
 import UsersService from '../../../../services/UsersService';
@@ -198,7 +198,7 @@ function Perfil() {
                                     <IoColorPaletteOutline onClick={() => handleClick()} className="av-icon" />
                                     {displayColorPicker ? <div style={popover}>
                                         <div style={cover} onClick={() => handleClose()} />
-                                        <SketchPicker
+                                        <GithubPicker
                                             color={colorCont}
                                             onChangeComplete={(e) => { setColorCont(e.hex) }}
                                         />
