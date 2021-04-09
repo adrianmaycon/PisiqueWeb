@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-
+import { SketchPicker } from 'react-color';
 import { IoCloudUploadOutline, IoColorPaletteOutline } from "react-icons/io5";
 import MasksService, { mCEP } from '../../../../services/masksService';
 import UsersService from '../../../../services/UsersService';
@@ -36,6 +36,9 @@ function Perfil() {
 
     const [errorCep, setErrorCep] = useState(false);
     const [checkEdit, setCheckEdit] = useState(false);
+
+    const [displayColorPicker, setDisplayColorPicker] = useState(false);
+    const [colorCont, setColorCont] = useState("#6cb8ff");
 
     const { usuario } = useContext(AuthContext);
 
@@ -155,10 +158,32 @@ function Perfil() {
 
     }
 
+    const handleClick = () => {
+        setDisplayColorPicker(!displayColorPicker)
+    };
+
+    const handleClose = () => {
+        setDisplayColorPicker(false)
+    };
+
+    const popover = {
+        position: 'absolute',
+        zIndex: '2',
+    }
+
+    const cover = {
+        position: 'fixed',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px',
+    }
+
     return (
         <>
             {/* <ModalAvatars /> */}
-            <Container>
+
+            <Container color={colorCont}>
                 <Header banner={banner} />
 
                 <Main>
@@ -169,10 +194,21 @@ function Perfil() {
                         <ContainerInfos >
                             <header>
                                 <input style={{ display: 'none' }} accept="file_extension|e.g: .gif, .jpg, .jpeg, .png" id='image-avatar' type='file' onChange={(e) => onChangeImage(e)} />
-                                <IoColorPaletteOutline className="av-icon" />
+                                <div>
+                                    <IoColorPaletteOutline onClick={() => handleClick()} className="av-icon" />
+                                    {displayColorPicker ? <div style={popover}>
+                                        <div style={cover} onClick={() => handleClose()} />
+                                        <SketchPicker
+                                            color={colorCont}
+                                            onChangeComplete={(e) => { setColorCont(e.hex) }}
+                                        />
+                                    </div> : null}
+                                </div>
                                 <Avatar title="Imagem de perfil" src={dataUser.avatar ? dataUser.avatar : avatar ? avatar : "https://firebasestorage.googleapis.com/v0/b/pisiqueapp.appspot.com/o/avatars%2Fuser.png?alt=media&token=120e160a-29e9-4fe4-82ad-830598d37e75"} alt="Imagem de Perfil" />
                                 <label title="Alterar imagem de perfil" htmlFor='image-avatar'><IoCloudUploadOutline className="up-icon" /></label>
                             </header>
+
+
 
                             <main>
                                 <form onSubmit={() => handleCreateClass}>

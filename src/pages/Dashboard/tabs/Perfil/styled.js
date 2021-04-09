@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: #6cb8ff;
+    background-color: ${p => p.color ? p.color : '#6cb8ff'};
     box-sizing: border-box;
     overflow: auto;
 `;
@@ -94,12 +94,6 @@ export const ContainerInfos = styled.div`
             padding: 10px;
             border-radius: 50%;
             transition: 0.2s;
-
-            :hover {
-                width: 60px;
-                height: 60px;
-                box-shadow: 0 0 0.8rem #eee;
-            }
         }
 
         .av-icon {
@@ -113,12 +107,6 @@ export const ContainerInfos = styled.div`
             padding: 10px;
             border-radius: 50%;
             transition: 0.2s;
-
-            :hover {
-                width: 60px;
-                height: 60px;
-                box-shadow: 0 0 0.8rem #eee;
-            }
         }
 
         @media (max-width: 380px) {
