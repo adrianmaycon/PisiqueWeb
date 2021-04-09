@@ -1,23 +1,59 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    position: fixed;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background: #ffffff;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
 
-    nav {
-        align-items: flex-start;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        width: 300px;
-        min-width: 300px;
-        background:  #29348e;
+    .row {
+        display: flex;
     }
 
-    nav ul {
+    .menu-icon {
+        display: none;
+        width: 50px;
+        height: 50px;
+        margin-top: 20px;
+        font-size: 4rem;
+        background-color: #29348e;
+        color: #fff;
+        padding: 10px;
+        border-radius: 0 1rem 1rem 0;
+        box-shadow: 0px 3px 1px #4681b7;
+        cursor: pointer;
+    }
+
+    @media (max-width: 1000px ) {
+        .row {
+            position: fixed;
+            z-index: 1000;
+        }
+
+        .menu-icon { 
+            display: flex;
+            position: relative;
+        }
+    }
+`;
+
+export const NavContainer = styled.nav`
+    display: flex;
+    align-items: flex-start;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    background:  #29348e;
+    margin-left: 0px;
+
+    ul {
         width: 100%;
         height: 100%;
         display: flex;
@@ -26,54 +62,25 @@ export const Container = styled.div`
         justify-content: space-between;
     }
 
-    nav ul .menu-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        overflow: auto;
-
-        scrollbar-width: thin;
-        scrollbar-color: #26c0fe #29348e;
-        
-
-        /* Works on Chrome, Edge, and Safari */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #29348e;
-            border-radius: 15px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #26c0fe;
-            border-radius: 20px;
-            border: 3px solid #29348e;
-        }
-    }
-
-    nav ul #logo{
+    ul #logo{
         width: 60%;
         margin: 3rem 0;
         cursor: pointer;
     }
 
-    nav ul #container-org{
+    ul #container-org{
         margin-top: 5rem;
         width: 80%;
     }
 
-    nav ul #container-org .link{
+    ul #container-org .link{
         text-decoration: none;
         margin: 0;
         padding: 0;
         background-color: #fff;
     }
 
-    nav ul li {
+    ul li {
         display: flex;
         color: #a9aff0;
         padding: 1.2rem 1rem;
@@ -88,14 +95,14 @@ export const Container = styled.div`
         transition: 0.3s;
     }
 
-    nav ul li .icon{
+    ul li .icon{
         font-size: 2rem;
         margin-right: 2rem;
         color: #535caa;
         transition: 0.3s;
     }
     
-    nav ul #select {
+    ul #select {
         font-size: 1.8rem;
         background-color: transparent;
         color: #fff;
@@ -104,13 +111,68 @@ export const Container = styled.div`
         /* font-weight: 600; */
     }
 
-    nav ul #select .icon{
+    ul #select .icon{
         color: #fff;
         font-size: 2.5rem;
     }
 
-    nav ul li {
+    ul li {
         border-radius: 1.5rem;
+    }
+
+    @media (max-width: 1000px) {
+        display: ${p => p.openNav ? 'flex' : 'none'};
+        box-shadow: 0 0 1rem #333;
+    }
+
+    @media (max-width: 400px) {
+        width: 80vw;
+    }
+
+    
+    @media (max-width: 350px ) {
+        ul li {
+            padding: 1rem 0.6rem;
+            height: 4rem;
+            font-size: 1.4rem;
+        }
+
+        ul #select {
+            font-size: 1.2rem;
+        }
+
+        ul #select .icon{
+            font-size: 2rem;
+        }
+    }
+`;
+
+export const MenuContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #26c0fe #29348e;
+        
+
+    /* Works on Chrome, Edge, and Safari */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #29348e;
+        border-radius: 15px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #26c0fe;
+        border-radius: 20px;
+        border: 3px solid #29348e;
     }
 `;
 

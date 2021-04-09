@@ -120,6 +120,30 @@ export const ContainerInfos = styled.div`
                 box-shadow: 0 0 0.8rem #eee;
             }
         }
+
+        @media (max-width: 380px) {
+            .up-icon {
+                width: 40px;
+                height: 40px;
+                margin-left: 10px;
+
+                :hover {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            .av-icon {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+
+                :hover {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
     }
 
     main {
@@ -127,8 +151,30 @@ export const ContainerInfos = styled.div`
         width: 100%;
         max-width: 74rem;
         border-radius: 2rem;
-        padding-top: 6.4rem;
         overflow: hidden;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .cont-dados {
+                padding: 0 2.4rem;
+                margin-bottom: 60px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                font-size: 2rem;
+
+                #edit-date {
+                    margin-right: 10px;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
 
         .off-mouse {
             cursor: no-drop;
@@ -167,9 +213,6 @@ export const ContainerInfos = styled.div`
         fieldset {
             border: 0;
             padding: 0 2.4rem;
-        }
-
-        fieldset {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -215,6 +258,7 @@ export const ContainerInfos = styled.div`
         }
 
         footer {
+            width: 100%;
             padding: 4rem 2.4rem;
             background: var(--color-box-footer);
             border-top: 1px solid var(--color-line-in-white);
@@ -264,8 +308,22 @@ export const ContainerInfos = styled.div`
             }
         }
 
+        @media (max-width: 400px) {
+            .div-end-rua,
+            .div-date {
+                grid-template-columns: 4fr;
+            }
+        }
+
         @media (min-width: 700px) {
             max-width: 100vw;
+
+            form {
+                .cont-dados {
+                    padding: 0 6.4rem;
+                    width: 100%;
+                }
+            }
 
             .text-termos {
                 font-size: 16px;
@@ -360,4 +418,14 @@ export const Avatar = styled.img`
     border-radius: 50%;
     object-fit: cover;
     background-color: #f9f9f9;
+
+    @media (max-width: 500px) {
+        width: 140px; 
+        height: 140px;
+    }
+
+    @media (max-width: 380px) {
+        width: 120px; 
+        height: 120px;
+    }
 `;

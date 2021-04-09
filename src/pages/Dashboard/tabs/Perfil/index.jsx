@@ -35,6 +35,7 @@ function Perfil() {
     const [banner, setBanner] = useState('');
 
     const [errorCep, setErrorCep] = useState(false);
+    const [checkEdit, setCheckEdit] = useState(false);
 
     const { usuario } = useContext(AuthContext);
 
@@ -113,44 +114,44 @@ function Perfil() {
     function handleCreateClass(e) {
         e.preventDefault();
 
-        let data = {
-            avatar: null,
-            fullName: name,
-            nickName: nickName,
-            cpf: cpf,
-            email: email,
-            genre: genre,
-            birth: birth,
-            address: {
-                cep: cep,
-                city: cidade,
-                uf: uf,
-                logradouro: end,
-                number: num,
-                complement: complemento,
-                district: bairro,
-                country: pais
-            }
-        }
+        // let data = {
+        //     avatar: null,
+        //     fullName: name,
+        //     nickName: nickName,
+        //     cpf: cpf,
+        //     email: email,
+        //     genre: genre,
+        //     birth: birth,
+        //     address: {
+        //         cep: cep,
+        //         city: cidade,
+        //         uf: uf,
+        //         logradouro: end,
+        //         number: num,
+        //         complement: complemento,
+        //         district: bairro,
+        //         country: pais
+        //     }
+        // }
 
-        UsersService.RegisterUserPisique(data)
-            .then((response) => {
-                console.log(response);
+        // UsersService.RegisterUserPisique(data)
+        //     .then((response) => {
+        //         console.log(response);
 
-                let dataDoc = {
-                    fullName: name,
-                    nickName: nickName,
-                    cpf: cpf,
-                    email: email,
-                    genre: genre,
-                    birth: birth,
-                    type: 1
-                }
+        //         let dataDoc = {
+        //             fullName: name,
+        //             nickName: nickName,
+        //             cpf: cpf,
+        //             email: email,
+        //             genre: genre,
+        //             birth: birth,
+        //             type: 1
+        //         }
 
-                UsersService.RegisterUser(dataDoc)
-            })
+        //         UsersService.RegisterUser(dataDoc)
+        //     })
 
-        console.log(data);
+        // console.log(data);
 
     }
 
@@ -174,12 +175,18 @@ function Perfil() {
                             </header>
 
                             <main>
-                                <form onSubmit={handleCreateClass}>
+                                <form onSubmit={() => handleCreateClass}>
+                                    <div className="cont-dados">
+                                        <input type="checkbox" id="edit-date" name="edit-date" checked={checkEdit} onChange={() => setCheckEdit(!checkEdit)} />
+                                        <label for="edit-date">Editar Dados</label>
+                                    </div>
+
                                     <fieldset>
                                         <legend>Seus dados <FaUser /></legend>
 
                                         <div className="div-names">
                                             <Input
+                                                disabled={!checkEdit}
                                                 required
                                                 name="name"
                                                 label="Nome Completo *"
@@ -187,20 +194,24 @@ function Perfil() {
                                                 value={name}
                                                 onChange={(e) => { setName(e.target.value) }}
                                                 placeholder="Ex.: Joao da Silva"
+                                                className={!checkEdit && "off-mouse"}
                                             />
 
                                             <Input
+                                                disabled={!checkEdit}
                                                 required
                                                 name="apelido"
                                                 label="Apelido - (Nickname) *"
                                                 value={nickName}
                                                 onChange={(e) => { setNickName(((e.target.value).trim()).toLowerCase()) }}
                                                 placeholder="Ex.: joaodasilva"
+                                                className={!checkEdit && "off-mouse"}
                                             />
                                         </div>
 
                                         <div className="div-date">
                                             <Select
+                                                disabled
                                                 required
                                                 value={genre}
                                                 name="genre"
@@ -211,14 +222,17 @@ function Perfil() {
                                                     { value: 'mulher', label: 'Mulher' },
                                                     { value: 'nao-binario', label: 'Não binário' },
                                                 ]}
+                                                className="off-mouse"
                                             />
 
                                             <InputDate
+                                                disabled
                                                 required
                                                 name="birth"
                                                 value={birth}
                                                 label="Data de Nascimento: *"
                                                 onChange={(e) => { setBirth(e.target.value) }}
+                                                className="off-mouse"
                                             />
                                         </div>
 
@@ -254,6 +268,7 @@ function Perfil() {
 
                                         <div className="div-end">
                                             <Input
+                                                disabled={!checkEdit}
                                                 required
                                                 name="cep"
                                                 label="Digite seu Cep *"
@@ -263,6 +278,7 @@ function Perfil() {
                                                 maxLength={10}
                                                 minLength={10}
                                                 placeholder='00.000-000'
+                                                className={!checkEdit && "off-mouse"}
                                             />
 
                                             <div className="cont-div">
@@ -297,21 +313,25 @@ function Perfil() {
                                             />
 
                                             <Input
+                                                disabled={!checkEdit}
                                                 required
                                                 label="Numero *"
                                                 value={num}
                                                 onChange={(e) => setNum(e.target.value)}
                                                 placeholder='123'
+                                                className={!checkEdit && "off-mouse"}
                                             />
                                         </div>
 
                                         <div className="div-end-pais">
                                             <Input
+                                                disabled={!checkEdit}
                                                 name="complemento"
                                                 label="Complemento"
                                                 value={complemento}
                                                 onChange={(e) => setComplemento(e.target.value)}
                                                 placeholder='Apto, Bloco'
+                                                className={!checkEdit && "off-mouse"}
                                             />
 
                                             <Input
@@ -336,7 +356,11 @@ function Perfil() {
 
                                     <footer>
                                         <p><img src={warningIcon} alt="Aviso Importante" />Importante! <br />Preencha todos os dados</p>
-                                        <button type="submit">Salvar cadastro</button>
+                                        {checkEdit ?
+                                            <button type="submit" >Salvar cadastro</button>
+                                            :
+                                            <button type="button" disabled style={{ backgroundColor: '#a3a3a3' }}>Salvar cadastro</button>
+                                        }
                                     </footer>
                                 </form>
                             </main>

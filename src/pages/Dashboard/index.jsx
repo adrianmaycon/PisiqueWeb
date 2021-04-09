@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from '../../assets/images/logo.svg';
 import { FaHome, FaUserFriends, FaMoneyBillWave, FaFlagCheckered, FaComments, FaBookReader, FaHiking, FaAddressCard, FaFolder, FaFolderOpen } from "react-icons/fa";
+import { Container, ContDiv, MenuContainer, NavContainer } from './styled';
+import { IoMenu, IoArrowBackOutline } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
 import { useHistory } from 'react-router-dom';
 import Painel from './tabs/Painel';
 import Perfil from './tabs/Perfil';
-import { Container, ContDiv } from './styled';
 
 function Dashboard() {
     const history = useHistory();
     const [select, setSelect] = useState(1)
     const [subPage, setSubPage] = useState("painel")
+
+    const [openNav, setOpenNav] = useState(false)
 
     useEffect(() => {
         let url_atual = (window.location.href).split("http://localhost:3000/dashboard");
@@ -97,83 +100,93 @@ function Dashboard() {
 
     return (
         <Container>
-            <nav>
-                <ul>
-                    <div className="menu-container">
-                        <img id="logo" onClick={() => history.push("/")} src={logoImg} alt="Página inicial" />
+            <div className="row">
+                <NavContainer openNav={openNav}>
+                    <ul>
+                        <MenuContainer>
+                            <img id="logo" onClick={() => history.push("/")} src={logoImg} alt="Página inicial" />
 
-                        <div id="container-org">
+                            <div id="container-org">
 
-                            <ContDiv offMargin>
-                                <p>Administração</p>
-                                <hr />
-                            </ContDiv>
+                                <ContDiv offMargin>
+                                    <p>Administração</p>
+                                    <hr />
+                                </ContDiv>
 
-                            <li
-                                id={select === 1 ? "select" : null}
-                                onClick={() => { setSelect(1); history.push("/dashboard/painel") }}
-                            ><FaHome className="icon" />Painel</li>
+                                <li
+                                    id={select === 1 ? "select" : null}
+                                    onClick={() => { setSelect(1); history.push("/dashboard/painel"); setOpenNav(false) }}
+                                ><FaHome className="icon" />Painel</li>
 
-                            <li
-                                id={select === 2 ? "select" : null}
-                                onClick={() => { setSelect(2); history.push("/dashboard/atendimento") }}
-                            ><FaUserFriends className="icon" />Atendimento</li>
+                                <li
+                                    id={select === 2 ? "select" : null}
+                                    onClick={() => { setSelect(2); history.push("/dashboard/atendimento"); setOpenNav(false) }}
+                                ><FaUserFriends className="icon" />Atendimento</li>
 
-                            <li
-                                id={select === 4 ? "select" : null}
-                                onClick={() => { setSelect(4); history.push("/dashboard/profile") }}
-                            ><FaAddressCard className="icon" />Meu Perfil</li>
+                                <li
+                                    id={select === 4 ? "select" : null}
+                                    onClick={() => { setSelect(4); history.push("/dashboard/profile"); setOpenNav(false) }}
+                                ><FaAddressCard className="icon" />Meu Perfil</li>
 
-                            <ContDiv>
-                                <p>Área Social</p>
-                                <hr />
-                            </ContDiv>
+                                <ContDiv>
+                                    <p>Área Social</p>
+                                    <hr />
+                                </ContDiv>
 
-                            <li
-                                id={select === 5 ? "select" : null}
-                                onClick={() => { setSelect(5); history.push("/dashboard/jogos") }}
-                            ><FaFlagCheckered className="icon" />Jogos</li>
+                                <li
+                                    id={select === 5 ? "select" : null}
+                                    onClick={() => { setSelect(5); history.push("/dashboard/jogos"); setOpenNav(false) }}
+                                ><FaFlagCheckered className="icon" />Jogos</li>
 
-                            <li
-                                id={select === 6 ? "select" : null}
-                                onClick={() => { setSelect(6); history.push("/dashboard/conversas") }}
-                            ><FaComments className="icon" />Conversas</li>
+                                <li
+                                    id={select === 6 ? "select" : null}
+                                    onClick={() => { setSelect(6); history.push("/dashboard/conversas"); setOpenNav(false) }}
+                                ><FaComments className="icon" />Conversas</li>
 
-                            <li
-                                id={select === 7 ? "select" : null}
-                                onClick={() => { setSelect(7); history.push("/dashboard/leitura") }}
-                            ><FaBookReader className="icon" />Leitura</li>
+                                <li
+                                    id={select === 7 ? "select" : null}
+                                    onClick={() => { setSelect(7); history.push("/dashboard/leitura"); setOpenNav(false) }}
+                                ><FaBookReader className="icon" />Leitura</li>
 
-                            <li
-                                id={select === 8 ? "select" : null}
-                                onClick={() => { setSelect(8); history.push("/dashboard/ranking") }}
-                            ><FaHiking className="icon" />Ranking</li>
+                                <li
+                                    id={select === 8 ? "select" : null}
+                                    onClick={() => { setSelect(8); history.push("/dashboard/ranking"); setOpenNav(false) }}
+                                ><FaHiking className="icon" />Ranking</li>
 
 
-                            <ContDiv>
-                                <p>Financeiro</p>
-                                <hr />
-                            </ContDiv>
+                                <ContDiv>
+                                    <p>Financeiro</p>
+                                    <hr />
+                                </ContDiv>
 
-                            <li
-                                id={select === 3 ? "select" : null}
-                                onClick={() => { setSelect(3); history.push("/dashboard/pagamentos") }}
-                            ><FaMoneyBillWave className="icon" />Pagamentos</li>
+                                <li
+                                    id={select === 3 ? "select" : null}
+                                    onClick={() => { setSelect(3); history.push("/dashboard/pagamentos"); setOpenNav(false) }}
+                                ><FaMoneyBillWave className="icon" />Pagamentos</li>
 
-                            <li
-                                id={select === 10 ? "select" : null}
-                                onClick={() => { setSelect(10); history.push("/dashboard/arquivos") }}
-                            >{select === 10 ? <FaFolderOpen className="icon" /> : <FaFolder className="icon" />}Arquivos</li>
+                                <li
+                                    id={select === 10 ? "select" : null}
+                                    onClick={() => { setSelect(10); history.push("/dashboard/arquivos"); setOpenNav(false) }}
+                                >{select === 10 ? <FaFolderOpen className="icon" /> : <FaFolder className="icon" />}Arquivos</li>
 
-                            <li
-                                id={select === 9 ? "select" : null}
-                                onClick={() => { setSelect(9); history.push("/dashboard/configuracoes") }}
-                            ><AiFillSetting className="icon" />Configurações</li>
+                                <li
+                                    id={select === 9 ? "select" : null}
+                                    onClick={() => { setSelect(9); history.push("/dashboard/configuracoes"); setOpenNav(false) }}
+                                ><AiFillSetting className="icon" />Configurações</li>
 
-                        </div>
-                    </div>
-                </ul>
-            </nav>
+                            </div>
+                        </MenuContainer>
+                    </ul>
+                </NavContainer>
+
+                <div onClick={() => setOpenNav(!openNav)}>
+                    {openNav ?
+                        <IoArrowBackOutline className="menu-icon" />
+                        :
+                        <IoMenu className="menu-icon" />
+                    }
+                </div>
+            </div>
 
             { showPages()}
 
