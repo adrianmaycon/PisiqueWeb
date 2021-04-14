@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/NavBar';
-import { Container } from './styled';
+import { Container, Header, Main, Title } from './styled';
 import { FadeIn } from '../Home/styled';
 import videobanner from '../../assets/images/back-video.jpg';
+import Timeline from './Timeline';
 
 function Sobre() {
     const [open, setOpen] = useState(false);
@@ -16,9 +17,9 @@ function Sobre() {
             />
             <Container>
 
-                <header>
+                <Header>
                     <FadeIn duration="0.4s" delay="0.2s">
-                        <h1 className="title">Sobre o Pisiquê</h1>
+                        <Title>Sobre o Pisiquê</Title>
                     </FadeIn>
 
                     <div className="header-container">
@@ -37,7 +38,19 @@ function Sobre() {
                         </div>
                     </div>
 
-                </header>
+                </Header>
+
+                <Main>
+                    <FadeIn duration="1.2s" delay="1s">
+                        <Title>Linha do Tempo</Title>
+                    </FadeIn>
+
+                    <FadeIn duration="1.4s" delay="1.2s">
+                        <div className="timeline-box">
+                            <Timeline />
+                        </div>
+                    </FadeIn>
+                </Main>
             </Container>
         </>
     );
