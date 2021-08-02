@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Container, Close, Avatar } from './styled';
-import UsersService from '../../../services/UsersService';
+import UsersService from '../../../Services/UsersService';
 import close from '../../../assets/images/icons/close.svg';
 
 function ModalAvatars() {

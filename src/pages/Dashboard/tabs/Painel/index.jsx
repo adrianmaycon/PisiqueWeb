@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-import UsersService from '../../../../services/UsersService';
+import UsersService from '../../../../Services/UsersService';
 import { AuthContext } from '../../../../auth/AuthContext';
 import { authConfig } from '../../../../auth/config';
 import { Container } from './styled';

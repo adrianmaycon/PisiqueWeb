@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GithubPicker } from 'react-color';
 import { IoCloudUploadOutline, IoColorPaletteOutline } from "react-icons/io5";
-import MasksService, { mCEP } from '../../../../services/masksService';
-import UsersService from '../../../../services/UsersService';
+import MasksService, { mCEP } from '../../../../Services/masksService';
+import UsersService from '../../../../Services/UsersService';
 import { AuthContext } from '../../../../auth/AuthContext';
 import warningIcon from '../../../../assets/images/icons/warning.svg';
 import { FaUser } from "react-icons/fa";

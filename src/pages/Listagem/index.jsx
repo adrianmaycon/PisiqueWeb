@@ -5,7 +5,7 @@ import PsiItem from '../../components/PsiItem';
 import Select from '../../components/common/Select';
 import Input from '../../components/common/Input';
 
-import ProfsService from '../../services/ProfsService';
+import ProfsService from '../../Services/ProfsService';
 
 import './styles.css';
 

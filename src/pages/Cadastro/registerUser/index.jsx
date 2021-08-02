@@ -3,11 +3,11 @@ import warningIcon from '../../../assets/images/icons/warning.svg';
 import { AuthContext } from '../../../auth/AuthContext';
 import { withRouter } from 'react-router-dom';
 import PageHeader from '../../../components/common/PageHeader';
-import MasksService, { mCPF, mCEP } from '../../../services/masksService';
+import MasksService, { mCPF, mCEP } from '../../../Services/masksService';
 import Input from '../../../components/common/Input';
 import Select from '../../../components/common/Select';
 import InputDate from '../../../components/common/InputDate';
-import UsersService from '../../../services/UsersService';
+import UsersService from '../../../Services/UsersService';
 import { FaUser } from "react-icons/fa";
 import { Container } from './styled';
 

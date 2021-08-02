@@ -7,7 +7,7 @@ import { Modal, Input } from "../../assets/styles/components";
 import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropup, IoIosMenu } from "react-icons/io";
 
-import UsersService from '../../services/UsersService';
+import UsersService from '../../Services/UsersService';
 
 import { authConfig } from '../../auth/config';
 import { AuthContext } from '../../auth/AuthContext';
