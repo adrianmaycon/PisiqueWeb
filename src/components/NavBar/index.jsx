@@ -17,6 +17,7 @@ import logo from '../../assets/images/logo.svg';
 import logoCor from '../../assets/images/logo-cor.svg';
 
 import { Container, ButtonsContainer, LinksContainer, MenuContainer, Logo, MenuIcon } from './styled';
+import classNames from 'classnames';
 
 const NavBar = withRouter(({ openProps, close, history, simple }) => {
     const [logado, setLogado] = useState(false);
@@ -309,16 +310,17 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
                                             {erroConfirmPassword && <span> As senhas informadas não são iguais.</span>}
                                         </div>
 
-                                        <button type="submit" className="submit">
+                                        <button disabled type="submit" className="submit">
                                             Criar Conta
                                         </button>
                                     </div> :
                                     <div>
                                         <p className="description">Não tem uma conta?</p>
 
-                                        <button type="button" className="off" onClick={() => visibleBox(2)}>
+                                        <button id="button-criar-conta-tela" type="button" className="off" onClick={() => null}>
+                                            {/* <button type="button" className="off" onClick={() => visibleBox(2)}> */}
                                             Criar conta
-                                    </button>
+                                        </button>
                                     </div>
                                 }
                             </form>
@@ -356,7 +358,13 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
 
     return (
         <Container shadowOn={activeShadow} simple={simple}>
-            <Access />
+            {open ? <Access /> : null}
+            <div className='bar-sub-info'>
+                <div className='max-cont-row'>
+                    <a href="tel:+5585984015318">Ligue: +55 (85) 98401-5318</a>
+                    <a href="/">Seja um colaborador nosso</a>
+                </div>
+            </div>
             <div id="app-bar" >
                 <nav className="box-container">
                     <MenuIcon simple={simple} >
@@ -389,7 +397,7 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
                         :
                         <ButtonsContainer simple={simple}>
                             <h1 className="signIn" onClick={() => { setOpen(true); visibleBox(1) }}>Entrar</h1>
-                            <button type="button" className="signUp" onClick={() => { setOpen(true); visibleBox(2) }}>Inscrever-se</button>
+                            <button type="button" className={classNames("signUp bnt-blocked")} disabled onClick={() => { setOpen(true); visibleBox(1) }}>Inscrever-se</button>
                         </ButtonsContainer>
                     }
                 </nav>

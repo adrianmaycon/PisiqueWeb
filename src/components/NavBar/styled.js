@@ -1,11 +1,38 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div `
     display: flex; 
     flex-direction: column; 
     width: 100%;
     align-items: center;
     margin-bottom: 80px;
+    
+    .bar-sub-info {
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: #18216B;
+
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+
+            :hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .max-cont-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 1200px;
+    }
 
     #app-bar {
         display: flex;
@@ -14,7 +41,7 @@ export const Container = styled.div`
         position: fixed;
         width: 100vw;
         z-index: 1000;
-        background-color: ${p =>  !p.shadowOn ? 'transparent' : p.simple ? '#fff' : '#29348e'};
+        background-color: ${p => !p.shadowOn ? 'transparent' : p.simple ? '#fff' : '#29348e'};
         transition: 0.5s;
         box-shadow: ${p => p.shadowOn ? '0 0 0.8em rgb(51, 51, 51, 0.5)' : 'none'};
         opacity: ${p => p.shadowOn ? '0.95' : '1'};
@@ -32,8 +59,8 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
         width: 90%;
-        max-width: 1150px;
-        height: 80px;
+        max-width: 1200px;
+        margin-top: 70px;
     }
 
     nav {
@@ -89,6 +116,12 @@ export const Container = styled.div`
         align-items: flex-end;
         width: 50%;
         padding-bottom: 20px;
+
+        #button-criar-conta-tela {
+            cursor: not-allowed;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+        }
     }
 
     .container-modal main #division #login{
@@ -211,6 +244,17 @@ export const Container = styled.div`
         cursor: pointer;
     }
 
+    @media (max-width: 1100px) {
+        .bar-sub-info,
+        .container-menus {
+            display: none;
+        }
+
+        .box-container {
+            margin-top: 20px;
+        }
+    }
+
     @media (max-width: 850px) {
         margin-bottom: 60px;
 
@@ -327,7 +371,7 @@ export const Container = styled.div`
     }
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img `
     height: 30px;
     width: auto;
     user-select: none;
@@ -341,7 +385,7 @@ export const Logo = styled.img`
     }
 `;
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.div `
     display: flex;
     /* background-color: #eee; */
 
@@ -368,7 +412,7 @@ export const MenuContainer = styled.div`
     }
 `;
 
-export const LinksContainer = styled.div`
+export const LinksContainer = styled.div `
     /* border: 1px solid rgba(255, 255, 255, 0); */
     display: flex;
     align-items: center;
@@ -403,7 +447,7 @@ export const LinksContainer = styled.div`
     }
 `;
 
-export const MenuIcon = styled.div`
+export const MenuIcon = styled.div `
     display: none;
 
     @media (max-width: 850px) {
@@ -417,7 +461,7 @@ export const MenuIcon = styled.div`
     }
 `;
 
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.div `
     display: flex;
     align-items: center;
 

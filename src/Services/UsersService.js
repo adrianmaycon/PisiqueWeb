@@ -39,11 +39,23 @@ export async function RegisterUserPisique(data) {
     try {
         firebase.firestore()
             .collection('PisiqueUsers').doc(data.email).set(data)
-        // .collection('PisiqueUsers').add(data)
+            // .collection('PisiqueUsers').add(data)
 
         return 'Sucesso ao cadastrar'
     } catch (error) {
         console.log("Error Register Usuario Pisique: ", error);
+        throw error
+    }
+}
+
+export async function RegisterHuman(data) {
+    try {
+        firebase.firestore()
+            .collection('Humanos').doc(data.cpf).set(data)
+
+        return 'Sucesso ao cadastrar'
+    } catch (error) {
+        console.log("Error Register Humano Instituto Pisique: ", error);
         throw error
     }
 }
@@ -61,4 +73,4 @@ export async function getAvatars() {
 
 }
 
-export default { GetDataUser, RegisterUserPisique, RegisterUser, getAvatars }
+export default { GetDataUser, RegisterUserPisique, RegisterHuman, RegisterUser, getAvatars }

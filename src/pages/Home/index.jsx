@@ -1,140 +1,44 @@
-import React, { useState } from 'react';
-import NavBar from '../../components/NavBar';
-
-import { IoPlayCircleOutline } from "react-icons/io5";
-import { Container, BoxContainer, Description, FadeIn, /**Button, Row */ } from './styled';
-import videobanner from '../../assets/images/back-video.jpg';
-// import Passos from './Passos';
-import ModalVideo from './ModalVideo';
-import Particles from "react-particles-js";
-import CookiesPage from '../../components/Cookies';
+import React from 'react';
+import Header from '../../components/NavBar';
+import { Container } from './styled';
+// import CookiesPage from '../../components/Cookies';
+import path from '../../assets/images/apresent.svg';
+import insta from '../../assets/icons/insta.png';
+import youtube from '../../assets/icons/youtube.png';
+import likedlin from '../../assets/icons/likedlin.png';
+import classNames from 'classnames';
 
 function Home() {
-    const [open, setOpen] = useState(false);
-    const [openVideo, setOpenVideo] = useState(false)
-
     return (
         <Container>
-            {openVideo && <ModalVideo close={() => setOpenVideo(false)} />}
-            <CookiesPage />
+            <Header />
 
-            {/* <Particles
-                className="background-lib"
-                params={{
-                    "particles": {
-                        "number": {
-                            "value": 1000,
-                            "density": {
-                                "enable": false
-                            }
-                        },
-                        "size": {
-                            "value": 3,
-                            "random": true,
-                            "anim": {
-                                "speed": 4,
-                                "size_min": 0.3
-                            }
-                        },
-                        "line_linked": {
-                            "enable": false
-                        },
-                        "move": {
-                            "random": true,
-                            "speed": 1,
-                            "direction": "top",
-                            "out_mode": "out"
-                        }
-                    },
-                    "interactivity": {
-                        "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "bubble"
-                            },
-                            "onclick": {
-                                "enable": true,
-                                "mode": "repulse"
-                            }
-                        },
-                        "modes": {
-                            "bubble": {
-                                "distance": 250,
-                                "duration": 2,
-                                "size": 0,
-                                "opacity": 0
-                            },
-                            "repulse": {
-                                "distance": 400,
-                                "duration": 4
-                            }
-                        }
-                    }
-                }} /> */}
+            <div className='header-cabeca'>
+                <div className='container-info-redes'>
+                    <div>
+                        <h2>Instituto Pisiquê</h2>
+                        <p>Quem cuida da mente, cuida da vida.</p>
 
-            <Particles
-                className="background-lib"
-                params={{
-                    "particles": {
-                        "number": {
-                            "value": window.innerWidth < 400 ? 30 : window.innerWidth < 500 ? 50 : window.innerWidth < 800 ? 80 : 130
-                        },
-                        "size": {
-                            "value": 3
-                        },
-                        move: {
-                            enable: true,
-                            speed: 0.8,
-                        }
-                    },
-
-                    "interactivity": {
-                        "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "repulse"
-                            }
-                        }
-                    }
-                }} />
-
-            <div className="container-box">
-                <NavBar openProps={open} close={() => setOpen(false)} />
-
-                <BoxContainer>
-                    <header>
-                        <FadeIn duration="0.4s" delay="0.2s">
-                            <h1>Venha fazer parte da <br/><span>Família Pisiquê</span></h1>
-                        </FadeIn>
-
-                        <FadeIn duration="0.6s" delay="0.4s">
-                            <Description>Quem olha para fora sonha, quem olha para dentro desperta.</Description>
-                        </FadeIn>
-
-                        {/* <Row marginTop="30px">
-                        <Button type="button">Botão 01</Button>
-                        <Button type="button">Botão 01</Button>
-                    </Row> */}
-
-                        <div className="container-video">
-                            <FadeIn duration="0.8s" delay="0.6s">
-                                <img className="video" src={videobanner} alt="" />
-                            </FadeIn>
-
-                            <FadeIn duration="1s" delay="0.8s">
-                                <div className="button-video" onClick={() => setOpenVideo(true)} title="Saiba mais sobre a gente">
-                                    <IoPlayCircleOutline id="icon-play" />
-                                    <h4>Saiba mais sobre a gente</h4>
-                                </div>
-                            </FadeIn>
+                        <div className={classNames('image-container', 'mobille')}>
+                            <img src={path} alt="" className={'image'} />
                         </div>
-                    </header>
 
-                    {/* <Passos /> */}
+                        <p className='siga-nos'>Siga-nos:</p>
+                        <a className='icon' href="https://www.instagram.com/institutopisique/" target="blank"><img alt="" src={insta} width="48px" height="48px" /></a>
+                        <a className='icon' href="https://www.linkedin.com/company/institutopisique/" target="blank"><img alt="" src={likedlin} width="48px" height="48px" /></a>
+                        <a className='icon' href="https://www.youtube.com/channel/UCGCELd5mVenmreaJVihH_dg" target="blank"><img alt="" src={youtube} width="68px" height="48px" /></a>
 
-                </BoxContainer>
+                        <div className='box-bott'>
+                            <button type='button' id="btn-voluntario">Voluntário</button>
+                            <button type='button' id="btn-apoiador">Apoiador</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={classNames('image-container', 'desktop')}>
+                    <img alt="" src={path} className={'image'} />
+                </div>
             </div>
-
         </Container>
     )
 }
