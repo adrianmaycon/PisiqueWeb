@@ -65,6 +65,25 @@ const RegisterHuman = withRouter(({ history }) => {
             UsersService.RegisterHuman(data)
                 .then((response) => {
                     console.log(response);
+                    setName('');
+                    setSurnameName('');
+                    setCpf('');
+                    setRg('');
+                    setGenre('');
+                    setBirth('');
+                    setNameMae('');
+                    setNamePai('');
+                    setEmail('');
+                    setWhatsapp('');
+                    setTelefone('');
+                    setCep('');
+                    setCidade('');
+                    setUf('');
+                    setEnd('');
+                    setNum('');
+                    setComplemento('');
+                    setBairro('');
+                    setPais('');
                 })
         }
     }
@@ -131,7 +150,7 @@ const RegisterHuman = withRouter(({ history }) => {
                                 label="Apelido *"
                                 value={surnameName}
                                 maxLength="30"
-                                minLength="30"
+                                minLength="3"
                                 onChange={(e) => { setSurnameName(e.target.value) }}
                                 // onChange={(e) => { setSurnameName(((e.target.value).trim()).toLowerCase()) }}
                                 placeholder="Ex.: João Silva"
@@ -268,12 +287,11 @@ const RegisterHuman = withRouter(({ history }) => {
 
                             <div className="cont-div">
                                 <Input
-                                    disabled
                                     name="cidade"
                                     label="Cidade"
                                     value={cidade}
+                                    onChange={(e) => setCidade(e.target.value)}
                                     placeholder='Cidade'
-                                    className="off-mouse"
                                 />
 
                                 <Input
@@ -316,12 +334,11 @@ const RegisterHuman = withRouter(({ history }) => {
                             />
 
                             <Input
-                                disabled
                                 name="bairro"
                                 label="Bairro"
                                 value={bairro}
+                                onChange={(e) => setBairro(e.target.value)}
                                 placeholder='Nome do Bairro'
-                                className="off-mouse"
                             />
 
                             <Input
