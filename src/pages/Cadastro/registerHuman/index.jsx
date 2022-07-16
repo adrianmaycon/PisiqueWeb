@@ -6,6 +6,7 @@ import Input from '../../../components/common/Input';
 import Select from '../../../components/common/Select';
 import InputDate from '../../../components/common/InputDate';
 import UsersService from '../../../Services/UsersService';
+import { Link } from 'react-router-dom';
 import { FaUser, FaHome } from "react-icons/fa";
 import { Container } from './styled';
 
@@ -356,6 +357,12 @@ const RegisterHuman = withRouter(({ history }) => {
                         <button type="submit">
                             Fazer Cadastro
                         </button>
+
+                        <Link to="/dashboard/painel">
+                            <button type="button" className='cancelar'>
+                                Cancelar Cadastro
+                            </button>
+                        </Link>
                     </footer>
                 </form>
             </main>

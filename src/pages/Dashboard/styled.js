@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div `
     position: fixed;
     display: flex;
     justify-content: space-between;
@@ -12,38 +12,61 @@ export const Container = styled.div`
     bottom: 0;
     box-sizing: border-box;
 
+    .div-btn-off {
+        display: ${p => p.openNav ? 'flex' : 'none'};
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(0, 0, 0, 0.4);
+    }
+
     .row {
         display: flex;
     }
 
+    .cont-pages {
+        width: 100%;
+        
+        .header-pages {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 5px 10px;
+        }
+    }
+
     .menu-icon {
         display: none;
-        width: 50px;
-        height: 50px;
-        margin-top: 20px;
-        font-size: 4rem;
-        background-color: #29348e;
-        color: #fff;
-        padding: 10px;
-        border-radius: 0 1rem 1rem 0;
-        box-shadow: 0px 3px 1px #4681b7;
+        width: 40px;
+        height: 40px;
+        font-size: 2rem;
+        color: #111;
         cursor: pointer;
     }
 
     @media (max-width: 1000px ) {
         .row {
+            width: 100%;
             position: fixed;
+            display: grid;
+            grid-template-columns: 300px calc(100% - 300px);
             z-index: 1000;
         }
 
         .menu-icon { 
             display: flex;
-            position: relative;
+        }
+    }
+
+    @media (min-width: 1000px) {
+        .div-btn-off {
+            display: none;
         }
     }
 `;
 
-export const NavContainer = styled.nav`
+export const NavContainer = styled.nav `
     display: flex;
     align-items: flex-start;
     list-style-type: none;
@@ -147,7 +170,7 @@ export const NavContainer = styled.nav`
     }
 `;
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.div `
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -176,7 +199,7 @@ export const MenuContainer = styled.div`
     }
 `;
 
-export const ContDiv = styled.div`
+export const ContDiv = styled.div `
     width: 100%;
     margin-top: ${p => p.offMargin ? '0' : '30px'};
     margin-bottom: 15px;

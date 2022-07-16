@@ -33,26 +33,17 @@ export const ButtonLittle = styled.button `
 `;
 
 export const Button = styled.button `
-    width: ${(p) => p.width ? p.width : "225px"};
-    height: ${(p) => p.heightSize || '60px'};
-    font-family: ${({ theme }) => theme.font.family.default};
-    background: ${(p) => p.background ? p.background : `#009EE2`};
-    border-radius: ${(p) => p.borderRadius ? p.borderRadius : "60px"};
-    font-style: normal;
-    font-weight: ${(p) => p.weight ? p.weight : "500"};
-    font-size: ${(p) => p.size ? p.size : "18px"};
-    line-height: ${(p) => p.lineHeight ? p.lineHeight : "21px"};
-    text-align: center;
-    color: ${(p) => p.color ? p.color : `#FFFFFF`};
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 18px;
     border: none;
-    padding: ${(p) => p.padding};
-    transition: 0.3s;
-    margin-top: ${(p) => p.marginTop};
-    margin-left: ${(p) => p.marginLeft};
-    margin-right: ${(p) => p.marginRight};
-    margin-bottom: ${(p) => p.marginBottom};
 
     :hover {
-        background: ${(p) => p.background ? p.background : `#00608a`};
+        background-color: var(--color-primary-dark);
     }
 `;

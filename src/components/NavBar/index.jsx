@@ -1,11 +1,12 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
-import { Modal, Input } from "../../assets/styles/components";
-
-import { FaTimes, FaExclamationCircle } from "react-icons/fa";
+// import { Modal, Input } from "../../assets/styles/components";
+// import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropup, IoIosMenu } from "react-icons/io";
+
+import Access from '../access';
 
 import UsersService from '../../Services/UsersService';
 
@@ -22,24 +23,24 @@ import classNames from 'classnames';
 const NavBar = withRouter(({ openProps, close, history, simple }) => {
     const [logado, setLogado] = useState(false);
 
-    const [conection, setConection] = useState(true);
+    // const [conection, setConection] = useState(true);
 
     const [userData, setUserData] = useState({});
 
     const [open, setOpen] = useState(false);
     const [openPopover, setOpenPopover] = useState(false);
 
-    const [openLogin, setOpenLogin] = useState(true);
-    const [openCreate, setOpenCreate] = useState(false);
-    const [recoverPassword, setRecoverPassword] = useState(false);
+    // const [openLogin, setOpenLogin] = useState(true);
+    // const [openCreate, setOpenCreate] = useState(false);
+    // const [recoverPassword, setRecoverPassword] = useState(false);
 
-    const [erroConfirmPassword, setErroConfirmPassword] = useState(false);
-    const [errorMessageLogin, setErrorMessageLogin] = useState(false);
-    const [errorMessageCreate, setErrorMessageCreate] = useState(false);
+    // const [erroConfirmPassword, setErroConfirmPassword] = useState(false);
+    // const [errorMessageLogin, setErrorMessageLogin] = useState(false);
+    // const [errorMessageCreate, setErrorMessageCreate] = useState(false);
 
     const [activeShadow, setActiveShadow] = useState(false);
 
-    const [message, setMessage] = useState(false);
+    // const [message, setMessage] = useState(false);
 
     const { usuario } = useContext(AuthContext);
 
@@ -83,101 +84,101 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
         // console.log(value);
     })
 
-    function visibleBox(value) {
-        if (value === 1) {
-            setOpenLogin(true)
-            setOpenCreate(false)
-        }
+    // function visibleBox(value) {
+    //     if (value === 1) {
+    //         setOpenLogin(true)
+    //         setOpenCreate(false)
+    //     }
 
-        if (value === 2) {
-            setOpenLogin(false)
-            setOpenCreate(true)
-        }
-    };
+    //     if (value === 2) {
+    //         setOpenLogin(false)
+    //         setOpenCreate(true)
+    //     }
+    // };
 
-    function handleOpen() {
-        if (recoverPassword) {
-            setOpenLogin(true);
-            setOpenCreate(false)
-            setRecoverPassword(false);
-        } else {
-            setOpenLogin(false);
-            setOpenCreate(false)
-            setRecoverPassword(true);
-        }
-    };
+    // function handleOpen() {
+    //     if (recoverPassword) {
+    //         setOpenLogin(true);
+    //         setOpenCreate(false)
+    //         setRecoverPassword(false);
+    //     } else {
+    //         setOpenLogin(false);
+    //         setOpenCreate(false)
+    //         setRecoverPassword(true);
+    //     }
+    // };
 
-    const handleLogin = useCallback(
-        async (event) => {
-            event.preventDefault();
+    // const handleLogin = useCallback(
+    //     async (event) => {
+    //         event.preventDefault();
 
-            const { email, password } = event.target.elements;
+    //         const { email, password } = event.target.elements;
 
-            try {
-                setErrorMessageLogin(false)
-                await authConfig
-                    .auth()
-                    .signInWithEmailAndPassword(email.value, password.value);
+    //         try {
+    //             setErrorMessageLogin(false)
+    //             await authConfig
+    //                 .auth()
+    //                 .signInWithEmailAndPassword(email.value, password.value);
 
-                UsersService.GetDataUser(email.value)
-                    .then(user => {
-                        history.push(user ? '/dashboard' : '/choice')
-                    })
+    //             UsersService.GetDataUser(email.value)
+    //                 .then(user => {
+    //                     history.push(user ? '/dashboard' : '/choice')
+    //                 })
 
-                setOpen(false)
+    //             setOpen(false)
 
-            } catch (error) {
-                setErrorMessageLogin(true)
+    //         } catch (error) {
+    //             setErrorMessageLogin(true)
 
-                if (error.code === "auth/wrong-password") {
-                    setMessage('Senha inválida')
-                }
+    //             if (error.code === "auth/wrong-password") {
+    //                 setMessage('Senha inválida')
+    //             }
 
-                if (error.code === "auth/user-not-found") {
-                    setMessage('Usuário não cadastrado')
-                }
-                console.log(error)
-            }
-        },
-        [history],
-    );
+    //             if (error.code === "auth/user-not-found") {
+    //                 setMessage('Usuário não cadastrado')
+    //             }
+    //             console.log(error)
+    //         }
+    //     },
+    //     [history],
+    // );
 
-    const handleRegister = useCallback(
-        async (event) => {
-            event.preventDefault();
+    // const handleRegister = useCallback(
+    //     async (event) => {
+    //         event.preventDefault();
 
-            const { email, password, confirmPassword } = event.target.elements;
+    //         const { email, password, confirmPassword } = event.target.elements;
 
-            if (password.value !== confirmPassword.value) {
-                setErroConfirmPassword(true)
-            } else {
-                setErroConfirmPassword(false)
+    //         if (password.value !== confirmPassword.value) {
+    //             setErroConfirmPassword(true)
+    //         } else {
+    //             setErroConfirmPassword(false)
 
-                try {
-                    setErrorMessageCreate(false)
+    //             try {
+    //                 setErrorMessageCreate(false)
 
-                    await authConfig
-                        .auth()
-                        .createUserWithEmailAndPassword(email.value, password.value);
-                    history.push('/')
-                } catch (error) {
+    //                 await authConfig
+    //                     .auth()
+    //                     .createUserWithEmailAndPassword(email.value, password.value);
+    //                 history.push('/')
+    //             } catch (error) {
 
-                    if (error.code === 'auth/email-already-in-use') {
-                        setErrorMessageCreate(true)
-                        setMessage("Email ja cadastrado")
-                    } else {
-                        setErrorMessageCreate(false)
-                    }
+    //                 if (error.code === 'auth/email-already-in-use') {
+    //                     setErrorMessageCreate(true)
+    //                     setMessage("Email ja cadastrado")
+    //                 } else {
+    //                     setErrorMessageCreate(false)
+    //                 }
 
-                }
-            }
-        },
-        [history],
-    );
+    //             }
+    //         }
+    //     },
+    //     [history],
+    // );
 
-    function handleRecoverPassword(e) {
-        e.preventDefault();
-    };
+    // function handleRecoverPassword(e) {
+    //     e.preventDefault();
+    // };
 
     const DivPopover = () => (
         <div className="div-popover">
@@ -187,178 +188,178 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
             </header>
 
             <main>
-                <Link to="/dashboard">Painel</Link>
-                <Link to="/dashboard">Histórico</Link>
-                <Link to="/dashboard">Meus Livros</Link>
+                <Link to="/dashboard">Painel</Link><br />
+                <Link to="/dashboard">Histórico</Link><br />
+                <Link to="/dashboard">Meus Livros</Link><br />
                 <Link to="/" onClick={() => authConfig.auth().signOut()}>Sair</Link>
             </main>
         </div>
     )
 
 
-    const Access = () => (
-        <Modal open={open}>
-            <div className="container-modal">
-                <header>
-                    <FaTimes id="closeIcon" onClick={() => { setOpen(false); close() }} />
-                </header>
+    // const Access2 = () => (
+    //     <Modal open={open}>
+    //         <div className="container-modal">
+    //             <header>
+    //                 <FaTimes id="closeIcon" onClick={() => { setOpen(false); close() }} />
+    //             </header>
 
-                <main>
-                    <h1 id="title">{recoverPassword ? 'Recuperar senha' : openLogin ? 'Fazer Login' : 'Criar conta'}</h1>
+    //             <main>
+    //                 <h1 id="title">{recoverPassword ? 'Recuperar senha' : openLogin ? 'Fazer Login' : 'Criar conta'}</h1>
 
-                    {openCreate || openLogin ?
-                        <div id="division">
+    //                 {openCreate || openLogin ?
+    //                     <div id="division">
 
-                            {/* Fazer Login */}
+    //                         {/* Fazer Login */}
 
-                            <form id="login" onSubmit={handleLogin}>
-                                {openLogin ?
-                                    <div>
-                                        <label>Acesse com email e senha</label>
+    //                         <form id="login" onSubmit={handleLogin}>
+    //                             {openLogin ?
+    //                                 <div>
+    //                                     <label>Acesse com email e senha</label>
 
-                                        <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 5 }}>
-                                            {errorMessageLogin && <span><FaExclamationCircle id="iconError" />{message}</span>}
-                                        </div>
+    //                                     <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 5 }}>
+    //                                         {errorMessageLogin && <span><FaExclamationCircle id="iconError" />{message}</span>}
+    //                                     </div>
 
-                                        <Input
-                                            required
-                                            width={'264px'}
-                                            height={'40px'}
-                                            marginTop={7}
-                                            placeholder='E-mail'
-                                            type="email"
-                                            name="email"
-                                        />
+    //                                     <Input
+    //                                         required
+    //                                         width={'264px'}
+    //                                         height={'40px'}
+    //                                         marginTop={7}
+    //                                         placeholder='E-mail'
+    //                                         type="email"
+    //                                         name="email"
+    //                                     />
 
-                                        <Input
-                                            required
-                                            width={'264px'}
-                                            height={'40px'}
-                                            marginTop={10}
-                                            marginBottom={10}
-                                            placeholder='Senha'
-                                            type="password"
-                                            name="password"
-                                        />
+    //                                     <Input
+    //                                         required
+    //                                         width={'264px'}
+    //                                         height={'40px'}
+    //                                         marginTop={10}
+    //                                         marginBottom={10}
+    //                                         placeholder='Senha'
+    //                                         type="password"
+    //                                         name="password"
+    //                                     />
 
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <input checked={conection} onChange={(e) => e.target.checked ? setConection(true) : setConection(false)} type="checkbox" style={{ marginRight: 10 }} />
-                                            <label>Mantenha-me conectado</label>
-                                        </div>
+    //                                     <div style={{ display: 'flex', alignItems: 'center' }}>
+    //                                         <input checked={conection} onChange={(e) => e.target.checked ? setConection(true) : setConection(false)} type="checkbox" style={{ marginRight: 10 }} />
+    //                                         <label>Mantenha-me conectado</label>
+    //                                     </div>
 
-                                        <button type="submit" className="submit">
-                                            Acessar Conta
-                                        </button>
-                                    </div>
-                                    :
-                                    <div>
-                                        <p className="description">Ja tem uma conta? Faça login!</p>
+    //                                     <button type="submit" className="submit">
+    //                                         Acessar Conta
+    //                                     </button>
+    //                                 </div>
+    //                                 :
+    //                                 <div>
+    //                                     <p className="description">Ja tem uma conta? Faça login!</p>
 
-                                        <button type="button" className="off" onClick={() => visibleBox(1)}>
-                                            Entrar no Pisiquê
-                                        </button>
-                                    </div>
-                                }
+    //                                     <button type="button" className="off" onClick={() => visibleBox(1)}>
+    //                                         Entrar no Pisiquê
+    //                                     </button>
+    //                                 </div>
+    //                             }
 
-                            </form>
+    //                         </form>
 
-                            {/* Criar conta */}
+    //                         {/* Criar conta */}
 
-                            <form id="create" onSubmit={handleRegister}>
-                                {openCreate ?
-                                    <div>
-                                        <label>Cadastre-se com email e senha</label>
+    //                         <form id="create" onSubmit={handleRegister}>
+    //                             {openCreate ?
+    //                                 <div>
+    //                                     <label>Cadastre-se com email e senha</label>
 
-                                        <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 5 }}>
-                                            {errorMessageCreate && <span><FaExclamationCircle id="iconError" />{message}</span>}
-                                        </div>
+    //                                     <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 5 }}>
+    //                                         {errorMessageCreate && <span><FaExclamationCircle id="iconError" />{message}</span>}
+    //                                     </div>
 
-                                        <Input
-                                            required
-                                            width={'264px'}
-                                            height={'40px'}
-                                            marginTop={7}
-                                            placeholder='E-mail'
-                                            type="email"
-                                            name="email"
-                                        />
+    //                                     <Input
+    //                                         required
+    //                                         width={'264px'}
+    //                                         height={'40px'}
+    //                                         marginTop={7}
+    //                                         placeholder='E-mail'
+    //                                         type="email"
+    //                                         name="email"
+    //                                     />
 
 
-                                        <Input
-                                            required
-                                            width={'264px'}
-                                            height={'40px'}
-                                            marginTop={10}
-                                            marginBottom={10}
-                                            placeholder='Senha'
-                                            type="password"
-                                            name="password"
-                                        />
+    //                                     <Input
+    //                                         required
+    //                                         width={'264px'}
+    //                                         height={'40px'}
+    //                                         marginTop={10}
+    //                                         marginBottom={10}
+    //                                         placeholder='Senha'
+    //                                         type="password"
+    //                                         name="password"
+    //                                     />
 
-                                        <Input
-                                            required
-                                            width={'264px'}
-                                            height={'40px'}
-                                            marginTop={10}
-                                            marginBottom={10}
-                                            placeholder='Confirmar Senha'
-                                            type="password"
-                                            name="confirmPassword"
-                                        />
+    //                                     <Input
+    //                                         required
+    //                                         width={'264px'}
+    //                                         height={'40px'}
+    //                                         marginTop={10}
+    //                                         marginBottom={10}
+    //                                         placeholder='Confirmar Senha'
+    //                                         type="password"
+    //                                         name="confirmPassword"
+    //                                     />
 
-                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                            {erroConfirmPassword && <span> As senhas informadas não são iguais.</span>}
-                                        </div>
+    //                                     <div style={{ display: 'flex', flexDirection: 'column' }}>
+    //                                         {erroConfirmPassword && <span> As senhas informadas não são iguais.</span>}
+    //                                     </div>
 
-                                        <button disabled type="submit" className="submit">
-                                            Criar Conta
-                                        </button>
-                                    </div> :
-                                    <div>
-                                        <p className="description">Não tem uma conta?</p>
+    //                                     <button disabled type="submit" className="submit">
+    //                                         Criar Conta
+    //                                     </button>
+    //                                 </div> :
+    //                                 <div>
+    //                                     <p className="description">Não tem uma conta?</p>
 
-                                        <button id="button-criar-conta-tela" type="button" className="off" onClick={() => null}>
-                                            {/* <button type="button" className="off" onClick={() => visibleBox(2)}> */}
-                                            Criar conta
-                                        </button>
-                                    </div>
-                                }
-                            </form>
-                        </div>
-                        :
+    //                                     <button id="button-criar-conta-tela" type="button" className="off" onClick={() => null}>
+    //                                         {/* <button type="button" className="off" onClick={() => visibleBox(2)}> */}
+    //                                         Criar conta
+    //                                     </button>
+    //                                 </div>
+    //                             }
+    //                         </form>
+    //                     </div>
+    //                     :
 
-                        // Recuperar Senha
+    //                     // Recuperar Senha
 
-                        <form id="recover" onSubmit={handleRecoverPassword}>
-                            <label>Nome de usuário ou endereço de e-mail</label>
+    //                     <form id="recover" onSubmit={handleRecoverPassword}>
+    //                         <label>Nome de usuário ou endereço de e-mail</label>
 
-                            <Input
-                                required
-                                width={'100%'}
-                                height={'40px'}
-                                marginTop={7}
-                                placeholder='E-mail'
-                                type='email'
-                                name="email"
-                            />
+    //                         <Input
+    //                             required
+    //                             width={'100%'}
+    //                             height={'40px'}
+    //                             marginTop={7}
+    //                             placeholder='E-mail'
+    //                             type='email'
+    //                             name="email"
+    //                         />
 
-                            <button type="submit" className="submit">
-                                Recuperar Senha
-                            </button>
-                        </form>
-                    }
-                </main>
+    //                         <button type="submit" className="submit">
+    //                             Recuperar Senha
+    //                         </button>
+    //                     </form>
+    //                 }
+    //             </main>
 
-                <footer>
-                    {recoverPassword ? <p onClick={handleOpen}>Voltar para login</p> : <p onClick={handleOpen}>Não consegue acessar sua conta? Esqueceu a senha?</p>}
-                </footer>
-            </div>
-        </Modal >
-    )
+    //             <footer>
+    //                 {recoverPassword ? <p onClick={handleOpen}>Voltar para login</p> : <p onClick={handleOpen}>Não consegue acessar sua conta? Esqueceu a senha?</p>}
+    //             </footer>
+    //         </div>
+    //     </Modal >
+    // )
 
     return (
         <Container shadowOn={activeShadow} simple={simple}>
-            {open ? <Access /> : null}
+            {open ? <Access close={() => setOpen(false)} /> : null}
             <div className='bar-sub-info'>
                 <div className='max-cont-row'>
                     <a href="tel:+5585984015318">Ligue: +55 (85) 98401-5318</a>
@@ -396,8 +397,8 @@ const NavBar = withRouter(({ openProps, close, history, simple }) => {
                         </div>
                         :
                         <ButtonsContainer simple={simple}>
-                            <h1 className="signIn" onClick={() => { setOpen(true); visibleBox(1) }}>Entrar</h1>
-                            <button type="button" className={classNames("signUp bnt-blocked")} disabled onClick={() => { setOpen(true); visibleBox(1) }}>Inscrever-se</button>
+                            <h1 className="signIn" onClick={() => { setOpen(true) }}>Entrar</h1>
+                            <button type="button" className={classNames("signUp bnt-blocked")} disabled onClick={() => { setOpen(true) }}>Inscrever-se</button>
                         </ButtonsContainer>
                     }
                 </nav>

@@ -57,8 +57,11 @@ function Painel() {
                     </header>
 
                     <div className="alert-info">
-
                     </div>
+
+                    <h3 style={{ marginTop: 20, marginBottom: 10 }}>Acesso Rápido</h3>
+
+                    <Link to="/registrar"><button type="button" className='bnt-access-flash'>Cadastro de Pessoa</button></Link>
                 </section>
 
                 <section id="sectionSecundary">

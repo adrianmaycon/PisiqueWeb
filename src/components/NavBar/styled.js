@@ -38,13 +38,14 @@ export const Container = styled.div `
         display: flex;
         align-items: center;
         justify-content: center;
-        position: fixed;
-        width: 100vw;
-        z-index: 1000;
-        background-color: ${p => !p.shadowOn ? 'transparent' : p.simple ? '#fff' : '#29348e'};
-        transition: 0.5s;
-        box-shadow: ${p => p.shadowOn ? '0 0 0.8em rgb(51, 51, 51, 0.5)' : 'none'};
-        opacity: ${p => p.shadowOn ? '0.95' : '1'};
+        /* position: fixed; */
+        width: 100%;
+        /* z-index: 1000; */
+        background-color: ${p => !p.shadowOn ? 'transparent' : p.simple ? '#fff' : 'transparent'};
+        /* background-color: ${p => !p.shadowOn ? 'transparent' : p.simple ? '#fff' : '#29348e'}; */
+        /* transition: 0.5s; */
+        /* box-shadow: ${p => p.shadowOn ? '0 0 0.8em rgb(51, 51, 51, 0.5)' : 'none'}; */
+        /* opacity: ${p => p.shadowOn ? '0.95' : '1'}; */
     }
 
     .icon-avatar {
@@ -60,7 +61,7 @@ export const Container = styled.div `
         justify-content: space-between;
         width: 90%;
         max-width: 1200px;
-        margin-top: 70px;
+        margin-top: 40px;
     }
 
     nav {
@@ -270,7 +271,6 @@ export const Container = styled.div `
         width: 200px;
         flex-direction: column;
         align-items: center;
-        flex-direction: column;
         background: #fff;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
         border-radius: 3px;
@@ -310,7 +310,7 @@ export const Container = styled.div `
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 1.5rem 2rem;
         border-top: 1px solid rgba(68, 68, 68, 0.5);
     }

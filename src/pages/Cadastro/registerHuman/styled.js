@@ -125,10 +125,22 @@ export const Container = styled.div `
 
     main footer {
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         background: var(--color-box-footer);
         border-top: 1px solid var(--color-line-in-white);
+
+        a {
+            text-decoration: none;
+        }
+
+        .cancelar {
+            background-color: rgb(0, 0, 0, 0.4);
+
+            :hover {
+                background-color: rgb(0, 0, 0, 0.6);
+            }
+        }
     }
 
     main footer p {

@@ -100,7 +100,7 @@ function Dashboard() {
     }
 
     return (
-        <Container>
+        <Container openNav={openNav}>
             <div className="row">
                 <NavContainer openNav={openNav}>
                     <ul>
@@ -180,16 +180,22 @@ function Dashboard() {
                     </ul>
                 </NavContainer>
 
-                <div onClick={() => setOpenNav(!openNav)}>
-                    {openNav ?
-                        <IoArrowBackOutline className="menu-icon" />
-                        :
-                        <IoMenu className="menu-icon" />
-                    }
-                </div>
+                <div className='div-btn-off' onClick={() => setOpenNav(false)} />
             </div>
 
-            { showPages()}
+            <div className='cont-pages'>
+                <div className='header-pages'>
+                    <div onClick={() => setOpenNav(!openNav)}>
+                        {openNav ?
+                            <IoArrowBackOutline className="menu-icon" />
+                            :
+                            <IoMenu className="menu-icon" />
+                        }
+                    </div>
+                </div>
+
+                {showPages()}
+            </div>
 
         </Container >
     )

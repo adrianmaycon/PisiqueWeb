@@ -1,10 +1,24 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div `
     width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #f5f8fb;
+
+    .bnt-access-flash {
+        padding: 10px 20px;
+        font-size: 18px;
+        line-height: 24px;
+        color: #fff;
+        border-radius: 10px;
+        background: var(--color-primary);
+        border: none;
+    
+        :hover {
+            background: var(--color-primary-dark);
+        }
+    }
 
     #sectionPrimary{
         width: 100%;
@@ -32,12 +46,12 @@ export const Container = styled.div`
     #sectionPrimary .alert-info{
         width: 100%;
         height: 250px; 
-        background: url('https://img.cloudygif.com/full/808e8800f14c5dbb.gif');
+        background: url('https://www.vaticannews.va/content/dam/vaticannews/agenzie/images/reuters/2022/07/12/17/1657640555564.JPG/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg');
         /* background: #6d71f9; */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        margin-top: 60px;
+        margin-top: 40px;
         border-radius: 15px;
     }
 
@@ -67,6 +81,10 @@ export const Container = styled.div`
         border: 2px solid #6573ed;
     }
 
+    h3 {
+        color: #444;
+    }
+
     #sectionSecundary header h1{
         font-size: 2.3rem;
         line-height: 3rem;
@@ -78,5 +96,11 @@ export const Container = styled.div`
         font-size: 1.3rem;
         line-height: 1.5rem;
         margin-top: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+        #sectionSecundary {
+            display: none;
+        }
     }
 `
