@@ -17,8 +17,10 @@ function Dashboard() {
     const [openNav, setOpenNav] = useState(false)
 
     useEffect(() => {
+        let section_atual = String(window.location.href).split("/dashboard")[1];
         // let url_atual = (window.location.href).split("http://localhost:3000/dashboard");
-        let url_atual = (window.location.href).split("https://institutopisique.vercel.app/dashboard");
+        let url_atual = (window.location.href).split(String(window.location.href).split(String(section_atual))[0]);
+        // let url_atual = (window.location.href).split("https://institutopisique.vercel.app/dashboard");
 
         switch (url_atual[1]) {
             case "/painel":
