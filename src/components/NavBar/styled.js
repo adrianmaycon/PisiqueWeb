@@ -289,6 +289,7 @@ export const Container = styled.div `
         width: 100%;
         color: var(--color-text-base);
         font-size: 1.5rem;
+        margin-left: 80px;
         text-decoration: none;
         cursor: pointer;
         font-weight: 400;

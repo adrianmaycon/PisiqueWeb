@@ -22,6 +22,8 @@ export const Container = styled.div `
 
     #sectionPrimary{
         width: 100%;
+        max-height: 100vh;
+        overflow-x: hidden;
         padding: 30px;
     }
 
@@ -45,14 +47,15 @@ export const Container = styled.div `
 
     #sectionPrimary .alert-info{
         width: 100%;
-        height: 250px; 
-        background: url('https://www.vaticannews.va/content/dam/vaticannews/agenzie/images/reuters/2022/07/12/17/1657640555564.JPG/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg');
+        height: 300px; 
+        background: url('https://cdn-images-1.medium.com/max/1600/1*azRwX1eVnBdIKiBX6dBbJw.gif');
         /* background: #6d71f9; */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         margin-top: 40px;
         border-radius: 15px;
+        box-shadow: 0 0 0.3em rgb(0, 0, 0, 0.1);
     }
 
     #sectionSecundary{

@@ -51,7 +51,7 @@ export const Container = styled.div `
             position: fixed;
             display: grid;
             grid-template-columns: 300px calc(100% - 300px);
-            z-index: 1000;
+            z-index: 999;
         }
 
         .menu-icon { 

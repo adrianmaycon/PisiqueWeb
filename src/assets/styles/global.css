@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     font-size: 60%;
+    --color-white: #fff;
     --color-background: #fff;
     --color-secundary-background: #262f66;
     --color-primary-lighter: #5E87FF;

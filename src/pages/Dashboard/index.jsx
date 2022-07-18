@@ -6,6 +6,7 @@ import { IoMenu, IoArrowBackOutline } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
 import { useHistory } from 'react-router-dom';
 import Painel from './tabs/Painel';
+import Leitura from './tabs/Leitura';
 import Perfil from './tabs/Perfil';
 
 function Dashboard() {
@@ -16,8 +17,8 @@ function Dashboard() {
     const [openNav, setOpenNav] = useState(false)
 
     useEffect(() => {
-        // let url_atual = (window.location.href).split("http://localhost:3000/dashboard");
-        let url_atual = (window.location.href).split("https://adrianmaycon.github.io/dashboard");
+        let url_atual = (window.location.href).split("http://localhost:3000/dashboard");
+        // let url_atual = (window.location.href).split("https://adrianmaycon.github.io/dashboard");
 
         switch (url_atual[1]) {
             case "/painel":
@@ -93,6 +94,9 @@ function Dashboard() {
 
             case "profile":
                 return <Perfil />
+
+            case "leitura":
+                return <Leitura />
 
             default:
                 break;
