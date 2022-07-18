@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import RegisterUser from '../../../../components/RegisterUser';
 import RegisterHuman from '../../../../components/RegisterHuman';
 import RegisterSeniors from '../../../../components/RegisterSeniors';
+import ListHuman from '../../../../components/ListHuman';
 import UsersService from '../../../../Services/UsersService';
 import { AuthContext } from '../../../../auth/AuthContext';
 import { authConfig } from '../../../../auth/config';
@@ -19,6 +20,7 @@ function Painel() {
     const [open, setOpen] = useState(false)
     const [openUser, setOpenUser] = useState(false)
     const [openSeniors, setOpenSeniors] = useState(false)
+    const [openListHuman, setOpenListHuman] = useState(false)
     const [openConfig, setOpenConfig] = useState(false)
     const [dataUser, setDataUser] = useState({})
 
@@ -51,6 +53,7 @@ function Painel() {
             {open ? <RegisterHuman close={() => setOpen(false)} /> : null}
             {openUser ? <RegisterUser close={() => setOpenUser(false)} /> : null}
             {openSeniors ? <RegisterSeniors close={() => setOpenSeniors(false)} /> : null}
+            {openListHuman ? <ListHuman close={() => setOpenListHuman(false)} /> : null}
             {/* <ModalAvatars /> */}
             <Container>
                 <section id="sectionPrimary">
@@ -72,7 +75,7 @@ function Painel() {
                     <h3 style={{ marginTop: 40, marginBottom: 20 }}>Acesso Rápido</h3>
 
                     <div className='div-access-flash'>
-                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Pessoas</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpenListHuman(true)}><FaFileAlt className='icon' /> Listagem de Pessoas</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Idosos</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Famílias</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileContract className='icon' /> Lista de Presença</button>

@@ -44,6 +44,18 @@ export async function GetDataHuman(id) {
 
 }
 
+export async function ListHuman() {
+    let humans = await firebase.firestore().collection('Humanos').get()
+
+    let listHuman = []
+
+    humans.forEach(human => {
+        listHuman.push({...human.data() })
+    })
+
+    return listHuman
+}
+
 export async function RegisterUser(data) {
 
     try {
@@ -95,4 +107,4 @@ export async function getAvatars() {
 
 }
 
-export default { GetDataUser, RegisterUserPisique, RegisterHuman, RegisterUser, GetDataHuman, getAvatars }
+export default { GetDataUser, RegisterUserPisique, RegisterHuman, RegisterUser, GetDataHuman, getAvatars, ListHuman }
