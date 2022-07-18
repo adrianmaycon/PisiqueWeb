@@ -22,6 +22,28 @@ export async function GetDataUser(id) {
 
 }
 
+export async function GetDataHuman(id) {
+
+    let patient = await firebase.firestore().collection('Humanos').doc(`${id}`);
+
+    let getDoc = patient.get()
+        .then(doc => {
+            if (!doc.exists) {
+                console.log('Esse documento não existe!');
+                return false
+            } else {
+                // console.log('Dados do documento:', doc.data());
+                return doc.data();
+            }
+        })
+        .catch(err => {
+            console.log('Erro ao obter o documento', err);
+        });
+
+    return getDoc
+
+}
+
 export async function RegisterUser(data) {
 
     try {
@@ -73,4 +95,4 @@ export async function getAvatars() {
 
 }
 
-export default { GetDataUser, RegisterUserPisique, RegisterHuman, RegisterUser, getAvatars }
+export default { GetDataUser, RegisterUserPisique, RegisterHuman, RegisterUser, GetDataHuman, getAvatars }

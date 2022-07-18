@@ -7,7 +7,6 @@ import RegisterPsi from './pages/Cadastro/registerPsi';
 import RegisterUser from './pages/Cadastro/registerUser';
 import RegisterAcad from './pages/Cadastro/registerAcad';
 import RegisterPost from './pages/Cadastro/registerPost';
-import RegisterHuman from './pages/Cadastro/registerHuman';
 import Blog from './pages/Blog';
 import Choices from './pages/Choices';
 import Sobre from './pages/Sobre';
@@ -27,7 +26,6 @@ function App() {
                     <Route exact path="/blog" component={Blog} />
                     <Route exact path="/sobre" component={Sobre} />
                     <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/registrar" component={RegisterHuman} />
                     <RotaPrivada exact path="/register-psi" component={RegisterPsi} />
                     <RotaPrivada exact path="/register-user" component={RegisterUser} />
                     <RotaPrivada exact path="/register-acad" component={RegisterAcad} />

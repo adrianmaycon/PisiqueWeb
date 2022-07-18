@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import { FaCaretDown, FaCaretUp } from "react-icons/fa";
+import { FaCaretDown, FaCaretUp, FaUserPlus, FaLaptop, FaFileAlt, FaFileContract, FaUsers, FaRegAddressCard } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
+import RegisterUser from '../../../../components/RegisterUser';
 import RegisterHuman from '../../../../components/RegisterHuman';
-
+import RegisterSeniors from '../../../../components/RegisterSeniors';
 import UsersService from '../../../../Services/UsersService';
 import { AuthContext } from '../../../../auth/AuthContext';
 import { authConfig } from '../../../../auth/config';
@@ -16,6 +17,8 @@ import Book from '../../../../components/book';
 function Painel() {
 
     const [open, setOpen] = useState(false)
+    const [openUser, setOpenUser] = useState(false)
+    const [openSeniors, setOpenSeniors] = useState(false)
     const [openConfig, setOpenConfig] = useState(false)
     const [dataUser, setDataUser] = useState({})
 
@@ -46,6 +49,8 @@ function Painel() {
     return (
         <>
             {open ? <RegisterHuman close={() => setOpen(false)} /> : null}
+            {openUser ? <RegisterUser close={() => setOpenUser(false)} /> : null}
+            {openSeniors ? <RegisterSeniors close={() => setOpenSeniors(false)} /> : null}
             {/* <ModalAvatars /> */}
             <Container>
                 <section id="sectionPrimary">
@@ -64,9 +69,19 @@ function Painel() {
                     <div className="alert-info">
                     </div>
 
-                    <h3 style={{ marginTop: 20, marginBottom: 10 }}>Acesso Rápido</h3>
+                    <h3 style={{ marginTop: 40, marginBottom: 20 }}>Acesso Rápido</h3>
 
-                    <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}>Cadastro de Pessoa</button>
+                    <div className='div-access-flash'>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Pessoas</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Idosos</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Famílias</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileContract className='icon' /> Lista de Presença</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaUserPlus className='icon' /> Cadastro de Pessoa</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpenUser(true)}><FaLaptop className='icon' /> Cadastro de Usuario</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpenSeniors(true)}><FaRegAddressCard className='icon' /> Cadastro de Idosos</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpenUser(true)}><FaUsers className='icon' /> Cadastro de Famílias</button>
+                    </div>
+
                     {/* <Link to="/registrar"><button type="button" className='bnt-access-flash'>Cadastro de Pessoa</button></Link> */}
 
                     <Book />

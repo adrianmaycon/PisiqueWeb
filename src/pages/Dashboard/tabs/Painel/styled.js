@@ -7,9 +7,13 @@ export const Container = styled.div `
     background-color: #f5f8fb;
 
     .bnt-access-flash {
-        padding: 10px 20px;
+        display: flex;
+        padding: 15px 30px;
         font-size: 18px;
-        line-height: 24px;
+        line-height: 18px;
+        letter-spacing: 1px;
+        justify-content: center;
+        align-items: center;
         color: #fff;
         border-radius: 10px;
         background: var(--color-primary);
@@ -18,6 +22,20 @@ export const Container = styled.div `
         :hover {
             background: var(--color-primary-dark);
         }
+    }
+
+    .bnt-access-flash .icon {
+        font-size: 22px;
+        margin: 0;
+        margin-right: 10px;
+        color: #fff;
+    }
+
+    .div-access-flash {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
     }
 
     #sectionPrimary{
@@ -85,6 +103,7 @@ export const Container = styled.div `
     }
 
     h3 {
+        font-size: 30px;
         color: #444;
     }
 
@@ -99,6 +118,12 @@ export const Container = styled.div `
         font-size: 1.3rem;
         line-height: 1.5rem;
         margin-top: 0.5rem;
+    }
+
+    @media (max-width: 1400px) {
+        .div-access-flash {
+            grid-template-columns: 2fr 2fr;
+        }
     }
 
     @media (max-width: 900px) {
