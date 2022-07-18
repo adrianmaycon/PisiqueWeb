@@ -35,6 +35,7 @@ export const Container = styled.div `
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 60px;
         gap: 20px;
     }
 
@@ -125,10 +126,16 @@ export const Container = styled.div `
             grid-template-columns: 2fr 2fr;
         }
     }
-
+    
     @media (max-width: 900px) {
         #sectionSecundary {
             display: none;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .div-access-flash {
+            grid-template-columns: 4fr;
         }
     }
 `
