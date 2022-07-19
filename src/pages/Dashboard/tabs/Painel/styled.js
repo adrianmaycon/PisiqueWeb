@@ -104,14 +104,14 @@ export const Container = styled.div `
     }
 
     h3 {
-        font-size: 30px;
-        color: #444;
+        font-size: 24px;
+        color: var(--color-text-title);
     }
 
     #sectionSecundary header h1{
         font-size: 2.3rem;
         line-height: 3rem;
-        color: #444;
+        color: var(--color-text-title);
         margin-top: 1.5rem;
     }
 
