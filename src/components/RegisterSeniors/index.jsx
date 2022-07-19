@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import logo from '../../assets/images/logo-instituto.png';
+import logo from 'assets/images/logo-instituto.png';
 import { withRouter } from 'react-router-dom';
-import MasksService, { mCPF, mCEP, mTel } from '../../Services/masksService';
-import Input from '../../components/common/Input';
-import InputDate from '../../components/common/InputDate';
-import UsersService from '../../Services/UsersService';
+import MasksService, { mCPF, mCEP, mTel } from 'Services/masksService';
+import Input from 'components/common/Input';
+import InputDate from 'components/common/InputDate';
+import UsersService from 'Services/UsersService';
 import { FaUser, FaHome, FaSearch } from "react-icons/fa";
 import { Container, Modal } from './styled';
 
@@ -124,8 +124,8 @@ const RegisterSeniors = withRouter(({ history, close }) => {
         }
     }
 
-    function handleValidateCpf() {
-        MasksService.validateCpf(cpf)
+    function handleValidateCpf(id) {
+        MasksService.validateCpf(id)
             .then((response) => {
                 // console.log(response);
                 setSuccessCpf(response);
@@ -148,16 +148,17 @@ const RegisterSeniors = withRouter(({ history, close }) => {
                                 error={successCpf === false}
                                 success={successCpf === true}
                                 name="search"
-                                label="Buscar Idoso pelo CPF *"
+                                label="Buscar pelo CPF *"
                                 value={search}
                                 onChange={(e) => mCPF(e.target.value).then((v) => setSearch(v))}
                                 maxLength="14"
                                 minLength="14"
-                                onBlur={() => cpf.length === 14 ? handleValidateCpf() : null}
+                                onBlur={() => cpf.length === 14 ? handleValidateCpf(search) : null}
                                 placeholder="000.000.000-00"
                             />
                             <button type='button' onClick={() => getHumans(search)}><FaSearch /></button>
                         </div>
+                        {successCpf === false && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 5, marginTop: 0 }}>CPF Inválido</h4>}
                         <fieldset>
 
                             <legend>Dados Pessoais <FaUser /></legend>
@@ -221,7 +222,7 @@ const RegisterSeniors = withRouter(({ history, close }) => {
                                     onChange={(e) => mCPF(e.target.value).then((v) => setCpf(v))}
                                     maxLength="14"
                                     minLength="14"
-                                    onBlur={() => cpf.length === 14 ? handleValidateCpf() : null}
+                                    onBlur={() => cpf.length === 14 ? handleValidateCpf(cpf) : null}
                                     placeholder="000.000.000-00"
                                     className="off-mouse"
                                 />
@@ -238,8 +239,6 @@ const RegisterSeniors = withRouter(({ history, close }) => {
                                     className="off-mouse"
                                 />
                             </div>
-
-                            {successCpf === false && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 5, marginTop: 0 }}>CPF Inválido</h4>}
 
                             <div className="div-date">
                                 <Input

@@ -139,30 +139,46 @@ export const Container = styled.div `
     background-color: #4284f0;
     }
 
+    .buscar-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 3.5fr 0.5fr;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        gap: 10px;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            margin-bottom: 15px;
+            border-radius: 0.8rem;
+            border: 1.5px solid var(--color-border-base);
+            font-size: 20px;
+        }
+    }
+
     main {
         background: var(--color-box-base);
         width: 100%;
+        min-height: 600px;
         max-width: 900px;
         margin: 0;
         padding: 24px;
-        overflow-y: scroll;
+        overflow-x: hidden;
         border: 6px solid var(--color-primary);
         border-top: 0;
-        /* box-shadow: 2px 2px 10px #888888; */
+    }
 
-        ::-webkit-scrollbar {
-            width: 12px;               /* width of the entire scrollbar */
-        }
+    main table {
+        width: 100%;
+        min-width: 800px;
+    }
 
-        ::-webkit-scrollbar-track {
-            background: var(--color-primary);        /* color of the tracking area */
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: var(--color-white);    /* color of the scroll thumb */
-            border-radius: 20px;       /* roundness of the scroll thumb */
-            border: 3px solid var(--color-primary);   /* creates padding around scroll thumb */
-        }
+    main .div-table-pro {
+        
+        overflow-y: hidden;
     }
 
     main fieldset {
@@ -215,11 +231,11 @@ export const Container = styled.div `
     }
 
     main footer {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        grid-template-columns: 2fr 2fr;
+        margin-top: 30px;
         padding: 24px;
-        gap: 40px;
         background: var(--color-box-footer);
         border-top: 1px solid var(--color-line-in-white);
 
@@ -251,15 +267,19 @@ export const Container = styled.div `
 
     main footer button {
         width: 100%;
+        max-width: 300px;
         height: 5.6rem;
         background: var(--color-primary);
         color: var(--color-button-text);
         border: 0;
+        text-transform: uppercase;
         border-radius: 0.8rem;
+        letter-spacing: 2px;
         cursor: pointer;
         font: 700 1.6rem Archivo;
         display: flex;
         align-items: center;
+        font-weight: 600;
         justify-content: center;
         text-decoration: none;
         transition: background-color 0.2s;

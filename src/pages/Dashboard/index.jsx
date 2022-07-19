@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logoImg from '../../assets/images/logo.svg';
+import logoImg from 'assets/images/logo.svg';
 import { FaHome, FaUserFriends, FaMoneyBillWave, FaFlagCheckered, FaComments, FaBookReader, FaHiking, FaAddressCard, FaFolder, FaFolderOpen } from "react-icons/fa";
 import { Container, ContDiv, MenuContainer, NavContainer } from './styled';
 import { IoMenu, IoArrowBackOutline } from "react-icons/io5";

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './styled';
-import Book from '../../../../components/book';
+import Book from 'components/book';
 
 function Leitura() {
 

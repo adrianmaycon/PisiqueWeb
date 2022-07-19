@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import { FaCaretDown, FaCaretUp, FaUserPlus, FaLaptop, FaFileAlt, FaFileContract, FaUsers, FaRegAddressCard } from "react-icons/fa";
+import { FaCaretDown, FaCaretUp, FaUserPlus, FaProjectDiagram, FaLaptop, FaFileAlt, FaFileContract, FaUsers, FaRegAddressCard } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-import RegisterUser from '../../../../components/RegisterUser';
-import RegisterHuman from '../../../../components/RegisterHuman';
-import RegisterSeniors from '../../../../components/RegisterSeniors';
-import ListHuman from '../../../../components/ListHuman';
-import UsersService from '../../../../Services/UsersService';
-import { AuthContext } from '../../../../auth/AuthContext';
-import { authConfig } from '../../../../auth/config';
+import RegisterUser from 'components/RegisterUser';
+import RegisterHuman from 'components/RegisterHuman';
+import RegisterSeniors from 'components/RegisterSeniors';
+import ListHuman from 'components/ListHuman';
+import UsersService from 'Services/UsersService';
+import { AuthContext } from 'auth/AuthContext';
+import { authConfig } from 'auth/config';
 import { Container } from './styled';
-import Book from '../../../../components/book';
-
-// import ModalAvatars from '../../../../components/common/ModalAvatars'
+import Book from 'components/book';
 
 function Painel() {
 
@@ -80,6 +78,7 @@ function Painel() {
                         <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileAlt className='icon' /> Listagem de Famílias</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaFileContract className='icon' /> Lista de Presença</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaUserPlus className='icon' /> Cadastro de Pessoa</button>
+                        <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaProjectDiagram className='icon' /> Cadastro de Projeto</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpenUser(true)}><FaLaptop className='icon' /> Cadastro de Usuario</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpenSeniors(true)}><FaRegAddressCard className='icon' /> Cadastro de Idosos</button>
                         <button type="button" className='bnt-access-flash' onClick={() => setOpenUser(true)}><FaUsers className='icon' /> Cadastro de Famílias</button>

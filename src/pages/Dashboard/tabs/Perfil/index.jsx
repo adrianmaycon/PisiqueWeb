@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GithubPicker } from 'react-color';
 import { IoCloudUploadOutline, IoColorPaletteOutline } from "react-icons/io5";
-import MasksService, { mCEP } from '../../../../Services/masksService';
-import UsersService from '../../../../Services/UsersService';
-import { AuthContext } from '../../../../auth/AuthContext';
-import warningIcon from '../../../../assets/images/icons/warning.svg';
+import MasksService, { mCEP } from 'Services/masksService';
+import UsersService from 'Services/UsersService';
+import { AuthContext } from 'auth/AuthContext';
+import warningIcon from 'assets/images/icons/warning.svg';
 import { FaUser } from "react-icons/fa";
 import { Container, Header, Main, ContainerInfos, Avatar } from './styled';
-import Input from '../../../../components/common/Input';
-import Select from '../../../../components/common/Select';
-import InputDate from '../../../../components/common/InputDate';
-// import ModalAvatars from '../../../components/common/ModalAvatars'
+import Input from 'components/common/Input';
+import Select from 'components/common/Select';
+import InputDate from 'components/common/InputDate';
 
 function Perfil() {
 
-    // const [openConfig, setOpenConfig] = useState(false)
     const [dataUser, setDataUser] = useState({})
     const [avatar, setAvatar] = useState("")
     const [name, setName] = useState('');

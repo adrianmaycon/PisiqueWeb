@@ -60,6 +60,13 @@ export const Container = styled.div `
     }
 
     @media (min-width: 1000px) {
+        .cont-pages {
+            .header-pages {
+                padding: 0;
+                display: none;
+            }
+        }
+        
         .div-btn-off {
             display: none;
         }

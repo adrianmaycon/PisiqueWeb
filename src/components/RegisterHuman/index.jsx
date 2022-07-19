@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import logo from '../../assets/images/logo-instituto.png';
+import logo from 'assets/images/logo-instituto.png';
 import { withRouter } from 'react-router-dom';
-import MasksService, { mCPF, mCEP, mTel } from '../../Services/masksService';
-import Input from '../../components/common/Input';
-import Select from '../../components/common/Select';
-import InputDate from '../../components/common/InputDate';
-import UsersService from '../../Services/UsersService';
+import MasksService, { mCPF, mCEP, mTel } from 'Services/masksService';
+import Input from 'components/common/Input';
+import Select from 'components/common/Select';
+import InputDate from 'components/common/InputDate';
+import UsersService from 'Services/UsersService';
 import { FaUser, FaHome } from "react-icons/fa";
 import { Container, Modal } from './styled';
 
@@ -37,6 +37,8 @@ const RegisterHuman = withRouter(({ history, close }) => {
     function handleCreateClass(e) {
         e.preventDefault();
 
+        const date = new Date().toLocaleString();
+
         if (successCpf) {
             let data = {
                 fullName: name,
@@ -59,7 +61,9 @@ const RegisterHuman = withRouter(({ history, close }) => {
                     complement: complemento,
                     district: bairro,
                     country: pais
-                }
+                },
+                creationDate: date,
+                lastUpdate: date,
             }
 
             UsersService.RegisterHuman(data)
@@ -84,6 +88,7 @@ const RegisterHuman = withRouter(({ history, close }) => {
                     setComplemento('');
                     setBairro('');
                     setPais('');
+                    close();
                 })
         }
     }

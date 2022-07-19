@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../../components/NavBar';
+import Header from 'components/NavBar';
 import { Container } from './styled';
 // import CookiesPage from '../../components/Cookies';
-import path from '../../assets/images/apresent.svg';
-import insta from '../../assets/icons/insta.png';
-import youtube from '../../assets/icons/youtube.png';
-import likedlin from '../../assets/icons/likedlin.png';
+import path from 'assets/images/apresent.svg';
+import insta from 'assets/icons/insta.png';
+import youtube from 'assets/icons/youtube.png';
+import likedlin from 'assets/icons/likedlin.png';
 import classNames from 'classnames';
 
 function Home() {
