@@ -227,8 +227,6 @@ const RegisterHuman = withRouter(({ history, close }) => {
                                     label="RG"
                                     value={rg}
                                     onChange={(e) => setRg(e.target.value)}
-                                    maxLength="11"
-                                    minLength="11"
                                     placeholder="12345678910"
                                 />
                             </div>

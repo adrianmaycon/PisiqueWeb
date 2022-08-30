@@ -66,16 +66,16 @@ export const Container = styled.div `
         padding: 8px;
     }
 
-    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    #customers tr:nth-child(even){background-color: #f2f2f2}
 
-    #customers tr:hover {background-color: #ddd; cursor: pointer;}
+    #customers tr:hover {background-color: #eee; cursor: pointer;}
 
     #customers th {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    color: #FFF;
-    text-align: left;
-    background-color: #4284f0;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        color: #FFF;
+        text-align: left;
+        background-color: #4284f0;
     }
 
     .buscar-grid {
@@ -101,13 +101,36 @@ export const Container = styled.div `
     main {
         background: var(--color-box-base);
         width: 100%;
+        max-width: 1200px;
         margin: 0;
         margin-bottom: 30px;
         padding: 24px;
 
+        .cont-pagination {
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+
+            #numbPagination {
+                margin-left: 10px;
+                margin-right: 20px;
+            }
+
+            .btn-pag {
+                width: 20px;
+                background-color: #4284f0;
+                border: none;
+                color: #fff;
+                border-radius: 5px;
+                margin-right: 5px;
+            }
+        }
+
         .div-row-btn {
             width: 100%;
             display: flex;
+            justify-content: end;
             margin-bottom: 20px;
         }
 
@@ -139,12 +162,13 @@ export const Container = styled.div `
 
     main table {
         width: 100%;
-        min-width: 800px;
+        min-width: 1000px;
     }
 
     main .div-table-pro {
         
         border-radius: 10px;
+        border: 1px solid #ddd;
         overflow-y: hidden;
     }
 
