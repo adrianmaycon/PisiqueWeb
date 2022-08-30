@@ -82,6 +82,12 @@ export async function mCPF(cpf) {
     return cpf
 }
 
+export async function mData(data) {
+    console.log(data)
+
+    return data
+}
+
 export async function mNcc(num) {
     num = num.replace(/\D/g, "");
     num = num.replace(/^(\d{4})(\d)/g, "$1 $2");
@@ -140,4 +146,4 @@ export async function mCEP(cep) {
 //     return text;                 
 // }
 
-export default { receiveCep, validateCpf, mTel, mCPF, mCEP, mNcc }
+export default { receiveCep, validateCpf, mTel, mCPF, mData, mCEP, mNcc }

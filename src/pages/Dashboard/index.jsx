@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import Painel from './tabs/Painel';
 import Leitura from './tabs/Leitura';
 import Perfil from './tabs/Perfil';
+import Usuarios from './tabs/Usuarios';
 
 function Dashboard() {
     const history = useHistory();
@@ -29,9 +30,9 @@ function Dashboard() {
                 setSelect(1)
                 break;
 
-            case "/atendimento":
-                console.log('atendimento');
-                setSubPage('atendimento');
+            case "/usuarios":
+                console.log('usuarios');
+                setSubPage('usuarios');
                 setSelect(2)
                 break;
 
@@ -94,6 +95,9 @@ function Dashboard() {
             case "painel":
                 return <Painel />
 
+            case "usuarios":
+                return <Usuarios />
+
             case "profile":
                 return <Perfil />
 
@@ -127,8 +131,8 @@ function Dashboard() {
 
                                 <li
                                     id={select === 2 ? "select" : null}
-                                    onClick={() => { setSelect(2); history.push("/dashboard/atendimento"); setOpenNav(false) }}
-                                ><FaUserFriends className="icon" />Atendimento</li>
+                                    onClick={() => { setSelect(2); history.push("/dashboard/usuarios"); setOpenNav(false) }}
+                                ><FaUserFriends className="icon" />Usuários</li>
 
                                 <li
                                     id={select === 4 ? "select" : null}
