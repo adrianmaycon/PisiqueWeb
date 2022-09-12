@@ -7,10 +7,18 @@ import Select from 'components/common/Select';
 import InputDate from 'components/common/InputDate';
 import UsersService from 'Services/UsersService';
 import { FaUser, FaHome } from "react-icons/fa";
-import { Container, Modal } from './styled';
+import { MdCancel } from "react-icons/md";
+import { Container, Modal, ContainerIconClose } from './styled';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const RegisterHuman = withRouter(({ history, close }) => {
 
+    const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [nameMae, setNameMae] = useState('');
     const [namePai, setNamePai] = useState('');
@@ -33,6 +41,10 @@ const RegisterHuman = withRouter(({ history, close }) => {
 
     const [errorCep, setErrorCep] = useState(false);
     const [successCpf, setSuccessCpf] = useState(null);
+    
+    const handleClose = () => {    
+        setOpen(false);
+    };
 
     function handleCreateClass(e) {
         e.preventDefault();
@@ -69,6 +81,7 @@ const RegisterHuman = withRouter(({ history, close }) => {
             UsersService.RegisterHuman(data)
                 .then((response) => {
                     console.log(response);
+                    setOpen(true)
                     setName('');
                     setSurnameName('');
                     setCpf('');
@@ -114,7 +127,7 @@ const RegisterHuman = withRouter(({ history, close }) => {
     function handleSurnameName() {
 
         if (!surnameName) {
-            setSurnameName((((name).split(" ", 2).join(' ')).replace(/\s/g, '')).toLowerCase())
+            setSurnameName(name.split(" ", 1))
         }
     }
 
@@ -127,248 +140,255 @@ const RegisterHuman = withRouter(({ history, close }) => {
     }
 
     return (
-        <Modal>
-            <Container>
-                <header>
-                    <img className='logo-instituto-pisique' src={logo} alt="Logo do Instituto Pisiquê" />
+        <>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    <p style={{fontSize: 14}}>Cadastro Realizado Com Sucesso</p>
+                </Alert>
+            </Snackbar> 
+            
+            <Modal>
+                    <Container>
+                        <header>
+                            <img className='logo-instituto-pisique' src={logo} alt="Logo do Instituto Pisiquê" />
+                        </header>
+                        <h1>Cadastro de Pessoa</h1>
+                        <main>
+                            <form onSubmit={handleCreateClass}>
+                                <fieldset>
+                                    <legend>Dados Pessoais <FaUser /></legend>
 
-                </header>
-                <h1>Cadastro de Pessoa</h1>
-                <main>
-                    <form onSubmit={handleCreateClass}>
-                        <fieldset>
-                            <legend>Dados Pessoais <FaUser /></legend>
+                                    <div className="div-names">
+                                        <Input
+                                            required
+                                            name="name"
+                                            label="Nome Completo *"
+                                            onBlur={handleSurnameName}
+                                            value={name}
+                                            onChange={(e) => { setName(e.target.value) }}
+                                            placeholder="Ex.: Joao da Silva"
+                                        />
 
-                            <div className="div-names">
-                                <Input
-                                    required
-                                    name="name"
-                                    label="Nome Completo *"
-                                    onBlur={handleSurnameName}
-                                    value={name}
-                                    onChange={(e) => { setName(e.target.value) }}
-                                    placeholder="Ex.: Joao da Silva"
-                                />
+                                        <Input
+                                            required
+                                            name="apelido"
+                                            label="Apelido *"
+                                            value={surnameName}
+                                            maxLength="30"
+                                            minLength="3"
+                                            onChange={(e) => { setSurnameName(e.target.value) }}
+                                            // onChange={(e) => { setSurnameName(((e.target.value).trim()).toLowerCase()) }}
+                                            placeholder="Ex.: João Silva"
+                                        />
+                                    </div>
 
-                                <Input
-                                    required
-                                    name="apelido"
-                                    label="Apelido *"
-                                    value={surnameName}
-                                    maxLength="30"
-                                    minLength="3"
-                                    onChange={(e) => { setSurnameName(e.target.value) }}
-                                    // onChange={(e) => { setSurnameName(((e.target.value).trim()).toLowerCase()) }}
-                                    placeholder="Ex.: João Silva"
-                                />
-                            </div>
+                                    <div className="div-date">
+                                        <Select
+                                            required
+                                            value={genre}
+                                            name="genre"
+                                            label="Identidade de Gênero *"
+                                            onChange={(e) => { setGenre(e.target.value) }}
+                                            options={[
+                                                { value: 'homem', label: 'Homem Cis' },
+                                                { value: 'homem-trans', label: 'Homem Trans' },
+                                                { value: 'mulher', label: 'Mulher Cis' },
+                                                { value: 'mulher-trans', label: 'Mulher Trans' },
+                                                { value: 'nao-binario', label: 'Não binário' },
+                                            ]}
+                                        />
 
-                            <div className="div-date">
-                                <Select
-                                    required
-                                    value={genre}
-                                    name="genre"
-                                    label="Identidade de Gênero *"
-                                    onChange={(e) => { setGenre(e.target.value) }}
-                                    options={[
-                                        { value: 'homem', label: 'Homem Cis' },
-                                        { value: 'homem-trans', label: 'Homem Trans' },
-                                        { value: 'mulher', label: 'Mulher Cis' },
-                                        { value: 'mulher-trans', label: 'Mulher Trans' },
-                                        { value: 'nao-binario', label: 'Não binário' },
-                                    ]}
-                                />
+                                        <InputDate
+                                            required
+                                            name="birth"
+                                            value={birth}
+                                            label="Data de Nascimento: *"
+                                            onChange={(e) => { setBirth(e.target.value) }}
+                                        />
+                                    </div>
 
-                                <InputDate
-                                    required
-                                    name="birth"
-                                    value={birth}
-                                    label="Data de Nascimento: *"
-                                    onChange={(e) => { setBirth(e.target.value) }}
-                                />
-                            </div>
+                                    <div className="div-date">
+                                        <Input
+                                            name="namePai"
+                                            label="Nome do Pai"
+                                            value={namePai}
+                                            onChange={(e) => { setNamePai(e.target.value) }}
+                                            placeholder="Ex.: Jose da Silva"
+                                        />
 
-                            <div className="div-date">
-                                <Input
-                                    name="namePai"
-                                    label="Nome do Pai"
-                                    value={namePai}
-                                    onChange={(e) => { setNamePai(e.target.value) }}
-                                    placeholder="Ex.: Jose da Silva"
-                                />
+                                        <Input
+                                            required
+                                            name="nameMae"
+                                            label="Nome da Mãe *"
+                                            value={nameMae}
+                                            onChange={(e) => { setNameMae(e.target.value) }}
+                                            placeholder="Ex.: Maria da Silva"
+                                        />
+                                    </div>
 
-                                <Input
-                                    required
-                                    name="nameMae"
-                                    label="Nome da Mãe *"
-                                    value={nameMae}
-                                    onChange={(e) => { setNameMae(e.target.value) }}
-                                    placeholder="Ex.: Maria da Silva"
-                                />
-                            </div>
+                                    <div className="div-date">
+                                        <Input
+                                            required
+                                            error={successCpf === false}
+                                            success={successCpf === true}
+                                            name="cpf"
+                                            label="CPF *"
+                                            value={cpf}
+                                            onChange={(e) => mCPF(e.target.value).then((v) => setCpf(v))}
+                                            maxLength="14"
+                                            minLength="14"
+                                            onBlur={() => cpf.length === 14 ? handleValidateCpf() : null}
+                                            placeholder="000.000.000-00"
+                                        />
 
-                            <div className="div-date">
-                                <Input
-                                    required
-                                    error={successCpf === false}
-                                    success={successCpf === true}
-                                    name="cpf"
-                                    label="CPF *"
-                                    value={cpf}
-                                    onChange={(e) => mCPF(e.target.value).then((v) => setCpf(v))}
-                                    maxLength="14"
-                                    minLength="14"
-                                    onBlur={() => cpf.length === 14 ? handleValidateCpf() : null}
-                                    placeholder="000.000.000-00"
-                                />
+                                        <Input
+                                            name="rg"
+                                            label="RG"
+                                            value={rg}
+                                            onChange={(e) => setRg(e.target.value)}
+                                            placeholder="12345678910"
+                                        />
+                                    </div>
 
-                                <Input
-                                    name="rg"
-                                    label="RG"
-                                    value={rg}
-                                    onChange={(e) => setRg(e.target.value)}
-                                    placeholder="12345678910"
-                                />
-                            </div>
+                                    {successCpf === false && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 5, marginTop: 0 }}>CPF Inválido</h4>}
 
-                            {successCpf === false && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 5, marginTop: 0 }}>CPF Inválido</h4>}
+                                    <div className="div-date">
+                                        <Input
+                                            name="telefone-whatsapp"
+                                            label="Telefone (Whatsapp) "
+                                            value={whatsapp}
+                                            onChange={(e) => mTel(e.target.value).then((v) => setWhatsapp(v))}
+                                            maxLength="15"
+                                            minLength="15"
+                                            placeholder="(00) 00000-0000"
+                                        />
 
-                            <div className="div-date">
-                                <Input
-                                    name="telefone-whatsapp"
-                                    label="Telefone (Whatsapp) "
-                                    value={whatsapp}
-                                    onChange={(e) => mTel(e.target.value).then((v) => setWhatsapp(v))}
-                                    maxLength="15"
-                                    minLength="15"
-                                    placeholder="(00) 00000-0000"
-                                />
+                                        <Input
+                                            name="telefone-secundario"
+                                            label="Telefone Secundário"
+                                            value={telefone}
+                                            onChange={(e) => mTel(e.target.value).then((v) => setTelefone(v))}
+                                            maxLength="15"
+                                            minLength="15"
+                                            placeholder="(00) 00000-0000"
+                                        />
+                                    </div>
 
-                                <Input
-                                    name="telefone-secundario"
-                                    label="Telefone Secundário"
-                                    value={telefone}
-                                    onChange={(e) => mTel(e.target.value).then((v) => setTelefone(v))}
-                                    maxLength="15"
-                                    minLength="15"
-                                    placeholder="(00) 00000-0000"
-                                />
-                            </div>
+                                    <div>
+                                        <Input
+                                            title={email}
+                                            type="email"
+                                            name="email"
+                                            label="Email"
+                                            placeholder="institutopisique@exemplo.com"
+                                            value={email}
+                                            onChange={(e) => { setEmail(e.target.value) }}
+                                        />
+                                    </div>
 
-                            <div>
-                                <Input
-                                    title={email}
-                                    type="email"
-                                    name="email"
-                                    label="Email"
-                                    placeholder="institutopisique@exemplo.com"
-                                    value={email}
-                                    onChange={(e) => { setEmail(e.target.value) }}
-                                />
-                            </div>
+                                </fieldset>
 
-                        </fieldset>
+                                <fieldset>
+                                    <legend>Endereço <FaHome /></legend>
 
-                        <fieldset>
-                            <legend>Endereço <FaHome /></legend>
+                                    {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
 
-                            {errorCep && <h4 style={{ color: 'red', fontFamily: 'Lato', marginBottom: 20 }}>CEP não encontrado</h4>}
+                                    <p style={{ marginBottom: 20 }}>Obs.: Após digitar o CEP, os outros dados irá preencher automaticamente. <br />Não sabe o CEP? <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="blank">Click aqui</a></p>
 
-                            <p style={{ marginBottom: 20 }}>Obs.: Após digitar o CEP, os outros dados irá preencher automaticamente. <br />Não sabe o CEP? <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="blank">Click aqui</a></p>
+                                    <div className="div-end">
+                                        <Input
+                                            required
+                                            name="cep"
+                                            label="Digite seu Cep *"
+                                            value={cep}
+                                            onBlur={handleCep}
+                                            onChange={(e) => mCEP(e.target.value).then((v) => setCep(v))}
+                                            maxLength={10}
+                                            minLength={10}
+                                            placeholder='00.000-000'
+                                        />
 
-                            <div className="div-end">
-                                <Input
-                                    required
-                                    name="cep"
-                                    label="Digite seu Cep *"
-                                    value={cep}
-                                    onBlur={handleCep}
-                                    onChange={(e) => mCEP(e.target.value).then((v) => setCep(v))}
-                                    maxLength={10}
-                                    minLength={10}
-                                    placeholder='00.000-000'
-                                />
+                                        <div className="cont-div">
+                                            <Input
+                                                name="cidade"
+                                                label="Cidade"
+                                                value={cidade}
+                                                onChange={(e) => setCidade(e.target.value)}
+                                                placeholder='Cidade'
+                                            />
 
-                                <div className="cont-div">
-                                    <Input
-                                        name="cidade"
-                                        label="Cidade"
-                                        value={cidade}
-                                        onChange={(e) => setCidade(e.target.value)}
-                                        placeholder='Cidade'
-                                    />
+                                            <Input
+                                                disabled
+                                                name="uf"
+                                                label="UF"
+                                                value={uf}
+                                                placeholder='UF'
+                                                className="off-mouse"
+                                            />
+                                        </div>
+                                    </div>
 
-                                    <Input
-                                        disabled
-                                        name="uf"
-                                        label="UF"
-                                        value={uf}
-                                        placeholder='UF'
-                                        className="off-mouse"
-                                    />
-                                </div>
-                            </div>
+                                    <div className="div-end-rua">
+                                        <Input
+                                            disabled
+                                            name="end"
+                                            label="Endereço"
+                                            value={end}
+                                            placeholder='Rua, Avenida, etc'
+                                            className="off-mouse"
+                                        />
 
-                            <div className="div-end-rua">
-                                <Input
-                                    disabled
-                                    name="end"
-                                    label="Endereço"
-                                    value={end}
-                                    placeholder='Rua, Avenida, etc'
-                                    className="off-mouse"
-                                />
+                                        <Input
+                                            required
+                                            label="Numero *"
+                                            value={num}
+                                            onChange={(e) => setNum(e.target.value)}
+                                            placeholder='123'
+                                        />
+                                    </div>
 
-                                <Input
-                                    required
-                                    label="Numero *"
-                                    value={num}
-                                    onChange={(e) => setNum(e.target.value)}
-                                    placeholder='123'
-                                />
-                            </div>
+                                    <div className="div-end-pais">
+                                        <Input
+                                            name="complemento"
+                                            label="Complemento"
+                                            value={complemento}
+                                            onChange={(e) => setComplemento(e.target.value)}
+                                            placeholder='Apto, Bloco'
+                                        />
 
-                            <div className="div-end-pais">
-                                <Input
-                                    name="complemento"
-                                    label="Complemento"
-                                    value={complemento}
-                                    onChange={(e) => setComplemento(e.target.value)}
-                                    placeholder='Apto, Bloco'
-                                />
+                                        <Input
+                                            name="bairro"
+                                            label="Bairro"
+                                            value={bairro}
+                                            onChange={(e) => setBairro(e.target.value)}
+                                            placeholder='Nome do Bairro'
+                                        />
 
-                                <Input
-                                    name="bairro"
-                                    label="Bairro"
-                                    value={bairro}
-                                    onChange={(e) => setBairro(e.target.value)}
-                                    placeholder='Nome do Bairro'
-                                />
+                                        <Input
+                                            disabled
+                                            name="pais"
+                                            label="País"
+                                            value={pais}
+                                            onChange={(e) => setPais(e.target.value)}
+                                            className="off-mouse"
+                                        />
+                                    </div>
+                                </fieldset>
 
-                                <Input
-                                    disabled
-                                    name="pais"
-                                    label="País"
-                                    value={pais}
-                                    onChange={(e) => setPais(e.target.value)}
-                                    className="off-mouse"
-                                />
-                            </div>
-                        </fieldset>
+                                <footer>
+                                    <button type="submit">
+                                        Fazer Cadastro
+                                    </button>
+                                </footer>
+                            </form>
+                        </main>
+                    </Container >
 
-                        <footer>
-                            <button type="submit">
-                                Fazer Cadastro
-                            </button>
-
-                            <button type="button" className='cancelar' onClick={() => close()}>
-                                Cancelar Cadastro
-                            </button>
-                        </footer>
-                    </form>
-                </main>
-            </Container >
-        </Modal>
+                    <ContainerIconClose onClick={close}>
+                        <MdCancel className='icon' />
+                    </ContainerIconClose>
+            </Modal>
+        </>
     )
 })
 

@@ -4,7 +4,7 @@ import Input from 'components/common/Input';
 import { FaUserPlus } from "react-icons/fa";
 import RegisterHuman from 'components/RegisterHuman';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaRegFileAlt } from "react-icons/fa";
 import { Container } from './styled';
 
 function Usuarios() {
@@ -13,11 +13,21 @@ function Usuarios() {
     const [humans, setHumans] = useState([]);
     const [firstNumber] = useState(1);
     const [fimNumber] = useState(10);
+    const [openListHumans, setOpenListHumans] = useState(false);
     const [numbPagination, setNumbPagination] = useState('');
 
     useEffect(() => {
-        listHumans();
-    }, [])
+        UsersService.ListHuman()
+            .then((response) => {
+                response.sort(function(a,b) {
+                    return a.fullName < b.fullName ? -1 : a.fullName > b.fullName ? 1 : 0;
+                });
+
+                setHumans(response);
+            })
+    }, [openListHumans])
+
+    console.log(humans)
 
     const LoadingSkeleton = () => (
         <SkeletonTheme color="#242339" highlightColor="#1c1b2d">
@@ -26,17 +36,6 @@ function Usuarios() {
             </div>
         </SkeletonTheme>
     );
-
-    function listHumans() {
-        UsersService.ListHuman()
-            .then((response) => {
-                response.sort(function(a,b) {
-                    return a.fullName < b.fullName ? -1 : a.fullName > b.fullName ? 1 : 0;
-                });
-                // handlerPagination(response);
-                setHumans(response);
-            })
-    }
 
     // function handlerPagination(data) {
     //     let qtd = data.length / 10;
@@ -64,11 +63,9 @@ function Usuarios() {
             console.log('dataRoomOn: ', dataRoomOn);
             setHumans(dataRoomOn);
         } else {
-            listHumans();
+            setOpenListHumans(!openListHumans);
         }
     }
-
-    console.log(humans);
 
     return (
         <>
@@ -100,6 +97,8 @@ function Usuarios() {
                                     <th>Telefone</th>
                                     <th>Bairro</th>
                                     <th>Data de Nasc.</th>
+                                    <th>Data de Cadastro.</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -112,6 +111,8 @@ function Usuarios() {
                                         <td>{human.whatsapp ? human.whatsapp : 'Não cadastrado'}</td>
                                         <td>{human.address.district}</td>
                                         <td>{maskData(human.birth)}</td>
+                                        <td>{human.creationDate}</td>
+                                        <td><div className='cont-icons-actions'><FaRegFileAlt className='icon-actions' /></div></td>
                                     </tr>
                                 </tbody> : null
                             )}
@@ -133,6 +134,8 @@ function Usuarios() {
                                 <option value="10">20</option>
                                 <option value="20">30</option>
                                 <option value="40">50</option>
+                                <option value="90">100</option>
+                                <option value="490">500</option>
                             </select>
                             <p>Total: <b>{humans.length}</b> Pessoa{humans.length > 1 ? 's' : null}</p>
                         </div>

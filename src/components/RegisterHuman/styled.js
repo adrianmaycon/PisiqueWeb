@@ -3,11 +3,9 @@ import styled from "styled-components";
 export const Modal = styled.div `
     width: 100vw;
     height: 100vh;
-    margin-top: -11px;
+    margin-top: 0px;
     margin-left: -300px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
     position: fixed;
     z-index: 1900;
@@ -74,12 +72,39 @@ export const Box = styled.div `
     }
 `;
 
+export const ContainerIconClose = styled.div `
+    width: 40px;
+    height: 40px;
+    display: flex;
+    cursor: pointer;
+    background: #fff;
+    margin-top: 20px;
+    margin-right: -40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 10px 10px 0px;
+    
+    .icon {
+        color: #e14926;
+        font-size: 28px;
+    }
+
+    :hover {
+        .icon {
+            color: #be2f0f;
+        }
+
+        background: #eee;
+    }
+`;
+
 export const Container = styled.div `
     width: 90%;
     max-width: 740px;
     margin: 20px 0;
     padding: 20px 0;
     display: flex;
+    border-radius: 10px 0px 10px 10px;
     flex-direction: column;
     background-color: #fff;
     align-items: center;
@@ -218,8 +243,8 @@ export const Container = styled.div `
     main footer {
         display: grid;
         align-items: center;
-        grid-template-columns: 2fr 2fr;
-        padding: 24px;
+        grid-template-columns: 4fr;
+        padding: 24px 0px;
         gap: 40px;
         background: var(--color-box-footer);
         border-top: 1px solid var(--color-line-in-white);

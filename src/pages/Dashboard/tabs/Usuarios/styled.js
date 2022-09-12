@@ -11,6 +11,14 @@ export const Container = styled.div `
     align-items: center;
     overflow-x: hidden;
 
+    .cont-icons-actions {
+        display: flex;
+
+        .icon-actions {
+            cursor: pointer;
+        }
+    }
+
     h1 {
         width: 100%;
         padding: 0 20px;
@@ -68,7 +76,7 @@ export const Container = styled.div `
 
     #customers tr:nth-child(even){background-color: #f2f2f2}
 
-    #customers tr:hover {background-color: #eee; cursor: pointer;}
+    #customers tr:hover {background-color: #eee}
 
     #customers th {
         padding-top: 6px;
@@ -162,7 +170,7 @@ export const Container = styled.div `
 
     main table {
         width: 100%;
-        min-width: 1000px;
+        min-width: 1200px;
     }
 
     main .div-table-pro {
