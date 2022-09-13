@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from 'assets/images/logo.svg';
-import { FaHome, FaUserFriends, FaMoneyBillWave, FaFlagCheckered, FaComments, FaBookReader, FaHiking, FaAddressCard, FaFolder, FaFolderOpen } from "react-icons/fa";
+import { FaHome, FaUserFriends, FaPencilRuler, FaUsers, FaUserAstronaut, FaGlasses, FaPaw, FaAddressCard, FaCalendarAlt } from "react-icons/fa";
 import { Container, ContDiv, MenuContainer, NavContainer } from './styled';
 import { IoMenu, IoArrowBackOutline } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
@@ -36,9 +36,9 @@ function Dashboard() {
                 setSelect(2)
                 break;
 
-            case "/pagamentos":
-                console.log('pagamentos');
-                setSubPage('pagamentos');
+            case "/atividades":
+                console.log('atividades');
+                setSubPage('atividades');
                 setSelect(3)
                 break;
 
@@ -48,27 +48,27 @@ function Dashboard() {
                 setSelect(4)
                 break;
 
-            case "/jogos":
-                console.log('jogos');
-                setSubPage('jogos');
+            case "/familias":
+                console.log('familias');
+                setSubPage('familias');
                 setSelect(5)
                 break;
 
-            case "/conversas":
-                console.log('conversas');
-                setSubPage('conversas');
+            case "/criancas":
+                console.log('criancas');
+                setSubPage('criancas');
                 setSelect(6)
                 break;
 
-            case "/leitura":
-                console.log('leitura');
-                setSubPage('leitura');
+            case "/idosos":
+                console.log('idosos');
+                setSubPage('idosos');
                 setSelect(7)
                 break;
 
-            case "/ranking":
-                console.log('ranking');
-                setSubPage('ranking');
+            case "/animais":
+                console.log('animais');
+                setSubPage('animais');
                 setSelect(8)
                 break;
 
@@ -101,7 +101,7 @@ function Dashboard() {
             case "profile":
                 return <Perfil />
 
-            case "leitura":
+            case "idosos":
                 return <Leitura />
 
             default:
@@ -120,7 +120,7 @@ function Dashboard() {
                             <div id="container-org">
 
                                 <ContDiv offMargin>
-                                    <p>Administração</p>
+                                    <p>Espaço pessoal</p>
                                     <hr />
                                 </ContDiv>
 
@@ -130,55 +130,55 @@ function Dashboard() {
                                 ><FaHome className="icon" />Painel</li>
 
                                 <li
-                                    id={select === 2 ? "select" : null}
-                                    onClick={() => { setSelect(2); history.push("/dashboard/usuarios"); setOpenNav(false) }}
-                                ><FaUserFriends className="icon" />Usuários</li>
-
-                                <li
                                     id={select === 4 ? "select" : null}
                                     onClick={() => { setSelect(4); history.push("/dashboard/profile"); setOpenNav(false) }}
                                 ><FaAddressCard className="icon" />Meu Perfil</li>
 
                                 <ContDiv>
-                                    <p>Área Social</p>
+                                    <p>Administrativo Social</p>
                                     <hr />
                                 </ContDiv>
 
                                 <li
+                                    id={select === 2 ? "select" : null}
+                                    onClick={() => { setSelect(2); history.push("/dashboard/usuarios"); setOpenNav(false) }}
+                                ><FaUserFriends className="icon" />Usuários</li>
+
+                                <li
                                     id={select === 5 ? "select" : null}
-                                    onClick={() => { setSelect(5); history.push("/dashboard/jogos"); setOpenNav(false) }}
-                                ><FaFlagCheckered className="icon" />Jogos</li>
+                                    onClick={() => { setSelect(5); history.push("/dashboard/familias"); setOpenNav(false) }}
+                                ><FaUsers className="icon" />Famílias</li>
 
                                 <li
                                     id={select === 6 ? "select" : null}
-                                    onClick={() => { setSelect(6); history.push("/dashboard/conversas"); setOpenNav(false) }}
-                                ><FaComments className="icon" />Conversas</li>
+                                    onClick={() => { setSelect(6); history.push("/dashboard/criancas"); setOpenNav(false) }}
+                                ><FaUserAstronaut className="icon" />Crianças</li>
 
                                 <li
                                     id={select === 7 ? "select" : null}
-                                    onClick={() => { setSelect(7); history.push("/dashboard/leitura"); setOpenNav(false) }}
-                                ><FaBookReader className="icon" />Leitura</li>
+                                    onClick={() => { setSelect(7); history.push("/dashboard/idosos"); setOpenNav(false) }}
+                                ><FaGlasses className="icon" />Idosos</li>
 
                                 <li
                                     id={select === 8 ? "select" : null}
-                                    onClick={() => { setSelect(8); history.push("/dashboard/ranking"); setOpenNav(false) }}
-                                ><FaHiking className="icon" />Ranking</li>
+                                    onClick={() => { setSelect(8); history.push("/dashboard/animais"); setOpenNav(false) }}
+                                ><FaPaw className="icon" />Animais</li>
 
 
                                 <ContDiv>
-                                    <p>Financeiro</p>
+                                    <p>Institucional</p>
                                     <hr />
                                 </ContDiv>
 
                                 <li
                                     id={select === 3 ? "select" : null}
-                                    onClick={() => { setSelect(3); history.push("/dashboard/pagamentos"); setOpenNav(false) }}
-                                ><FaMoneyBillWave className="icon" />Pagamentos</li>
+                                    onClick={() => { setSelect(3); history.push("/dashboard/atividades"); setOpenNav(false) }}
+                                ><FaPencilRuler className="icon" />Atividades</li>
 
                                 <li
                                     id={select === 10 ? "select" : null}
                                     onClick={() => { setSelect(10); history.push("/dashboard/arquivos"); setOpenNav(false) }}
-                                >{select === 10 ? <FaFolderOpen className="icon" /> : <FaFolder className="icon" />}Arquivos</li>
+                                ><FaCalendarAlt className="icon" />Quadro de Horário</li>
 
                                 <li
                                     id={select === 9 ? "select" : null}

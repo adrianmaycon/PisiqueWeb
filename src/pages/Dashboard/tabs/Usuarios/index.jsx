@@ -14,7 +14,7 @@ function Usuarios() {
     const [firstNumber] = useState(1);
     const [fimNumber] = useState(10);
     const [openListHumans, setOpenListHumans] = useState(false);
-    const [numbPagination, setNumbPagination] = useState('');
+    const [numbPagination, setNumbPagination] = useState('10');
 
     useEffect(() => {
         UsersService.ListHuman()
