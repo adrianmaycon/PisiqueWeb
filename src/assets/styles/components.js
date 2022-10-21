@@ -11,6 +11,13 @@ export const Progress = styled.div`
     background-color: #05C471;
 `;
 
+export const BarSkeleton = styled.div`
+    width: 100%;
+    height: 30px;
+    background: rgb(153,153,153);
+    background: linear-gradient(208deg, rgba(153,153,153,1) 0%, rgba(242,242,242,1) 0%, rgba(59,102,111,1) 100%);
+`;
+
 export const DivCloud = styled.div`
     position: absolute;
     margin-top: 10px;

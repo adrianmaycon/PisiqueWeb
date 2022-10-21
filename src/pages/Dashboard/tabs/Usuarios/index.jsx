@@ -3,9 +3,9 @@ import UsersService from 'Services/UsersService';
 import Input from 'components/common/Input';
 import { FaUserPlus } from "react-icons/fa";
 import RegisterHuman from 'components/RegisterHuman';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { FaSearch, FaRegFileAlt } from "react-icons/fa";
-import { Container } from './styled';
+import { Container, ContainerLoading } from './styled';
+import { BarSkeleton } from 'assets/styles/components';
 
 function Usuarios() {
     const [open, setOpen] = useState(false);
@@ -14,7 +14,7 @@ function Usuarios() {
     const [firstNumber] = useState(1);
     const [fimNumber] = useState(10);
     const [openListHumans, setOpenListHumans] = useState(false);
-    const [numbPagination, setNumbPagination] = useState('10');
+    const [numbPagination, setNumbPagination] = useState('90');
 
     useEffect(() => {
         UsersService.ListHuman()
@@ -30,11 +30,17 @@ function Usuarios() {
     console.log(humans)
 
     const LoadingSkeleton = () => (
-        <SkeletonTheme color="#242339" highlightColor="#1c1b2d">
-            <div style={{ width: '100%', marginTop: 10, padding: 20 }}>
-                <Skeleton height={50} count={10} style={{ margin: '5px 0' }} />
-            </div>
-        </SkeletonTheme>
+        <ContainerLoading >
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+            <BarSkeleton className='bar' />
+        </ContainerLoading>
     );
 
     // function handlerPagination(data) {
@@ -88,36 +94,37 @@ function Usuarios() {
                     </div>
 
                     <div className='div-table-pro'>
-                        {humans.length > 0 ? <table id="customers">
-                            <thead>
-                                <tr>
-                                    <th>Nº</th>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Telefone</th>
-                                    <th>Bairro</th>
-                                    <th>Data de Nasc.</th>
-                                    <th>Data de Cadastro.</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-
-                            {humans.map((human, index) => (index + 1) >= firstNumber && (index) < (fimNumber + Number(numbPagination)) ?
-                                <tbody key={human.cpf}>
+                        { humans ? 
+                            ( humans.length > 0 ? <table id="customers">
+                                <thead>
                                     <tr>
-                                        <td style={{width: 20}}>{index < 9 ? '0' : null}{index + 1}</td>
-                                        <td>{human.fullName}</td>
-                                        <td>{human.cpf}</td>
-                                        <td>{human.whatsapp ? human.whatsapp : 'Não cadastrado'}</td>
-                                        <td>{human.address.district}</td>
-                                        <td>{maskData(human.birth)}</td>
-                                        <td>{human.creationDate}</td>
-                                        <td><div className='cont-icons-actions'><FaRegFileAlt className='icon-actions' /></div></td>
+                                        <th>Nº</th>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Telefone</th>
+                                        {/* <th>Bairro</th> */}
+                                        <th>Data de Nasc.</th>
+                                        {/* <th>Data de Cadastro.</th> */}
+                                        <th></th>
                                     </tr>
-                                </tbody> : null
-                            )}
-                        </table> : <LoadingSkeleton />}
-                    </div>
+                                </thead>
+
+                                {humans.map((human, index) => (index + 1) >= firstNumber && (index) < (fimNumber + Number(numbPagination)) ?
+                                    <tbody key={human.cpf}>
+                                        <tr>
+                                            <td style={{width: 20}}>{index < 9 ? '0' : null}{index + 1}</td>
+                                            <td>{human.fullName}</td>
+                                            <td>{human.cpf}</td>
+                                            <td>{human.whatsapp ? human.whatsapp : 'Não cadastrado'}</td>
+                                            {/* <td>{human.address.district}</td> */}
+                                            <td>{maskData(human.birth)}</td>
+                                            {/* <td>{human.creationDate}</td> */}
+                                            <td style={{width: 20}}><div className='cont-icons-actions'><FaRegFileAlt className='icon-actions' /></div></td>
+                                        </tr>
+                                    </tbody> : null
+                                )}
+                            </table> : <LoadingSkeleton/> ) : <div><p>bghfdsfdghvj</p></div> }
+                        </div>
 
                     <div className='cont-pagination'>
                         <div className='row'>

@@ -170,13 +170,13 @@ export const Container = styled.div `
 
     main table {
         width: 100%;
-        min-width: 1200px;
+        min-width: 800px;
     }
 
     main .div-table-pro {
-        
-        border-radius: 10px;
-        border: 1px solid #ddd;
+        width: 100%;
+        border-radius: 5px;
+        /* border: 1px solid #ddd; */
         overflow-y: hidden;
     }
 
@@ -386,5 +386,19 @@ export const Container = styled.div `
         h1 {
             font-size: 20px;
         }
+    }
+`;
+
+export const ContainerLoading = styled.div`
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+
+    .bar + .bar {
+        margin-top: 15px;
     }
 `;
