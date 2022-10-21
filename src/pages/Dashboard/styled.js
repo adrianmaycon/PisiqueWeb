@@ -25,6 +25,7 @@ export const Container = styled.div `
 
     .cont-pages {
         width: 100%;
+        overflow-y: auto;
         
         .header-pages {
             width: 100%;

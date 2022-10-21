@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div `
     width: 100%;
-    height: 100vh;
     padding: 20px 0;
     padding-top: 0px;
     display: flex;
@@ -370,7 +369,7 @@ export const Container = styled.div `
         header,
         main,
         h1 {
-            width: 90%;
+            width: 100%;
             max-width: 900px;
         }
     }
