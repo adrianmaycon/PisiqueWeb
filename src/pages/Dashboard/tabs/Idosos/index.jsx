@@ -28,33 +28,47 @@ const maskData = (data) => {
 
 function maskNumberM(data) {
     let date = data.split("-");
+    console.log(date[0]);
     return Number(date[1]);
-}
+};
 
-function Idosos() {
+function Usuarios() {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [humans, setHumans] = useState([]);
     const [firstNumber] = useState(1);
     const [fimNumber] = useState(10);
     const [numberM, setNumberM] = useState(0);
+    const [numberY, setNumberY] = useState(0);
     const [checkboxFilterNiver, setCheckboxFilterNiver] = useState(false);
     const [openListHumans, setOpenListHumans] = useState(false);
     const [numbPagination, setNumbPagination] = useState('90');
-
+    
+    
     useEffect(() => {
+        function maskNumberY(data) {
+            let date = data.split("-");
+            let idade = numberY - Number(date[0]);
+            return idade >= 60;
+        }
+
         const date = new Date().toLocaleString().split("/");
+        const ano = date[2].split(" ");
+        setNumberY(Number(ano[0]));
         setNumberM(date[1]);
         UsersService.ListHuman()
             .then((response) => {
                 response.sort(function(a,b) {
                     return a.fullName < b.fullName ? -1 : a.fullName > b.fullName ? 1 : 0;
                 });
+                
+                let arr = [];
+                response.map((human) => maskNumberY(human.birth) ? arr.push(human) : null);
 
-                console.log(response)
-                setHumans(response);
+                console.log(arr)
+                setHumans(arr);
             })
-    }, [openListHumans])
+    }, [numberY, openListHumans])
 
     const returnLiveStatusOn = (value) => {
         if (value.cpf === search) {
@@ -83,7 +97,7 @@ function Idosos() {
             <Container>
                 <main>
                     <div className='div-row-btn'>
-                    <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaUserPlus className='icon' /> Cadastrar Usuário</button>
+                    <button type="button" className='bnt-access-flash' onClick={() => setOpen(true)}><FaUserPlus className='icon' /> Cadastrar Idoso</button>
                     </div>
                     <div className='buscar-grid'>
                         <Input
@@ -99,7 +113,7 @@ function Idosos() {
 
                     <div className='cont-filters'>
                         <input value={checkboxFilterNiver} type="checkbox" id="filter-niver" name="filter-niver" onChange={(e) => setCheckboxFilterNiver(e.target.checked)} />
-                        <label for="filter-niver">Aniversariantes do mês</label>
+                        <label htmlFor="filter-niver">Aniversariantes do mês</label>
                     </div>
 
                     <div className='div-table-pro'>
@@ -111,14 +125,12 @@ function Idosos() {
                                         <th>Nome</th>
                                         <th>CPF</th>
                                         <th>Telefone</th>
-                                        {/* <th>Bairro</th> */}
                                         <th>Data de Nasc.</th>
-                                        {/* <th>Data de Cadastro.</th> */}
                                         <th></th>
                                     </tr>
                                 </thead>
 
-                                {checkboxFilterNiver ? humans.map((human, index) => Number(numberM) === maskNumberM(human.birth) &&
+                                {checkboxFilterNiver ? humans.map((human, index) => (Number(numberM) === maskNumberM(human.birth)) &&
                                 <tbody key={human.cpf}>
                                     <tr>
                                         <td style={{width: 20}}>{index < 9 ? '0' : null}{index + 1}</td>
@@ -155,7 +167,7 @@ function Idosos() {
                                     <option value="90">100</option>
                                     <option value="490">500</option>
                                 </select>
-                            <p>Total: <b>{humans.length}</b> Pessoa{humans.length > 1 ? 's' : null}</p>
+                            <p>Total: <b>{humans.length}</b> Idoso{humans.length > 1 ? 's' : null}</p>
                         </div>
                     </div>
                 </main>
@@ -164,4 +176,4 @@ function Idosos() {
     )
 }
 
-export default Idosos;
+export default Usuarios;

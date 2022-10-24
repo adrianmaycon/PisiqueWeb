@@ -6,7 +6,7 @@ import { IoMenu, IoArrowBackOutline } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
 import { useHistory } from 'react-router-dom';
 import Painel from './tabs/Painel';
-import Leitura from './tabs/Leitura';
+import Idosos from './tabs/Idosos';
 import Perfil from './tabs/Perfil';
 import Usuarios from './tabs/Usuarios';
 
@@ -102,7 +102,7 @@ function Dashboard() {
                 return <Perfil />
 
             case "idosos":
-                return <Leitura />
+                return <Idosos />
 
             default:
                 break;
